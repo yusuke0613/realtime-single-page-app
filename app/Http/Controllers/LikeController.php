@@ -8,6 +8,18 @@ use App\Model\Reply;
 
 class LikeController extends Controller
 {
+
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('jwt');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
