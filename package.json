@@ -26,7 +26,9 @@
     },
     "dependencies": {
         "material-design-icons-iconfont": "^5.0.1",
+        "mavon-editor": "^2.7.5",
         "vue-router": "^3.1.2",
+        "vue-simplemde": "^1.0.0",
         "vuetify": "^1.5.16"
     }
 }

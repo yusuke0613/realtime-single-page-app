@@ -13,6 +13,18 @@ import router from './Router/router.js'
 
 Vue.use(Vuetify)
 
+import VueSimplemde from 'vue-simplemde'
+Vue.use(VueSimplemde)
+
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
+Vue.use(mavonEditor)
+
+import User from './Heplers/User.js'
+window.User = User
+
+window.EventBus = new Vue();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
