@@ -1,7 +1,13 @@
 <template>
     <div>
     <toolbar></toolbar>
-    <router-view></router-view>
+     <v-content>
+      <v-container fluid fill-height>
+        <v-fade-transition mode="out-in">
+          <router-view></router-view>
+        </v-fade-transition>
+      </v-container>
+    </v-content>
     <app-footer></app-footer>
    
     </div>

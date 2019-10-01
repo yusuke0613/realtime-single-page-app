@@ -11,15 +11,10 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import router from './Router/router.js'
 
+
 Vue.use(Vuetify)
 
-import VueSimplemde from 'vue-simplemde'
-Vue.use(VueSimplemde)
-
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-
-Vue.use(mavonEditor)
+import '../../../node_modules/vuetify/dist/vuetify.css'
 
 import User from './Heplers/User.js'
 window.User = User
@@ -32,6 +27,7 @@ window.EventBus = new Vue();
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));

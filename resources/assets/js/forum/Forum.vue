@@ -1,5 +1,9 @@
 <template>
     <v-container fluid grid-list-md>
+
+         <v-btn Flat icon>
+        <v-icon Flat>settings</v-icon>
+      </v-btn>
         <v-layout row wrap>
             <v-flex xs8>
                 <question
@@ -8,7 +12,8 @@
                 :data=question
                 ></question>
             </v-flex>
-            sidebar
+            <v-flex xs4>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>

@@ -6,6 +6,8 @@ use App\Model\Question;
 use App\Http\Resources\QuestionResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Notifications\NewReplyNotification;
+
 
 class QuestionController extends Controller
 {
@@ -50,11 +52,11 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //auth()->user()->question()->create($request->all());
         $request['slug'] = str_slug($request->title);
         //$request['user_id'] = 1;
         $question = auth()->user()->question()->create($request->all());
+        $user = $question->user;
+        $user->notify(new NewReplyNotification($question));
         return response(new QuestionResource($question), Response::HTTP_CREATED);
     }
 

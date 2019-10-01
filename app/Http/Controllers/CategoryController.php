@@ -6,6 +6,9 @@ use App\Model\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Resources\CategoryResource;
+use App\Events\LikeEvent;
+use App\Notifications\NewReplyNotification;
+use App\User;
 
 class CategoryController extends Controller
 {
@@ -38,13 +41,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //Category::create()
         $category = new Category();
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
         $category->save();
-        return response('created', Response::HTTP_CREATED);
+        $user = new User();
+        event(new LikeEvent($category));
+        
+        return response($request, Response::HTTP_CREATED);
     }
 
     /**

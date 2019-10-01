@@ -25,10 +25,14 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "firebase": "^6.6.2",
+        "laravel-echo": "^1.5.4",
         "material-design-icons-iconfont": "^5.0.1",
         "mavon-editor": "^2.7.5",
+        "pusher": "^2.2.2",
+        "pusher-js": "^5.0.1",
         "vue-router": "^3.1.2",
         "vue-simplemde": "^1.0.0",
-        "vuetify": "^1.5.16"
+        "vuetify": "^1.5.18"
     }
 }
