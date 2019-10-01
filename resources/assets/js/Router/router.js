@@ -8,7 +8,7 @@ import Create from '../forum/create'
 import Logout from '../login/Logout'
 import dashBordUser from '../dashbord/DashBordComponent'
 import DashBordUserControl from '../dashbord/DashBordUserControl'
-import UserModal from '../dashbord/UserModal'
+import DashBordComponent from '../dashbord/UserModal'
 
 Vue.use(VueRouter)
 
@@ -20,7 +20,8 @@ const routes = [
     {path: '/', component: dashBordUser},
     {path: '/logout', component: Logout},
     {path: '/dashboeradmin', component: DashBordUserControl},
-    {path: '/question/:slug', component: Read, name:'read'}
+    {path: '/question/:slug', component: Read, name:'read'},
+    {path: '/test', component: DashBordComponent}
 ]
 
 const router = new VueRouter({

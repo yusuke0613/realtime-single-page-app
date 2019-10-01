@@ -36,7 +36,24 @@ class DashBoardUserController extends Controller
     public function store(Request $request)
     {
         $dashBordUser = new DashBoardUser();
-        $dashBordUser->name = $request->name;
+        $dashBordUser->displayId   = $request->displayId;
+        $dashBordUser->displayName = $request->displayName;
+        $dashBordUser->status      = $request->status;
+        $dashBordUser->firstName   = $request->firstName;
+        $dashBordUser->lastName    = $request->lastName;
+        $dashBordUser->rankNo      = $request->rankNo;
+        $dashBordUser->mail        = $request->mail;
+        $dashBordUser->rankName    = $request->rankName;
+        $dashBordUser->phoneNo     = $request->phoneNo;
+        $dashBordUser->belongsId   = $request->belongsId;
+        $dashBordUser->belongsName = $request->belongsName;
+        $dashBordUser->locationId  = $request->locationId;
+        $dashBordUser->location    = $request->location;
+        $dashBordUser->comentNum   = $request->comentNum;
+        $dashBordUser->seisouFlag  = $request->seisouFlag;
+        $dashBordUser->soujiFlag   = $request->soujiFlag;
+        $dashBordUser->garbageFlag = $request->garbageFlag;
+    
         $dashBordUser->save();
         event(new dashBordEvent($dashBordUser));
         

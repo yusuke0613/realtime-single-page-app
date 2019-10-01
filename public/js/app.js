@@ -2198,23 +2198,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2987,12 +2970,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'UserModal',
-  props: {
-    // 受け取る属性名を指定
-    val: Object // オブジェクトのみ受け取る
-
+  data: function data() {
+    return {
+      valid: false,
+      displayId: '',
+      displayName: '',
+      firstName: '',
+      lastName: '',
+      phoneNo: '',
+      Rank: '',
+      Belongs: '',
+      nameRules: [function (v) {
+        return !!v || 'Name is required';
+      }, function (v) {
+        return v.length <= 10 || 'Name must be less than 10 characters';
+      }],
+      mail: '',
+      emailRules: [function (v) {
+        return !!v || 'E-mail is required';
+      }, function (v) {
+        return /.+@.+/.test(v) || 'E-mail must be valid';
+      }],
+      items: ['IT企画部', 'システム1課', 'システム2課', 'システム3課'],
+      items2: ['G7', 'G6', 'G5', 'G4', 'G3', 'G2', 'G1']
+    };
+  },
+  methods: {
+    test: function test() {
+      var test = {
+        'displayId': this.displayId,
+        'displayName': this.displayName,
+        'status': 0,
+        'firstName': this.firstName,
+        'lastName': this.lastName,
+        'rankNo': 0,
+        'phoneNo': this.phoneNo,
+        'rankName': this.Rank,
+        'belongsId': 0,
+        'belongsName': this.Belongs,
+        'mail': this.mail,
+        'locationId': 0,
+        'location': '自席',
+        'comentNum': 0,
+        'seisouFlag': 0,
+        'soujiFlag': 0,
+        'garbageFlag': 0
+      };
+      axios.post('/api/dashboarduser', test).then(function (res) {
+        console.log(res.data); //this.form.name=null
+      });
+    }
   }
 });
 
@@ -67465,127 +67510,7 @@ var render = function() {
                             _vm._v("メモ")
                           ])
                         ]
-                      ),
-                      _vm._v(" "),
-                      dashboarduser.rankNo <= 4
-                        ? _c(
-                            "v-tooltip",
-                            {
-                              attrs: { top: "" },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      return [
-                                        _c(
-                                          "v-btn",
-                                          _vm._g(
-                                            {
-                                              staticStyle: {
-                                                margin: "0",
-                                                padding: "0",
-                                                color: "#fff"
-                                              },
-                                              attrs: { icon: "" }
-                                            },
-                                            on
-                                          ),
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              {
-                                                class: {
-                                                  "color-nomal":
-                                                    dashboarduser.garbageFlag ==
-                                                    "0",
-                                                  "color-orange":
-                                                    dashboarduser.garbageFlag ==
-                                                    "1"
-                                                }
-                                              },
-                                              [_vm._v("delete_sweep")]
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ],
-                                null,
-                                true
-                              )
-                            },
-                            [
-                              _vm._v(" "),
-                              _c("span", { attrs: { "color:orange": "" } }, [
-                                _vm._v("ゴミ捨て")
-                              ])
-                            ]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      dashboarduser.rankNo <= 4
-                        ? _c(
-                            "v-tooltip",
-                            {
-                              attrs: { top: "" },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function(ref) {
-                                      var on = ref.on
-                                      return [
-                                        _c(
-                                          "v-btn",
-                                          _vm._g(
-                                            {
-                                              staticStyle: {
-                                                margin: "0",
-                                                padding: "0",
-                                                color: "#fff"
-                                              },
-                                              attrs: { icon: "" }
-                                            },
-                                            on
-                                          ),
-                                          [
-                                            _c(
-                                              "v-icon",
-                                              {
-                                                class: {
-                                                  "color-nomal":
-                                                    dashboarduser.seisouFlag ==
-                                                    "0",
-                                                  "color-orange":
-                                                    dashboarduser.seisouFlag ==
-                                                    "1"
-                                                }
-                                              },
-                                              [_vm._v("format_paint")]
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ],
-                                null,
-                                true
-                              )
-                            },
-                            [
-                              _vm._v(" "),
-                              _c("span", { attrs: { "color:orange": "" } }, [
-                                _vm._v("掃除当番")
-                              ])
-                            ]
-                          )
-                        : _vm._e()
+                      )
                     ],
                     1
                   ),
@@ -68648,273 +68573,206 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "transition",
-    { attrs: { name: "UserModal" } },
+    "v-form",
+    {
+      model: {
+        value: _vm.valid,
+        callback: function($$v) {
+          _vm.valid = $$v
+        },
+        expression: "valid"
+      }
+    },
     [
       _c(
-        "v-layout",
+        "v-container",
         [
           _c(
-            "v-row",
-            { attrs: { justify: "center" } },
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
             [
               _c(
-                "v-dialog",
-                {
-                  attrs: {
-                    fullscreen: "",
-                    "hide-overlay": "",
-                    transition: "dialog-bottom-transition"
-                  },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "activator",
-                      fn: function(ref) {
-                        var on = ref.on
-                        return [
-                          _c(
-                            "v-btn",
-                            _vm._g(
-                              { attrs: { color: "primary", dark: "" } },
-                              on
-                            ),
-                            [_vm._v("Open Dialog")]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                },
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
                 [
-                  _vm._v(" "),
-                  _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-toolbar",
-                        { attrs: { dark: "", color: "primary" } },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { icon: "", dark: "" },
-                              on: {
-                                click: function($event) {
-                                  _vm.dialog = false
-                                }
-                              }
-                            },
-                            [_c("v-icon", [_vm._v("mdi-close")])],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-toolbar-title", [_vm._v("Settings")]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex-grow-1" }),
-                          _vm._v(" "),
-                          _c(
-                            "v-toolbar-items",
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { dark: "", text: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Save")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-list",
-                        { attrs: { "three-line": "", subheader: "" } },
-                        [
-                          _c("v-subheader", [_vm._v("User Controls")]),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item",
-                            [
-                              _c(
-                                "v-list-item-content",
-                                [
-                                  _c("v-list-item-title", [
-                                    _vm._v("Content filtering")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-list-item-subtitle", [
-                                    _vm._v(
-                                      "Set the content filtering level to restrict apps that can be downloaded"
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item",
-                            [
-                              _c(
-                                "v-list-item-content",
-                                [
-                                  _c("v-list-item-title", [_vm._v("Password")]),
-                                  _vm._v(" "),
-                                  _c("v-list-item-subtitle", [
-                                    _vm._v(
-                                      "Require password for purchase or use password to restrict purchase"
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-divider"),
-                      _vm._v(" "),
-                      _c(
-                        "v-list",
-                        { attrs: { "three-line": "", subheader: "" } },
-                        [
-                          _c("v-subheader", [_vm._v("General")]),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item",
-                            [
-                              _c(
-                                "v-list-item-action",
-                                [
-                                  _c("v-checkbox", {
-                                    model: {
-                                      value: _vm.notifications,
-                                      callback: function($$v) {
-                                        _vm.notifications = $$v
-                                      },
-                                      expression: "notifications"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-item-content",
-                                [
-                                  _c("v-list-item-title", [
-                                    _vm._v("Notifications")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-list-item-subtitle", [
-                                    _vm._v(
-                                      "Notify me about updates to apps or games that I downloaded"
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item",
-                            [
-                              _c(
-                                "v-list-item-action",
-                                [
-                                  _c("v-checkbox", {
-                                    model: {
-                                      value: _vm.sound,
-                                      callback: function($$v) {
-                                        _vm.sound = $$v
-                                      },
-                                      expression: "sound"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-item-content",
-                                [
-                                  _c("v-list-item-title", [_vm._v("Sound")]),
-                                  _vm._v(" "),
-                                  _c("v-list-item-subtitle", [
-                                    _vm._v(
-                                      "Auto-update apps at any time. Data charges may apply"
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item",
-                            [
-                              _c(
-                                "v-list-item-action",
-                                [
-                                  _c("v-checkbox", {
-                                    model: {
-                                      value: _vm.widgets,
-                                      callback: function($$v) {
-                                        _vm.widgets = $$v
-                                      },
-                                      expression: "widgets"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-item-content",
-                                [
-                                  _c("v-list-item-title", [
-                                    _vm._v("Auto-add widgets")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("v-list-item-subtitle", [
-                                    _vm._v(
-                                      "Automatically add home screen widgets"
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.nameRules,
+                      counter: 3,
+                      label: "Display id",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.displayId,
+                      callback: function($$v) {
+                        _vm.displayId = $$v
+                      },
+                      expression: "displayId"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.nameRules,
+                      counter: 5,
+                      label: "Display name",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.displayName,
+                      callback: function($$v) {
+                        _vm.displayName = $$v
+                      },
+                      expression: "displayName"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.nameRules,
+                      counter: 10,
+                      label: "First name",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.firstName,
+                      callback: function($$v) {
+                        _vm.firstName = $$v
+                      },
+                      expression: "firstName"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.nameRules,
+                      counter: 10,
+                      label: "Last name",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.lastName,
+                      callback: function($$v) {
+                        _vm.lastName = $$v
+                      },
+                      expression: "lastName"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
+                [
+                  _c("v-select", {
+                    attrs: { items: _vm.items, filled: "", label: "Belongs" },
+                    model: {
+                      value: _vm.Belongs,
+                      callback: function($$v) {
+                        _vm.Belongs = $$v
+                      },
+                      expression: "Belongs"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
+                [
+                  _c("v-select", {
+                    attrs: { items: _vm.items2, filled: "", label: "Rank" },
+                    model: {
+                      value: _vm.Rank,
+                      callback: function($$v) {
+                        _vm.Rank = $$v
+                      },
+                      expression: "Rank"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.emailRules,
+                      label: "E-mail",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.mail,
+                      callback: function($$v) {
+                        _vm.mail = $$v
+                      },
+                      expression: "mail"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg6: "", md6: "", xs12: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.emailRules,
+                      label: "phoneNo",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.phoneNo,
+                      callback: function($$v) {
+                        _vm.phoneNo = $$v
+                      },
+                      expression: "phoneNo"
+                    }
+                  })
                 ],
                 1
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              attrs: { color: "teal", type: "button" },
+              on: { click: _vm.test }
+            },
+            [_vm._v("Create")]
           )
         ],
         1
@@ -110914,6 +110772,9 @@ var routes = [{
   path: '/question/:slug',
   component: _forum_Read__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: 'read'
+}, {
+  path: '/test',
+  component: _dashbord_UserModal__WEBPACK_IMPORTED_MODULE_10__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes,
@@ -111042,6 +110903,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   key: "myKey",
   wsHost: window.location.hostname,
   wsPort: 443,
+  wssPort: 443,
   disableStats: true
 });
 window.Echo.channel('dashBordChannel').listen('DashBordEvent', function (e) {
@@ -112228,8 +112090,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ }),

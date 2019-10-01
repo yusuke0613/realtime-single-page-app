@@ -1,81 +1,143 @@
 <template>
- <transition name="UserModal" >
-    <v-layout>
-  <v-row justify="center">
-    <v-dialog  fullscreen hide-overlay transition="dialog-bottom-transition">
-      <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Open Dialog</v-btn>
-      </template>
-      <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click="dialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
-          <div class="flex-grow-1"></div>
-          <v-toolbar-items>
-            <v-btn dark text @click="dialog = false">Save</v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-list three-line subheader>
-          <v-subheader>User Controls</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Content filtering</v-list-item-title>
-              <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Password</v-list-item-title>
-              <v-list-item-subtitle>Require password for purchase or use password to restrict purchase</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-        <v-list three-line subheader>
-          <v-subheader>General</v-subheader>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="notifications"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Notifications</v-list-item-title>
-              <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="sound"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Sound</v-list-item-title>
-              <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="widgets"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Auto-add widgets</v-list-item-title>
-              <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-card>
-    </v-dialog>
-  </v-row>
-    </v-layout>
-  </transition>
+  <v-form v-model="valid">
+    <v-container>
+      <v-layout row wrap >
+  
+        <v-flex lg6 md6 xs12>
+          <v-text-field
+            v-model="displayId"
+            :rules="nameRules"
+            :counter="3"
+            label="Display id"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex lg6 md6 xs12>
+          <v-text-field
+            v-model="displayName"
+            :rules="nameRules"
+            :counter="5"
+            label="Display name"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex lg6 md6 xs12>
+          <v-text-field
+            v-model="firstName"
+            :rules="nameRules"
+            :counter="10"
+            label="First name"
+            required
+          ></v-text-field>
+        </v-flex>
+
+        <v-flex lg6 md6 xs12>
+          <v-text-field
+            v-model="lastName"
+            :rules="nameRules"
+            :counter="10"
+            label="Last name"
+            required
+          ></v-text-field>
+        </v-flex>
+
+        <v-flex lg6 md6 xs12>
+          <v-select
+            v-model="Belongs"
+            :items="items"
+            filled
+            label="Belongs"
+          ></v-select>
+        </v-flex>
+
+        <v-flex lg6 md6 xs12>
+          <v-select
+            v-model="Rank"
+            :items="items2"
+            filled
+            label="Rank"
+          ></v-select>
+        </v-flex>
+
+        <v-flex lg6 md6 xs12>
+          <v-text-field
+            v-model="mail"
+            :rules="emailRules"
+            label="E-mail"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex lg6 md6 xs12>
+          <v-text-field
+            v-model="phoneNo"
+            :rules="emailRules"
+            label="phoneNo"
+            required
+          ></v-text-field>
+        </v-flex>
+
+      </v-layout>
+        <v-btn 
+            color="teal"
+            type="button"
+            @click="test"
+        >Create</v-btn>
+    </v-container>
+  </v-form>
 </template>
+
 
 <script>
   export default {
-    name: 'UserModal',
-    props: {
-      // 受け取る属性名を指定
-      val: Object // オブジェクトのみ受け取る
+    data: () => ({
+      valid: false,
+      displayId:'',
+      displayName:'',
+      firstName: '',
+      lastName: '',
+      phoneNo:'',
+      Rank:'',
+      Belongs:'',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters',
+      ],
+      mail: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
+      items: ['IT企画部', 'システム1課', 'システム2課', 'システム3課'],
+      items2: ['G7', 'G6', 'G5', 'G4', 'G3', 'G2', 'G1'],
+    }),
+    methods: {
+          test() {
+            var test = {
+              'displayId':this.displayId,
+              'displayName':this.displayName,
+              'status':0,
+              'firstName':this.firstName,
+              'lastName':this.lastName,
+              'rankNo':0,
+              'phoneNo':this.phoneNo,
+              'rankName':this.Rank,
+              'belongsId':0,
+              'belongsName':this.Belongs,
+              'mail':this.mail,
+              'locationId':0,
+              'location':'自席',
+              'comentNum':0,
+              'seisouFlag':0,
+              'soujiFlag':0,
+              'garbageFlag':0
+            };
+            axios.post('/api/dashboarduser', test)
+            .then(res => {
+              console.log(res.data)
+              //this.form.name=null
+              }  
+            )
+          },
     }
   }
 </script>

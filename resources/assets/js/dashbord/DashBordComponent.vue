@@ -43,23 +43,6 @@
                   </template>
                   <span color:orange>メモ</span>
               </v-tooltip>
-
-              <v-tooltip top v-if="dashboarduser.rankNo <= 4">
-                <template v-slot:activator="{ on }">
-                  <v-btn icon style="margin:0;padding:0; color:#fff" v-on="on">
-                    <v-icon v-bind:class="{ 'color-nomal': dashboarduser.garbageFlag == '0', 'color-orange': dashboarduser.garbageFlag == '1'}">delete_sweep</v-icon>
-                  </v-btn>
-                </template>
-                <span color:orange>ゴミ捨て</span>
-              </v-tooltip>
-              <v-tooltip top v-if="dashboarduser.rankNo <= 4">
-                <template v-slot:activator="{ on }">
-                  <v-btn icon style="margin:0;padding:0; color:#fff" v-on="on">
-                    <v-icon v-bind:class="{ 'color-nomal': dashboarduser.seisouFlag == '0', 'color-orange':dashboarduser.seisouFlag == '1'}">format_paint</v-icon>
-                  </v-btn>
-                </template>
-                <span color:orange>掃除当番</span>
-              </v-tooltip>
             </div>
           <v-divider></v-divider>
           <p style="bacground-color:red; font-size:28px; padding:1px; margin:0; cursor: pointer; color:#fff">{{dashboarduser.location}}</p>
