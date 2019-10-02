@@ -2573,7 +2573,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -22599,7 +22598,7 @@ exports.push([module.i, "\n.vue-simplemde .markdown-body {\n  padding: 0.5em\n}\
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\na {\n  text-decoration: none;\n}\n\n", ""]);
+exports.push([module.i, "\na {\n  text-decoration: none;\n}\n\n\n", ""]);
 
 
 /***/ }),
@@ -22627,7 +22626,7 @@ exports.push([module.i, "\n.green-box {\r\n  padding:3px;\r\n  background-color:
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.green-box {\r\n  padding:3px;\r\n  background-color: #4CAF50 !important;\n}\n.yerrow-box {\r\n  padding:3Px;\r\n  background-color: #FF9800 !important;\n}\n.red-box {\r\n  padding:3px;\r\n  background-color: #E91E63 !important;\n}\n.zero-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:\"white\" !important;\n}\n.first-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#E91E63 !important;\n}\n.second-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:rgb(40, 53, 147) !important;\n}\n.third-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#009688 !important;\n}\n.color-nomal {\r\n  font-size:12px;\r\n  color: #fff !important;\n}\n.color-orange {\r\n  font-size:12px;\r\n  color: orange !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.green-box {\r\n  padding:3px;\r\n  background-color: #4CAF50 !important;\n}\n.yerrow-box {\r\n  padding:3Px;\r\n  background-color: #FF9800 !important;\n}\n.red-box {\r\n  padding:3px;\r\n  background-color: #E91E63 !important;\n}\n.zero-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:\"white\" !important;\n}\n.first-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#E91E63 !important;\n}\n.second-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:rgb(40, 53, 147) !important;\n}\n.third-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#009688 !important;\n}\n.color-nomal {\r\n  font-size:12px;\r\n  color: #fff !important;\n}\n.color-orange {\r\n  font-size:12px;\r\n  color: orange !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.sankou-badge, .link-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.link-badge {\r\n  background-color: #58ACFA; /*青*/\n}\n.sankou-badge {\r\n  background-color: #4CAF50; /*緑*/\n}\r\n", ""]);
 
 
 /***/ }),
@@ -67666,7 +67665,7 @@ var render = function() {
         "v-toolbar",
         {
           staticClass: "mx-auto overflow-hidden",
-          attrs: { dark: "", color: "primary", "clipped-left": "" }
+          attrs: { dark: "", color: "blue-grey darken-4", "clipped-left": "" }
         },
         [
           _c("v-toolbar-side-icon", {
@@ -68720,7 +68719,7 @@ var render = function() {
                         display: "flex",
                         "justify-content": "space-between",
                         padding: "1px",
-                        "font-size": "16px",
+                        "font-size": "20px",
                         "background-color": "#fff"
                       }
                     },
@@ -68730,55 +68729,70 @@ var render = function() {
                         {
                           staticStyle: {
                             "text-align": "center",
-                            "font-size": "24px",
-                            "font-weight": "bold",
-                            cursor: "pointer"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.openUserModal(dashboarduser)
-                            }
+                            "font-size": "18px",
+                            "font-weight": "bold"
                           }
                         },
                         [
                           _vm._v(
-                            _vm._s(dashboarduser.displayName) +
-                              "\n            \n            "
-                          )
+                            _vm._s(dashboarduser.displayName) + "\n            "
+                          ),
+                          _c("span", { staticClass: "sankou-badge" }, [
+                            _vm._v("在席")
+                          ])
                         ]
                       ),
                       _vm._v(" "),
                       _c("P", { staticStyle: { "font-size": "12px" } }, [
-                        _vm._v("ITEC出張　携帯　08021234412")
+                        _vm._v(
+                          _vm._s(dashboarduser.belongsName) +
+                            "/" +
+                            _vm._s(dashboarduser.rankName) +
+                            "/(" +
+                            _vm._s(dashboarduser.phoneNo) +
+                            ")"
+                        )
                       ])
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
-                    "div",
-                    { staticStyle: { "font-size": "14px", color: "#fff" } },
+                    "p",
+                    {
+                      staticStyle: {
+                        "font-size": "14px",
+                        padding: "1px",
+                        margin: "0",
+                        color: "#fff"
+                      }
+                    },
                     [
-                      _vm._v(
-                        "\n            " +
-                          _vm._s(dashboarduser.belongsName) +
-                          "/" +
-                          _vm._s(dashboarduser.rankName) +
-                          "/(" +
-                          _vm._s(dashboarduser.phoneNo) +
-                          ")\n          "
-                      )
-                    ]
+                      _c(
+                        "v-icon",
+                        {
+                          staticStyle: {
+                            "font-size": "14px",
+                            padding: "1px",
+                            margin: "0",
+                            color: "#fff"
+                          }
+                        },
+                        [_vm._v("chat")]
+                      ),
+                      _vm._v(" " + _vm._s(dashboarduser.location))
+                    ],
+                    1
                   ),
                   _vm._v(" "),
-                  _c("v-divider"),
+                  _c("v-divider", { attrs: { color: "white" } }),
                   _vm._v(" "),
                   _c(
                     "p",
                     {
                       staticStyle: {
                         "bacground-color": "red",
-                        "font-size": "20px",
+                        "font-size": "14px",
                         padding: "1px",
                         margin: "0",
                         color: "#fff"

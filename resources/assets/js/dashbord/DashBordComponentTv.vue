@@ -3,17 +3,16 @@
     <v-layout row wrap >
       <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" lg4 md6 xs12>
         <v-card v-bind:class="{ 'green-box': dashboarduser. status === 0, 'yerrow-box': dashboarduser.status === 1 , 'red-box': dashboarduser. status === 2}">
-            <div style="display: flex; justify-content: space-between; padding:1px;font-size:16px; background-color:#fff;">
-              <div style="text-align:center;font-size:24px;font-weight: bold; cursor: pointer; " @click="openUserModal(dashboarduser);" >{{dashboarduser.displayName}}
-              
+            <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;">
+              <div style="text-align:center;font-size:18px;font-weight: bold; ">{{dashboarduser.displayName}}
+              <span class="sankou-badge">在席</span>
               </div>
-              <P  style="font-size:12px;">ITEC出張　携帯　08021234412</P>
+              <P  style="font-size:12px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
             </div>
-            <div style="font-size:14px;color:#fff">
-              {{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})
-            </div>
-          <v-divider></v-divider>
-          <p style="bacground-color:red; font-size:20px; padding:1px; margin:0; color:#fff">{{dashboarduser.location}}</p>
+          
+          <p style="font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">chat</v-icon> {{dashboarduser.location}}</p>
+          <v-divider color="white"></v-divider>
+          <p style="bacground-color:red; font-size:14px; padding:1px; margin:0; color:#fff">{{dashboarduser.location}}</p>
           
 
         </v-card>
@@ -147,5 +146,24 @@
 
 .container.grid-list-md .layout .flex {
     padding: 2px !important;
+}
+
+.sankou-badge, .link-badge {
+  padding: 3px 6px;
+  margin-right: 8px;
+  margin-left: 1px;
+  font-size: 12px;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 3px #ddd;
+  white-space: nowrap;
+}
+
+.link-badge {
+  background-color: #58ACFA; /*青*/
+}
+
+.sankou-badge {
+  background-color: #4CAF50; /*緑*/
 }
 </style>

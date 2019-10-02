@@ -32,7 +32,7 @@
     </v-navigation-drawer>
     <v-toolbar
       dark
-      color="primary"
+      color="blue-grey darken-4"
       clipped-left
       class="mx-auto overflow-hidden"
     >
@@ -89,5 +89,6 @@
       a {
     text-decoration: none;
   }
+  
 
 </style>
