@@ -9,6 +9,8 @@ import Logout from '../login/Logout'
 import dashBordUser from '../dashbord/DashBordComponent'
 import DashBordUserControl from '../dashbord/DashBordUserControl'
 import DashBordComponent from '../dashbord/UserModal'
+import DashBordUserControl2 from '../dashbord/DashBordUserControl2'
+import DashBordComponentTv from  '../dashbord/DashBordComponentTv'
 
 Vue.use(VueRouter)
 
@@ -21,7 +23,9 @@ const routes = [
     {path: '/logout', component: Logout},
     {path: '/dashboeradmin', component: DashBordUserControl},
     {path: '/question/:slug', component: Read, name:'read'},
-    {path: '/test', component: DashBordComponent}
+    {path: '/test', component: DashBordComponent},
+    {path: '/a', component: DashBordUserControl2},
+    {path: '/dashbord', component: DashBordComponentTv},
 ]
 
 const router = new VueRouter({

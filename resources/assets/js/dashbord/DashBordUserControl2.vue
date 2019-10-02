@@ -1,23 +1,6 @@
  <template>
       <v-flex>
         <v-card xs12 class="m-3 px-3">
-
-          <v-card-title class="title">
-            <v-icon class="pr-2">account_box</v-icon> 社員管理
-            <v-btn flat small fab @click="dialogOpen(props.item)"><v-icon color="orange ">add_circle_outline</v-icon></v-btn>
-            
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <v-text-field
-              v-model="search"
-              prepend-icon="search"
-              label="Search"
-              single-line
-              hide-details
-              clearable
-            ></v-text-field>
-          </v-card-title>
-
           <v-data-table
             :headers="headers"
             :items="dashboardusers"
@@ -32,6 +15,7 @@
             <template slot="items" slot-scope="props">
               <tr>
                 <td class="text-xs-center" xs1>{{ (props.index + 1) + (pagination.page - 1) * pagination.rowsPerPage }}</td>
+
                 <template v-for="n in (headers.length - 2)">
                   <td :class="'text-xs-' + headers[n].align" style="white-space: nowrap;" v-text="props.item[headers[n].value]"></td>
                 </template>
@@ -157,13 +141,11 @@
                 dashboardusers: [],
                 dashboarduser: [{ id: 1, name: 'aのitem' },{ id: 2, name: 'bのitem' }],
                 headers: [
-                {text: 'ID', align: 'center', value: 'id'},
+                {align: 'center',  value: 'displayName', text: '在籍',},
                 {text: '名前', align: 'center', value: 'displayName'},
                 {text: '所属', align: 'center', value: 'belongsName'},
                 {text: '役職',align: 'center',value: 'rankName'},
-                {text: 'メールアドレス',align: 'center',value: 'mail'},
                 {text: '内線',align: 'center', value: 'phoneNo'},
-                { align: 'center', sortable: false, text: 'アクション',},
                 ],
                 loading: false,
                 search: '',

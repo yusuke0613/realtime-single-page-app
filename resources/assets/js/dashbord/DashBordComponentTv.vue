@@ -3,7 +3,7 @@
     <v-layout row wrap >
       <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" lg3 md6 xs12>
         <v-card v-bind:class="{ 'green-box': dashboarduser. status === 0, 'yerrow-box': dashboarduser.status === 1 , 'red-box': dashboarduser. status === 2}">
-            <div style="display: flex; justify-content: space-between; padding:3px;font-size:12px; background-color:#fff;">
+            <div style="display: flex; justify-content: space-between; padding:px;font-size:12px; background-color:#fff;">
               <div style="text-align:center;font-size:24px;font-weight: bold; cursor: pointer; " @click="openUserModal(dashboarduser);" >{{dashboarduser.displayName}}
               </div>
               <div>
@@ -537,40 +537,40 @@
 <style>
 
 .green-box {
-  padding:3px;
+  padding:1px;
   background-color: #009688 !important;
 }
 
 .yerrow-box {
-  padding:3px;
+  padding:1px;
   background-color: #CDDC39 !important;
 }
 
 .red-box {
-  padding:3px;
+  padding:1px;
   background-color: #F44336 !important;
 }
 
 .zero-box {
   font-size:12px  !important;
-  padding: 4px; 
+  padding: 1px; 
   color:"white" !important;
 }
 
 .first-box {
   font-size:12px  !important;
-  padding: 4px; 
+  padding: 1px; 
   color:rgb(198, 40, 40) !important;
 }
 .second-box {
   font-size:12px  !important;
-  padding: 4px; 
+  padding: 1px; 
   color:rgb(40, 53, 147) !important;
 }
 
 .third-box {
-  font-size:12px;
-  padding: 4px; 
+  font-size:12px  !important;
+  padding: 1px; 
   color:rgb(46, 125, 50) !important;
 }
 

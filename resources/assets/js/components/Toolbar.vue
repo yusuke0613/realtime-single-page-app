@@ -2,10 +2,10 @@
 
    <div>
     <v-navigation-drawer
-      fixed
-      clipped
-      app
       v-model="navBar"
+      absolute
+      bottom
+      temporary
     >
         <v-list dense class="pt-0">
           <router-link to="/">
@@ -34,11 +34,10 @@
       dark
       color="primary"
       clipped-left
-      fixed
-      app
+      class="mx-auto overflow-hidden"
     >
       <v-toolbar-side-icon @click.stop="navBar = !navBar"></v-toolbar-side-icon>
-      <v-toolbar-title class="white--text">Title</v-toolbar-title>
+      <v-toolbar-title class="white--text">Ito-san</v-toolbar-title>
       <v-spacer></v-spacer>
 
          <router-link to="/login">
