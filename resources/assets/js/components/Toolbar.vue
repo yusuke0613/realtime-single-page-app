@@ -39,7 +39,6 @@
       <v-toolbar-side-icon @click.stop="navBar = !navBar"></v-toolbar-side-icon>
       <v-toolbar-title class="white--text">Ito-san</v-toolbar-title>
       <v-spacer></v-spacer>
-
          <router-link to="/login">
             <v-list-tile color:white>
               <v-list-tile-content color:white>
@@ -68,14 +67,21 @@
                     {title : 'Login', to : '/login', show : !User.loggedIn()},
                     {title : 'Logout', to : '/logout', show : User.loggedIn()},
                 ],
-                navBar:null
+                navBar:null,
+                message: (new Date()).toLocaleString()
             }
         },
         created() {
             EventBus.$on('logout', () => {
                 User.logout()
             })
-        }
+            setInterval(this.clock(),1000);
+        },
+        methods: {
+          clock() {
+            this.message = (new Date()).toLocaleString()
+          }
+        },
     }
 </script>
 
