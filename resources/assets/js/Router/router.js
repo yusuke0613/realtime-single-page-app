@@ -8,6 +8,7 @@ import DashBordUserControl from '../dashbord/DashBordUserControl'
 import DashBordComponent from '../dashbord/UserModal'
 import DashBordUserControl2 from '../dashbord/DashBordUserControl2'
 import DashBordComponentTv from  '../dashbord/DashBordComponentTv'
+import DashBordComponentIn from '../dashbord/DashBordComponentIn'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,7 @@ const routes = [
     {path: '/test', component: DashBordComponent},
     {path: '/a', component: DashBordUserControl2},
     {path: '/dashbord', component: DashBordComponentTv},
+    {path: '/1', component: DashBordComponentIn},
 ]
 
 const router = new VueRouter({

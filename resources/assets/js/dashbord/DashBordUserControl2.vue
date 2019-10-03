@@ -48,8 +48,9 @@
                     <v-icon color="blue-grey darken-4">account_circle</v-icon>  Status
                     
                     </v-flex>
-                    <v-flex lg4 md4 xs4 style="padding:0 !important;">
+                    <v-flex lg4 md4 xs4 style="padding:0 !important;" class="tt">
                       <v-select
+                        class="tt"
                         v-model="selectedBelongs"
                         icon=transfer_within_a_station
                         item-text="label"
@@ -193,7 +194,7 @@
                
                 search: '',
                 headers2: [
-                { text: 'ID', value: 'locationId' },
+                { text: 'ID', value: 'locationId' ,color:'red'},
                 { text: 'LOCATION', value: 'locationName1' },
                 { text: 'NAME', value: 'locationName2' },
                 { text: 'PHONE', value: 'phoneNo' },
@@ -255,7 +256,6 @@
             this.Belongs     = { label: this.postItem["belongsName"], value: this.postItem["belongsId"] };
             this.locationDetail = this.location + '(' + this.locationPhon + ')';
             this.selectedBelongs = { label: this.statusName , value: this.postItem["status"] };
-            console.log(this.selectedBelongs);
 
             this.showUpdateUserModal= true;
           },
@@ -292,7 +292,6 @@
 
           openLocationModal() {
             this.getLocation();
-            console.log();
             this.showLocationModal= true;
           },
 
@@ -311,11 +310,18 @@
             if(this.selectedBelongs == 4) {
               this.location = ''
             }
+            
+            if (typeof this.selectedBelongs == 'number') {
+              var status = this.selectedBelongs;
+              console.log(status);
+            } else {
+              var status =this.selectedBelongs.value;
+              console.log(status);
+            }
 
             var id              =this.id;
             var displayId       =this.displayId;
             var displayName     =this.displayName;
-            var status          =this.selectedBelongs;
             var firstName       =this.firstName;
             var lastName        =this.lastName;
             var rankNo          =this.rankNo;
@@ -348,7 +354,6 @@
               comentNum    :comentNum,
               comment      :comment,
             }
-            console.log(this.selectedBelongs)
             this.update(userProfile)
           },
         }
@@ -385,5 +390,30 @@
 }
 .taiseki-badge {
   background-color: #E91E63; 
+}
+
+.tt div[role=listitem]:nth-of-type(1).tt {
+  background-color: #4CAF50 !important;
+  color:#fff
+}
+.tt div[role=listitem]:nth-of-type(2) {
+  background-color: #FF9800 !important;
+  color:#fff
+}
+.tt div[role=listitem]:nth-of-type(3) {
+  background-color: #2196F3 !important;
+  color:#fff
+}
+.tt div[role=listitem]:nth-of-type(4) {
+  background-color: #9C27B0 !important;
+  color:#fff
+}
+.tt div[role=listitem]:nth-of-type(5) {
+  background-color: #E91E63 !important;
+  color:#fff
+}
+
+.v-list {
+  padding: 0 !important;
 }
 </style>

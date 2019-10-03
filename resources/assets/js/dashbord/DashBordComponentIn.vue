@@ -1,0 +1,495 @@
+<template>
+  <v-container grid-list-md style="padding:0">
+    <v-layout row wrap >
+      <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" lg4 md6 xs12>
+        <v-card v-bind:class="{ 
+          'zaiseki-box' : dashboarduser. status === 0, 
+          'riseki-box'  : dashboarduser.status  === 1, 
+          'torikomi-box': dashboarduser. status === 2,
+          'renraku-box' : dashboarduser. status === 3,
+          'taiseki-box' : dashboarduser. status === 4,
+        }">
+            <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;">
+              <div style="text-align:center;font-size:18px;font-weight: bold; ">{{dashboarduser.displayName}}
+              <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
+              <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席中</span>
+              <span v-if="dashboarduser.status==2" class="torikomi-badge" @click="openStatusModal(dashboarduser)">取り込み中</span>
+              <span v-if="dashboarduser.status==3" class="renraku-badge"  @click="openStatusModal(dashboarduser)">連絡不可</span>
+              <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席中</span>
+              </div>
+              <P  style="font-size:14px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
+            </div>
+          <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}({{dashboarduser.locationPhon}})</p>
+          <v-divider color="white"></v-divider>
+          <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:22px"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
+          
+         
+
+        </v-card>
+      </v-flex>
+      <v-dialog v-model="showLocationModal" >
+            <v-card >
+              <v-card-title>
+                <v-spacer></v-spacer>
+                  <v-text-field
+                      v-model="search"
+                      append-icon="search"
+                      label="Search"
+                      single-line
+                      hide-details  
+                  >
+                  </v-text-field>
+              </v-card-title>
+              <v-data-table color:orange
+                  :headers="headers"
+                  :items="locations"
+                  :search="search"
+
+                  :loading="true"
+                  class="elevation-1"
+                  :sort-by="['ID']"
+              >
+                <v-progress-linear v-slot:progress indeterminate></v-progress-linear>
+                <template v-slot:items="location">
+                    <tr @click="updateSelectLocation(location.item)">
+                    <td class="text-xs" >{{ location.item.locationId }}</td>
+                    <td class="text-xs" >{{ location.item.locationName1 }}</td>
+                    <td class="text-xs" >{{ location.item.locationName2 }}</td>
+                    <td class="text-xs" >{{ location.item.phoneNo }}</td>
+                    </tr>
+                </template>
+                <template v-slot:no-results>
+                    <v-alert :value="true" color="error" icon="warning">
+                    Your search for "{{ search }}" found no results.
+                    </v-alert>
+                </template>
+              </v-data-table>
+            </v-card>
+  　　    </v-dialog>
+           <v-dialog v-model="showStatusModal" >
+            <v-card >
+              <div class="zaiseki-list"   @click="updateStatus(0)">在席</div>
+              <div class="riseki-list"    @click="updateStatus(1)">離席中</div>
+              <div class="torikomi-list"  @click="updateStatus(2)">取り込み中</div>
+              <div class="renraku-list"   @click="updateStatus(3)">連絡不可</div>
+              <div class="taiseki-list"   @click="updateStatus(4)">退席中</div>
+            </v-card>
+  　　    </v-dialog>
+
+           <v-dialog v-model="showStatusModal" >
+            <v-card >
+              <div class="zaiseki-list"   @click="updateStatus(0)">在席</div>
+              <div class="riseki-list"    @click="updateStatus(1)">離席中</div>
+              <div class="torikomi-list"  @click="updateStatus(2)">取り込み中</div>
+              <div class="renraku-list"   @click="updateStatus(3)">連絡不可</div>
+              <div class="taiseki-list"   @click="updateStatus(4)">退席中</div>
+            </v-card>
+  　　    </v-dialog>
+
+           <v-dialog v-model="showCommentModal" >
+             <v-card style="padding:10px !important" @click.stop>
+            <div style="text-overflow: ellipsis !important; height: 80px !important;"> 
+            <v-text-field
+              v-model="comment"
+              :counter="30"
+              overflow-y-hidden
+            ></v-text-field>
+            <label class="label">Email Address</label>
+            </div>
+            <v-btn 
+                color="blue-grey darken-4"
+                type="button"
+                style="color:#fff"
+                @click="updateComment();"
+            >Update</v-btn>
+             </v-card>
+  　　    </v-dialog>
+    </v-layout> 
+  </v-container>  
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                dashboardusers: {},
+                comments:[],
+                comment:'',
+                dashboarduser: [{ id: 1, name: 'aのitem' },{ id: 2, name: 'bのitem' }],
+                showLocationModal:false,
+                showUserModal: false,
+                showCommentModal: false,
+                widgets: false,
+                showStatusModal:false,
+                isModal: false,   
+                showCommentModal:false,                     // Modak表示フラグ
+                items: [],  
+                locations:[],
+                newComment:'', 
+                headers: [
+                  { text: 'ID', value: 'locationId' },
+                  { text: 'LOCATION', value: 'locationName1' },
+                  { text: 'NAME', value: 'locationName2' },
+                  { text: 'PHONE', value: 'phoneNo' },
+                ],
+            }
+        },
+
+        created() {
+          Echo.channel("dashBordChannel")
+          .listen("DashBordEvent", (e) => {
+             this.getDashbordUser();
+          })
+          this.getDashbordUser();
+        },
+        methods: {
+          getDashbordUser() {
+             axios.get('/api/dashboarduser')
+            .then(res => this.dashboardusers = res.data.data)
+            .catch(error => console.log(error.res.data))
+      
+          },
+          getLocation() {
+             axios.get('/api/location')
+            .then(res => this.locations = res.data.data)
+            .catch(error => console.log(error.res.data))
+      
+          },
+          openLocationModal(dashboarduser) {
+            this.dashboarduser = dashboarduser;
+            this.getLocation();
+            this.showLocationModal= true;
+          },
+
+          openStatusModal(dashboarduser){
+            this.dashboarduser = dashboarduser;
+            this.showStatusModal= true;
+          },
+
+          openCommentModal(dashboarduser) {
+            this.dashboarduser = dashboarduser;
+            this.comment = dashboarduser.comment;
+            this.showCommentModal= true;
+          },
+
+          updateSelectLocation (u) {
+            var id              = this.dashboarduser.id;
+            var status          = this.dashboarduser.status;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = this.dashboarduser.status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = u.locationId;
+            var location        = u.locationName2;
+            var locationPhon    = u.phoneNo;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment      = this.dashboarduser.comment;
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.showLocationModal = false;
+          },
+
+          update(userProfile) {
+              axios.patch(`/api/dashboarduser/${userProfile.id}`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+              this.getDashbordUser();
+              this.showUpdateUserModal = false
+          },
+
+          updateStatus(status) {
+            var id              = this.dashboarduser.id;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = this.dashboarduser.locationId;
+            var location        = this.dashboarduser.location;
+            var locationPhon    = this.dashboarduser.locationPhon;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment         = this.dashboarduser.comment;
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.showStatusModal = false;
+          },
+
+          updateComment() {
+            var id              = this.dashboarduser.id;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = this.dashboarduser.status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = this.dashboarduser.locationId;
+            var location        = this.dashboarduser.location;
+            var locationPhon    = this.dashboarduser.locationPhon;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment         = this.comment;
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.showCommentModal = false;
+          }
+
+        } 
+    }
+</script>
+
+<style>
+
+.zero-box {
+  font-size:16px  !important;
+  padding: 4px; 
+  color:"white" !important;
+}
+
+.first-box {
+  font-size:16px  !important;
+  padding: 4px; 
+  color:#E91E63 !important;
+}
+.second-box {
+  font-size:16px  !important;
+  padding: 4px; 
+  color:rgb(40, 53, 147) !important;
+}
+
+.third-box {
+  font-size:16px  !important;
+  padding: 4px; 
+  color:#009688 !important;
+}
+
+.color-nomal {
+  font-size:12px;
+  color: #fff !important;
+}
+
+.color-orange {
+  font-size:12px;
+  color: orange !important;
+}
+
+.container fluid fill-height  {
+  margin:  0 !important;
+  padding: 0 !important;
+}
+
+.container.grid-list-md .layout .flex {
+    padding: 2px !important;
+}
+
+.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {
+  padding: 3px 6px;
+  margin-right: 8px;
+  margin-left: 1px;
+  font-size: 12px;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 3px #ddd;
+  white-space: nowrap;
+}
+
+.zaiseki-badge {
+  background-color: #4CAF50; 
+  cursor: pointer;
+}
+
+.riseki-badge {
+  background-color: #FF9800; 
+  cursor: pointer;
+}
+
+.torikomi-badge {
+  background-color: #2196F3; 
+  cursor: pointer;
+}
+
+.renraku-badge {
+  background-color: #9C27B0; 
+  cursor: pointer;
+}
+.taiseki-badge {
+  background-color: #E91E63; 
+  cursor: pointer;
+}
+
+.riseki-box {
+  background-color: #4CAF50; 
+}
+
+.zaiseki-box {
+  padding:3px;
+  background-color: #4CAF50 !important;
+}
+
+.riseki-box {
+  padding:3Px;
+  background-color: #FF9800 !important;
+}
+
+.torikomi-box {
+  padding:3px;
+  background-color: #2196F3 !important;
+}
+
+.renraku-box {
+  padding:3Px;
+  background-color: #9C27B0 !important;
+}
+
+.taiseki-box {
+  padding:3px;
+  background-color: #E91E63 !important;
+}
+
+.zaiseki-list {
+  padding:3px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold; 
+  cursor: pointer;
+  background-color: #4CAF50 !important;
+}
+
+.riseki-list {
+  padding:3Px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold; 
+  cursor: pointer;
+  background-color: #FF9800 !important;
+}
+
+.torikomi-list {
+  margin: auto;
+  padding:3px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold; 
+  cursor: pointer;
+  background-color: #2196F3 !important;
+}
+
+.renraku-list {
+  padding:3Px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold; 
+  cursor: pointer;
+  background-color: #9C27B0 !important;
+}
+
+.taiseki-list {
+  padding:3px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold; 
+  cursor: pointer;
+  background-color: #E91E63 !important;
+}
+
+
+.zaiseki-list:hover {
+opacity: 0.5 ;
+}
+
+.riseki-list:hover {
+opacity: 0.5 ;
+}
+
+.torikomi-list:hover {
+opacity: 0.5 ;
+}
+
+.renraku-list:hover {
+opacity: 0.5 ;
+}
+
+.taiseki-list:hover {
+opacity: 0.5 ;
+}
+
+</style>
