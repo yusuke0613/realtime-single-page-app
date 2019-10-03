@@ -95,10 +95,9 @@ class DashBoardUserController extends Controller
             'mail'           =>$request->mail,
             'locationId'     =>$request->locationId,
             'location'       =>$request->location,
+            'locationPhon'   =>$request->locationPhon,
             'comentNum'      =>$request->comentNum,
-            'seisouFlag'     =>$request->seisouFlag,
-            'soujiFlag'      =>$request->soujiFlag,
-            'garbageFlag'    =>$request->garbageFlag,
+            'comment'        =>$request->comment,
             ]);
         event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);

@@ -5,6 +5,7 @@
             :headers="headers"
             :items="dashboardusers"
             :pagination.sync="pagination"
+            :items-per-page="50"
             :rows-per-page-items='[10,25,50,{"text":"All","value":-1}]'
             :loading="loading"
             :search="search"
@@ -14,24 +15,26 @@
 
             <template slot="items" slot-scope="props">
               <tr>
-                <td class="text-xs-center" xs1>{{ (props.index + 1) + (pagination.page - 1) * pagination.rowsPerPage }}</td>
-
-                <template v-for="n in (headers.length - 2)">
-                  <td :class="'text-xs-' + headers[n].align" style="white-space: nowrap;" v-text="props.item[headers[n].value]"></td>
-                </template>
-                <td class="text-xs-center" xs1>
-                   <v-btn flat small fab @click="updateUserModal(props.item)"><v-icon color="success">edit</v-icon></v-btn>
-                   <v-btn flat small fab @click="dialogOpen(props.item,true)"><v-icon color="error">delete</v-icon></v-btn>
+                <td :class="'text-xs-' + headers[0].align" style="white-space: nowrap;">
+                  <span v-if="props.item['status'] == 0" class="zaiseki-badge">在席</span>
+                  <span v-if="props.item['status'] == 1" class="riseki-badge">離席中</span>
+                  <span v-if="props.item['status'] == 2" class="torikomi-badge">取り込み中</span>
+                  <span v-if="props.item['status'] == 3" class="renraku-badge">連絡不可</span>
+                  <span v-if="props.item['status'] == 4" class="taiseki-badge">退席中</span>
                 </td>
+                <td class="text-xs-center" xs1><v-btn flat small fab @click="updateUserModal(props.item)"><v-icon color="success">edit</v-icon></v-btn></td>
+                <td :class="'text-xs-' + headers[1].align" style="white-space: nowrap;" v-text="props.item['firstName']　+ ' ' +props.item['lastName'] + ' (' + props.item['phoneNo'] + ')'"></td>
+                <td :class="'text-xs-' + headers[2].align" style="white-space: nowrap;" v-text="props.item['location'] + ' (' + props.item['locationPhon'] + ')'"></td>
+                <td :class="'text-xs-' + headers[2].align" style="white-space: nowrap;" v-text="props.item['belongsName']"></td>
+                <td :class="'text-xs-' + headers[2].align" style="white-space: nowrap;" v-text="props.item['comment']"></td>
               </tr>
             </template>
           </v-data-table>
         </v-card>
-        
 
         <v-dialog v-model="showUpdateUserModal" fullscreen hide-overlay transition="dialog-bottom-transition">
             <v-card>
-              <v-toolbar style="background-color:#1976D2">
+              <v-toolbar color="blue-grey darken-4">
                 <v-btn icon dark @click="showUpdateUserModal = false">
                   <v-icon>clear</v-icon>
                 </v-btn>
@@ -41,94 +44,95 @@
                <v-form v-model="valid">
                 <v-container>
                   <v-layout row wrap >
-                    <v-flex lg6 md6 xs12>
-                      <v-text-field
-                        v-model="displayId"
-                        :rules="nameRules"
-                        :counter="3"
-                        label="Display id"
-                        required
-                      ></v-text-field>
-                    </v-flex>
-                    <v-flex lg6 md6 xs12>
-                      <v-text-field
-                        v-model="displayName"
-                        :rules="nameRules"
-                        :counter="5"
-                        label="Display name"
-                        required
-                      ></v-text-field>
-                    </v-flex>
-                    <v-flex lg6 md6 xs12>
-                      <v-text-field
-                        v-model="firstName"
-                        :rules="nameRules"
-                        :counter="10"
-                        label="First name"
-                        required
-                      ></v-text-field>
-                    </v-flex>
-
-                    <v-flex lg6 md6 xs12>
-                      <v-text-field
-                        v-model="lastName"
-                        :rules="nameRules"
-                        :counter="10"
-                        label="Last name"
-                        required
-                      ></v-text-field>
-                    </v-flex>
-
-                    <v-flex lg6 md6 xs12>
-                      <v-select
-                        v-model="Belongs"
-                        item-text="label"
-                        item-value="value"
-                        label="Belongs"
-                       :items="items"
+                    <v-flex lg12 md12 xs12 style="padding:0 !important;padding-top:10px !important">
+                    <v-icon color="blue-grey darken-4">account_circle</v-icon>  Status
                     
-                      ></v-select>
                     </v-flex>
-
-                    <v-flex lg6 md6 xs12>
+                    <v-flex lg4 md4 xs4 style="padding:0 !important;">
                       <v-select
-                        v-model="Rank"
+                        v-model="selectedBelongs"
+                        icon=transfer_within_a_station
                         item-text="label"
                         item-value="value"
-                        :items="items2"
-                        label="Rank"
-                        return-object
+                       :items="items"
+             
                       ></v-select>
                     </v-flex>
 
-                    <v-flex lg6 md6 xs12>
-                      <v-text-field
-                        v-model="mail"
-                        :rules="emailRules"
-                        label="E-mail"
-                        required
-                      ></v-text-field>
+                    <v-flex lg12 md12 xs12 style="padding:0 !important">
+                    <v-icon color="blue-grey darken-4" style=" cursor:pointer;" @click="openLocationModal">transfer_within_a_station</v-icon>  Locaton
                     </v-flex>
-                    <v-flex lg6 md6 xs12>
+                    <v-flex lg12 md12 xs12 style="padding:0 !important">
                       <v-text-field
-                        v-model="phoneNo"
-                        :rules="emailRules"
-                        label="phoneNo"
-                        required
+                        v-model="locationDetail"
+                        disabled=disabled 
                       ></v-text-field>
                     </v-flex>
 
+                    <v-flex lg12 md12 xs12 style="padding:0 !important">
+                    <v-icon color="blue-grey darken-4">chat</v-icon>  Comment
+                    </v-flex>
+                    <v-flex lg12 md12 xs12 style="padding:0 !important">
+                      <v-text-field
+                        v-model="comment"
+                        :rules="nameRules"
+                        :counter="30"
+                      ></v-text-field>
+                    </v-flex>
                   </v-layout>
-                    <v-btn 
-                        style="fcolor:#fff"
-                        color="blue"
-                        type="button"
-                        @click="test"
-                    >Update</v-btn>
+                  <v-flex lg12 md12 xs12>
+                  <v-btn 
+                      color="blue-grey darken-4"
+                      type="button"
+                      style="color:#fff"
+                      @click="updateUser();"
+                  >Update</v-btn>
+                  </v-flex>
+
                 </v-container>
               </v-form>
             </v-card>
         </v-dialog>
+
+        <v-dialog v-model="showLocationModal" >
+            <v-card >
+              <v-card-title>
+                <v-spacer></v-spacer>
+                  <v-text-field
+                      v-model="search"
+                      append-icon="search"
+                      label="Search"
+                      single-line
+                      hide-details  
+                  >
+                  </v-text-field>
+              </v-card-title>
+              <v-data-table color:orange
+                  :headers="headers2"
+                  :items="locations"
+                  :search="search"
+
+                  :loading="true"
+                  class="elevation-1"
+                  :sort-by="['ID']"
+              >
+                <v-progress-linear v-slot:progress indeterminate></v-progress-linear>
+                <template v-slot:items="location">
+                    <tr @click="updateSelectLocation(location.item)">
+                    <td class="text-xs" >{{ location.item.locationId }}</td>
+                    <td class="text-xs" >{{ location.item.locationName1 }}</td>
+                    <td class="text-xs" >{{ location.item.locationName2 }}</td>
+                    <td class="text-xs" >{{ location.item.phoneNo }}</td>
+                    </tr>
+                </template>
+                <template v-slot:no-results>
+                    <v-alert :value="true" color="error" icon="warning">
+                    Your search for "{{ search }}" found no results.
+                    </v-alert>
+                </template>
+              </v-data-table>
+            </v-card>
+  　　    </v-dialog>
       </v-flex>
       
     </template>
@@ -139,17 +143,17 @@
         data() {
             return {
                 dashboardusers: [],
-                dashboarduser: [{ id: 1, name: 'aのitem' },{ id: 2, name: 'bのitem' }],
                 headers: [
-                {align: 'center',  value: 'displayName', text: '在籍',},
-                {text: '名前', align: 'center', value: 'displayName'},
-                {text: '所属', align: 'center', value: 'belongsName'},
-                {text: '役職',align: 'center',value: 'rankName'},
-                {text: '内線',align: 'center', value: 'phoneNo'},
+                  {text: '状態'      　, align: 'center', value: 'status' ,width: '5%'},
+                  {text: '編集'  　    , align: 'center',width: '5%'},
+                  {text: '名前 (内線)' , align: 'center',width: '20%'},
+                  {text: '場所 (内線)' , align: 'center',width: '20%'},
+                  {text: '所属'　　    , align: 'center',width: '10%'},
+                  {text: 'メモ'      　, align: 'center',width: '40%'},
                 ],
                 loading: false,
                 search: '',
-                showModal2: false,
+ 
                 pagination: { sortBy: 'name', descending: false, },
                 setsearch(id) {
                   this.search = id
@@ -157,39 +161,45 @@
                 postItem: { id: 1, displayId:'1', name: 'aのitem' },
                 showUpdateUserModal: false,
                 valid: false,
+                showLocationModal:false,
+
                 displayId: '',
                 displayName:'',
                 firstName: '',
                 lastName: '',
                 phoneNo:'',
                 Rank:'',
+                belongsName:'',
+                status:'',
+                comment:'',
+                statusName:'',
+                locationName:'',
+                locationDetail:'',
+                locPhoneNo:'',
                 Belongs: { label: 'IT企画部', value: '0' },
                 nameRules: [
                   v => !!v || 'Name is required',
                   v => v.length <= 10 || 'Name must be less than 10 characters',
                 ],
-                mail: '',
-                emailRules: [
-                  v => !!v || 'E-mail is required',
-                  v => /.+@.+/.test(v) || 'E-mail must be valid',
-                ],
-                selectedBelongs: { label: 'ドイツ'   , value: 'germany'  },
+ 
+                selectedBelongs: { label: '在籍' , value: '0' },
                 items: [
-                  {label:'IT企画部'   , value:'0'},
-                  {label:'システム1課', value:'1'},
-                  {label:'システム2課', value:'2'},
-                  {label:'システム3課', value:'3'},
+                  {label:'在籍'      , value:0},
+                  {label:'離席中'    , value:1},
+                  {label:'取り込み中' , value:2},
+                  {label:'連絡不可'  , value:3},
+                  {label:'退席中'    , value:4},
                 ],
-                items2: [
-                  {label:'G7', value:'7'},
-                  {label:'G6', value:'6'},
-                  {label:'G5', value:'5'},
-                  {label:'G4', value:'4'},
-                  {label:'G3', value:'3'},
-                  {label:'G2', value:'2'},
-                  {label:'G1', value:'1'},
-                ]
-                
+               
+                search: '',
+                headers2: [
+                { text: 'ID', value: 'locationId' },
+                { text: 'LOCATION', value: 'locationName1' },
+                { text: 'NAME', value: 'locationName2' },
+                { text: 'PHONE', value: 'phoneNo' },
+                ],
+                locations: [],
+                          
             }
         },
         
@@ -199,6 +209,7 @@
              this.getDashbordUser();
           })
           this.getDashbordUser();
+           this.getLocation();
         },
 
         methods: {
@@ -206,30 +217,12 @@
             this.getDashbordUser()
            },
 
-
-           updateUser (dashboarduser) {
-            var status = dashboarduser.status;
-    
-            if(dashboarduser.status == 2) {
-              status = 0;
-            } else {
-              status++;
-            }
-            const userProfile = {
-              locationId:dashboarduser.locationId,
-              location:dashboarduser.location,
-              id:dashboarduser.id,
-              status:status
-            }
-          
-            this.update(userProfile)
-          },
-
           update(userProfile) {
               axios.patch(`/api/dashboarduser/${userProfile.id}`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
               this.getDashbordUser();
+              this.showUpdateUserModal = false
           },
           getDashbordUser() {
              axios.get('/api/dashboarduser')
@@ -240,17 +233,29 @@
 
           updateUserModal(user) {
             this.postItem = user;
+            this.aaa(this.postItem["status"]);
+            this.id          = this.postItem["id"];
             this.displayId   = this.postItem["displayId"];
             this.displayName = this.postItem["displayName"];
+            this.status      = this.postItem["status"];
             this.firstName   = this.postItem["firstName"];
             this.lastName    = this.postItem["lastName"];
             this.rankNo      = this.postItem["rankNo"];
+            this.rankName    = this.postItem["rankName"];
             this.phoneNo     = this.postItem["phoneNo"];
+            this.belongsId   = this.postItem["belongsId"];
             this.belongsName = this.postItem["belongsName"];
             this.mail        = this.postItem["mail"];
-            this.Belongs     = { label: this.postItem["belongsName"], value: this.postItem["belongsId"] };
+            this.locationId  = this.postItem["locationId"];
+            this.location    = this.postItem["location"];
+            this.locationPhon= this.postItem["locationPhon"];
+            this.comentNum   = this.postItem["comentNum"];
+            this.comment     = this.postItem["comment"];
 
-            console.log(this.Belongs);
+            this.Belongs     = { label: this.postItem["belongsName"], value: this.postItem["belongsId"] };
+            this.locationDetail = this.location + '(' + this.locationPhon + ')';
+            this.selectedBelongs = { label: this.statusName , value: this.postItem["status"] };
+            console.log(this.selectedBelongs);
 
             this.showUpdateUserModal= true;
           },
@@ -258,32 +263,93 @@
             this.showUpdateUserModal = false;
           },
 
-          test() {
-            var test = {
-              'displayId':this.displayId,
-              'displayName':this.displayName,
-              'status':0,
-              'firstName':this.firstName,
-              'lastName':this.lastName,
-              'rankNo':0,
-              'phoneNo':this.phoneNo,
-              'rankName':this.Rank,
-              'belongsId':0,
-              'belongsName':this.Belongs,
-              'mail':this.mail,
-              'locationId':0,
-              'location':'自席',
-              'comentNum':0,
-              'seisouFlag':0,
-              'soujiFlag':0,
-              'garbageFlag':0
-            };
-            axios.post('/api/dashboarduser', test)
-            .then(res => {
-              console.log(res.data)
-              //this.form.name=null
-              }  
-            )
+          aaa(id) {
+            if (id == 0) {
+              this.statusName = '在籍';
+            }
+            if (id == 1) {
+              this.statusName = '離席中';
+            }
+            if (id == 2) {
+              this.statusName = '取り込み中';
+            }
+            if (id == 3) {
+              this.c = '';
+            }
+            if (id == 4) {
+              this.statusName = '連絡不可';
+            }
+            if (id == 5) {
+              this.statusName = '退席中';
+            }
+          },
+
+          getLocation() {
+             axios.get('/api/location')
+            .then(res => this.locations = res.data.data)
+            .catch(error => console.log(error.res.data))
+          },
+
+          openLocationModal() {
+            this.getLocation();
+            console.log();
+            this.showLocationModal= true;
+          },
+
+          updateSelectLocation(locationVal){
+            this.location      =locationVal.locationName2;
+            this.locPhoneNo    =locationVal.phoneNo;
+            this.locationDetail = this.location + '(' + this.locationPhon + ')';
+            this.showLocationModal= false;
+          },
+
+          updateUser () {
+
+            if(this.selectedBelongs == 0) {
+              this.location = '自席'
+            }
+            if(this.selectedBelongs == 4) {
+              this.location = ''
+            }
+
+            var id              =this.id;
+            var displayId       =this.displayId;
+            var displayName     =this.displayName;
+            var status          =this.selectedBelongs;
+            var firstName       =this.firstName;
+            var lastName        =this.lastName;
+            var rankNo          =this.rankNo;
+            var rankName        =this.rankName;
+            var phoneNo         =this.phoneNo;
+            var belongsId       =this.belongsId;
+            var belongsName     =this.belongsName;
+            var mail            =this.mail;
+            var locationId      =this.locationId;
+            var location        =this.location;
+            var locationPhon    =this.locationPhon;
+            var comentNum       =this.comentNum;
+            var comment         =this.comment;
+            const userProfile = {
+              id           :id,
+              displayId    :displayId,
+              displayName  :displayName,
+              status       :status,
+              firstName    :firstName,
+              lastName     :lastName,
+              rankNo       :rankNo,
+              rankName     :rankName,
+              phoneNo      :phoneNo,
+              belongsId    :belongsId,
+              belongsName  :belongsName,
+              mail         :mail,
+              locationId   :locationId,
+              location     :location,
+              locationPhon :locationPhon,
+              comentNum    :comentNum,
+              comment      :comment,
+            }
+            console.log(this.selectedBelongs)
+            this.update(userProfile)
           },
         }
     }
@@ -291,52 +357,33 @@
 
 <style>
 
-.green-box {
-  padding:5px;
-  background-color: #009688 !important;
+.zaiseki-badge, .riseki-badge, .torikomi-badge,.renraku-badge, .taiseki-badge {
+  padding: 3px 6px;
+  margin-right: 8px;
+  margin-left: 1px;
+  font-size: 12px;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 3px #ddd;
+  white-space: nowrap;
 }
 
-.yerrow-box {
-  padding:5px;
-  background-color: #CDDC39 !important;
+.zaiseki-badge {
+  background-color: #4CAF50; 
 }
 
-.red-box {
-  padding:5px;
-  background-color: #F44336 !important;
+.riseki-badge {
+  background-color: #FF9800; 
 }
 
-.zero-box {
-  font-size:16px; 
-  padding: 1px; 
-  color:"white" !important;
+.torikomi-badge {
+  background-color: #2196F3; 
 }
 
-.first-box {
-  font-size:16px; 
-  padding: 1px; 
-  color:rgb(198, 40, 40) !important;
+.renraku-badge {
+  background-color: #9C27B0; 
 }
-.second-box {
-  font-size:16px; 
-  padding: 1px; 
-  color:rgb(40, 53, 147) !important;
+.taiseki-badge {
+  background-color: #E91E63; 
 }
-
-.third-box {
-  font-size:16px; 
-  padding: 1px; 
-  color:rgb(46, 125, 50) !important;
-}
-
-.color-nomal {
-  font-size:12px;
-  color: #fff !important;
-}
-
-.color-orange {
-  font-size:12px;
-  color: orange !important;
-}
-
 </style>

@@ -5,6 +5,31 @@
       <v-form v-model="valid">
         <v-container>
           <v-layout row wrap >
+            <v-col cols="12" sm="6" md="6">
+              <v-radio-group v-model="ex7" column>
+                <v-radio
+                  label="red"
+                  color="red"
+                  value="red"
+                ></v-radio>
+                <v-radio
+                  label="red darken-3"
+                  color="red darken-3"
+                  value="red darken-3"
+                ></v-radio>
+                <v-radio
+                  label="indigo"
+                  color="indigo"
+                  value="indigo"
+                ></v-radio>
+                <v-radio
+                  label="indigo darken-3"
+                  value="indigo darken-3"
+                  style="color:#E91E63 !important"
+                ></v-radio>
+              </v-radio-group>
+            </v-col>
+
             <v-flex lg6 md6 xs12>
               <v-text-field
                 v-model="displayId"
@@ -43,40 +68,56 @@
               ></v-text-field>
             </v-flex>
 
-            <v-flex lg6 md6 xs12>
-              <v-select
-                v-model="Belongs"
-                :items="items"
-                filled
-                label="Belongs"
-              ></v-select>
-            </v-flex>
+            <v-card>
+                <v-toolbar style="background-color:#1976D2">
+                  <v-btn icon dark @click="showLocationModal = false">
+                    <v-icon>clear</v-icon>
+                  </v-btn>
+                  <v-toolbar-title>{{dashboarduser["firstName"]}}  {{dashboarduser["lastName"]}}</v-toolbar-title>
+                  <div class="flex-grow-1"></div>
+                </v-toolbar>
+                <v-flex xs12 sm12 offset-sm12 style="margin:0; color:orange;">
+                  <v-card style="color:orange;">
+            
+                    <v-card-title>
+                      <v-spacer></v-spacer>
+                        <v-text-field
+                            v-model="search"
+                            append-icon="search"
+                            label="Search"
+                            single-line
+                            hide-details
+                            
+                        >
+                        </v-text-field>
+                    </v-card-title>
+                    <v-data-table color:orange
+                        :headers="headers"
+                        :items="location"
+                        :search="search"
 
-            <v-flex lg6 md6 xs12>
-              <v-select
-                v-model="Rank"
-                :items="items2"
-                filled
-                label="Rank"
-              ></v-select>
-            </v-flex>
-
-            <v-flex lg6 md6 xs12>
-              <v-text-field
-                v-model="mail"
-                :rules="emailRules"
-                label="E-mail"
-                required
-              ></v-text-field>
-            </v-flex>
-            <v-flex lg6 md6 xs12>
-              <v-text-field
-                v-model="phoneNo"
-                :rules="emailRules"
-                label="phoneNo"
-                required
-              ></v-text-field>
-            </v-flex>
+                        :loading="true"
+                        class="elevation-1"
+                        :sort-by="['ID']"
+                    >
+                      <v-progress-linear v-slot:progress color="orange" indeterminate></v-progress-linear>
+                      <template v-slot:items="location" color:orange>
+                          <tr @click="updateSelectLocation(location.item)">
+                          <td class="text-xs" >{{ location.item.locationId }}</td>
+                          <td class="text-xs" >{{ location.item.locationName1 }}</td>
+                          <td class="text-xs" >{{ location.item.locationName2 }}</td>
+                          <td class="text-xs" >{{ location.item.phoneNo }}</td>
+                          </tr>
+                      </template>
+                      <template v-slot:no-results>
+                          <v-alert :value="true" color="error" icon="warning">
+                          Your search for "{{ search }}" found no results.
+                          </v-alert>
+                      </template>
+                    </v-data-table>
+                  </v-card>
+                </v-flex>
+              </v-card>
 
           </v-layout>
             <v-btn 
@@ -119,9 +160,17 @@
       ],
       items: ['IT企画部', 'システム1課', 'システム2課', 'システム3課'],
       items2: ['G7', 'G6', 'G5', 'G4', 'G3', 'G2', 'G1'],
+      search: '',
+      headers: [
+      { text: 'ID', value: 'locationId' },
+      { text: 'LOCATION', value: 'locationName1' },
+      { text: 'NAME', value: 'locationName2' },
+      { text: 'PHONE', value: 'phoneNo' },
+      ],
     }),
     methods: {
           test() {
+            this.getLocation();
             var test = {
               'displayId':this.displayId,
               'displayName':this.displayName,
@@ -147,6 +196,12 @@
               //this.form.name=null
               }  
             )
+          },
+
+          getLocation() {
+             axios.get('/api/location')
+            .then(res => this.location = res.data.data)
+            .catch(error => console.log(error.res.data))
           },
     }
   }

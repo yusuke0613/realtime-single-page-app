@@ -2,17 +2,27 @@
   <v-container grid-list-md style="padding:0">
     <v-layout row wrap >
       <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" lg4 md6 xs12>
-        <v-card v-bind:class="{ 'green-box': dashboarduser. status === 0, 'yerrow-box': dashboarduser.status === 1 , 'red-box': dashboarduser. status === 2}">
+        <v-card v-bind:class="{ 
+          'zaiseki-box' : dashboarduser. status  === 0, 
+          'riseki-box'  : dashboarduser.status    === 1, 
+          'torikomi-box': dashboarduser. status === 2,
+          'renraku-box' : dashboarduser. status === 3,
+          'taiseki-box' : dashboarduser. status === 4,
+        }">
             <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;">
               <div style="text-align:center;font-size:18px;font-weight: bold; ">{{dashboarduser.displayName}}
-              <span class="sankou-badge">在席</span>
+              <span v-if="dashboarduser.status==0" class="zaiseki-badge">在席</span>
+              <span v-if="dashboarduser.status==1" class="riseki-badge">離席中</span>
+              <span v-if="dashboarduser.status==2" class="torikomi-badge">取り込み中</span>
+              <span v-if="dashboarduser.status==3" class="renraku-badge">連絡不可</span>
+              <span v-if="dashboarduser.status==4" class="taiseki-badge">退席中</span>
               </div>
-              <P  style="font-size:12px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
+              <P  style="font-size:14px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
             </div>
           
-          <p style="font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">chat</v-icon> {{dashboarduser.location}}</p>
+          <p style="font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}({{dashboarduser.locationPhon}})</p>
           <v-divider color="white"></v-divider>
-          <p style="bacground-color:red; font-size:14px; padding:1px; margin:0; color:#fff">{{dashboarduser.location}}</p>
+          <p style="font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">chat</v-icon> {{dashboarduser.comment}}</p>
           
 
         </v-card>
@@ -35,20 +45,6 @@
                 isModal: false,                        // Modak表示フラグ
                 items: [],  
                 newComment:'',                           // すべてのアイテム
-                search: '',
-                headers: [
-                { text: 'ID', value: 'locationId' },
-                { text: 'LOCATION', value: 'locationName1' },
-                { text: 'NAME', value: 'locationName2' },
-                { text: 'PHONE', value: 'phoneNo' },
-                ],
-                commentheaders: [
-                  { text: 'Comment', value: 'comment' ,align: 'center', width: '50%'},
-                  { text: 'CreateAt', value: 'created_at'  ,width: '30%',align: 'center'},
-                  { align: 'center', sortable: false, text: 'delete' ,width: '10%'},
-                ],
-                desserts: [],
-                location: [],
             }
         },
 
@@ -60,24 +56,6 @@
           this.getDashbordUser();
         },
       
-       computed: {
-            // 選択されているオプションは非表示
-            filteredItems() {
-                let data = this.items;
-                let selects = this.selectItems;
-                data = data.filter(function (row) {
-                    for (var i=0; i<selects.length; i++) {
-                        if (selects[i].id == row['id']) {
-                            return false;
-                            break;
-                        }
-                    }
-                    return true;
-                });
-                
-                return data;
-            }
-        },
         methods: {
           getDashbordUser() {
              axios.get('/api/dashboarduser')
@@ -90,21 +68,6 @@
 </script>
 
 <style>
-
-.green-box {
-  padding:3px;
-  background-color: #4CAF50 !important;
-}
-
-.yerrow-box {
-  padding:3Px;
-  background-color: #FF9800 !important;
-}
-
-.red-box {
-  padding:3px;
-  background-color: #E91E63 !important;
-}
 
 .zero-box {
   font-size:16px  !important;
@@ -148,7 +111,7 @@
     padding: 2px !important;
 }
 
-.sankou-badge, .link-badge {
+.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {
   padding: 3px 6px;
   margin-right: 8px;
   margin-left: 1px;
@@ -159,11 +122,52 @@
   white-space: nowrap;
 }
 
-.link-badge {
-  background-color: #58ACFA; /*青*/
+.zaiseki-badge {
+  background-color: #4CAF50; 
 }
 
-.sankou-badge {
-  background-color: #4CAF50; /*緑*/
+.riseki-badge {
+  background-color: #FF9800; 
 }
+
+.torikomi-badge {
+  background-color: #2196F3; 
+}
+
+.renraku-badge {
+  background-color: #9C27B0; 
+}
+.taiseki-badge {
+  background-color: #E91E63; 
+}
+
+.riseki-box {
+  background-color: #4CAF50; 
+}
+
+.zaiseki-box {
+  padding:3px;
+  background-color: #4CAF50 !important;
+}
+
+.riseki-box {
+  padding:3Px;
+  background-color: #FF9800 !important;
+}
+
+.torikomi-box {
+  padding:3px;
+  background-color: #2196F3 !important;
+}
+
+.renraku-box {
+  padding:3Px;
+  background-color: #9C27B0 !important;
+}
+
+.taiseki-box {
+  padding:3px;
+  background-color: #E91E63 !important;
+}
+
 </style>

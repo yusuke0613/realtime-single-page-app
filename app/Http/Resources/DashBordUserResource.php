@@ -28,10 +28,10 @@ class DashBordUserResource extends JsonResource
             'mail'          => $this->mail,
             'locationId'    => $this->locationId,
             'location'      => $this->location,
+            'locationPhon'  => $this->locationPhon,
             'comentNum'     => $this->comentNum,
-            'seisouFlag'    => $this->seisouFlag,
-            'soujiFlag'     => $this->soujiFlag,
-            'garbageFlag'   => $this->garbageFlag,
+            'comment'       => $this->comment,
+            'updated_at'    => $this->updated_at,
             //'user' => $this->user->name,
         ];
     }

@@ -28,10 +28,10 @@ class CreateDashBoardUsersTable extends Migration
             $table->string('mail');
             $table->integer('locationId');
             $table->string('location');
+            $table->integer('locationPhon');
             $table->integer('comentNum');
-            $table->boolean('seisouFlag');
-            $table->boolean('soujiFlag');
-            $table->boolean('garbageFlag');
+            $table->string('comment');
+            $table->timestamps();
         });
     }
 
