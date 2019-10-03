@@ -15,13 +15,12 @@ Vue.use(VueRouter)
 const routes = [
     {path: '/login', component: Login},
     {path: '/signup', component: SignUp},
-    {path: '/', component: DashBordUserControl2},
+    {path: '/', component: DashBordComponentIn},
     {path: '/logout', component: Logout},
     {path: '/dashboeradmin', component: DashBordUserControl},
     {path: '/test', component: DashBordComponent},
-    {path: '/a', component: DashBordUserControl2},
     {path: '/dashbord', component: DashBordComponentTv},
-    {path: '/1', component: DashBordComponentIn},
+    {path: '/inputTable', component: DashBordUserControl2},
 ]
 
 const router = new VueRouter({

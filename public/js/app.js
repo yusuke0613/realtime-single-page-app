@@ -1948,6 +1948,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -50701,6 +50712,31 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "router-link",
+                { attrs: { to: "/inputTable" } },
+                [
+                  _c(
+                    "v-list-tile",
+                    [
+                      _c(
+                        "v-list-tile-action",
+                        [_c("v-icon", [_vm._v("view_headline")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-tile-content",
+                        [_c("v-list-tile-title", [_vm._v("Table")])],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
                 { attrs: { to: "/dashbord" } },
                 [
                   _c(
@@ -95306,7 +95342,7 @@ var routes = [{
   component: _login_signup__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/',
-  component: _dashbord_DashBordUserControl2__WEBPACK_IMPORTED_MODULE_8__["default"]
+  component: _dashbord_DashBordComponentIn__WEBPACK_IMPORTED_MODULE_10__["default"]
 }, {
   path: '/logout',
   component: _login_Logout__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -95317,14 +95353,11 @@ var routes = [{
   path: '/test',
   component: _dashbord_UserModal__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
-  path: '/a',
-  component: _dashbord_DashBordUserControl2__WEBPACK_IMPORTED_MODULE_8__["default"]
-}, {
   path: '/dashbord',
   component: _dashbord_DashBordComponentTv__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
-  path: '/1',
-  component: _dashbord_DashBordComponentIn__WEBPACK_IMPORTED_MODULE_10__["default"]
+  path: '/inputTable',
+  component: _dashbord_DashBordUserControl2__WEBPACK_IMPORTED_MODULE_8__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes,
@@ -96400,8 +96433,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })
