@@ -9,6 +9,9 @@ import DashBordComponent from '../dashbord/UserModal'
 import DashBordUserControl2 from '../dashbord/DashBordUserControl2'
 import DashBordComponentTv from  '../dashbord/DashBordComponentTv'
 import DashBordComponentIn from '../dashbord/DashBordComponentIn'
+import TantouUser from '../dashbord/TantouUser'
+
+
 
 Vue.use(VueRouter)
 
@@ -21,6 +24,7 @@ const routes = [
     {path: '/test', component: DashBordComponent},
     {path: '/dashbord', component: DashBordComponentTv},
     {path: '/inputTable', component: DashBordUserControl2},
+    {path: '/TantouUser', component: TantouUser},
 ]
 
 const router = new VueRouter({

@@ -14,14 +14,10 @@ use App\User;
 |
 */
 
-Route::apiResource('/question', 'QuestionController');
-Route::apiResource('/category', 'CategoryController');
 Route::apiResource('/dashboarduser', 'DashBoardUserController');
 Route::apiResource('/location', 'LocationController');
 Route::apiResource('/comment', 'CommentController');
-Route::apiResource('/question/{question}/reply', 'ReplyController');
-Route::post('/like/{reply}', 'LikeController@likeIt');
-Route::delete('/like/{reply}', 'LikeController@unLikeIt');
+Route::apiResource('/tantou', 'TantouUserController');
 
 Route::group([
 

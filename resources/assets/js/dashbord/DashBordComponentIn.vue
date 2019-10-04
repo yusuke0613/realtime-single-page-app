@@ -19,7 +19,7 @@
               </div>
               <P  style="font-size:14px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
             </div>
-          <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}({{dashboarduser.locationPhon}})</p>
+          <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
           <v-divider color="white"></v-divider>
           <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:22px"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
           
@@ -94,7 +94,6 @@
               :counter="30"
               overflow-y-hidden
             ></v-text-field>
-            <label class="label">Email Address</label>
             </div>
             <v-btn 
                 color="blue-grey darken-4"
@@ -240,6 +239,15 @@
             var mail            = this.dashboarduser.mail;
             var locationId      = this.dashboarduser.locationId;
             var location        = this.dashboarduser.location;
+            if (status == 0) {
+              var locationId      = 999;
+              var location        = '自席';
+            } 
+            if (status == 4) {
+              var locationId      = 1000;
+              var location        = '休み';
+            }
+
             var locationPhon    = this.dashboarduser.locationPhon;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;

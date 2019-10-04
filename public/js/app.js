@@ -2682,7 +2682,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -2825,6 +2824,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var mail = this.dashboarduser.mail;
       var locationId = this.dashboarduser.locationId;
       var location = this.dashboarduser.location;
+
+      if (status == 0) {
+        var locationId = 999;
+        var location = '自席';
+      }
+
+      if (status == 4) {
+        var locationId = 1000;
+        var location = '休み';
+      }
+
       var locationPhon = this.dashboarduser.locationPhon;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.dashboarduser.comment;
@@ -3776,6 +3786,279 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         comment: comment
       };
       this.update(userProfile);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/TantouUser.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dashboardusers: [],
+      tantou: [],
+      type: '',
+      comment: '',
+      dashboarduser: [{
+        id: 1,
+        name: 'aのitem'
+      }, {
+        id: 2,
+        name: 'bのitem'
+      }],
+      showLocationModal: false,
+      showUserModal: false,
+      showCommentModal: false,
+      widgets: false,
+      showTantouModal: false,
+      gomiUser: '',
+      seisouUser: '',
+      serverUser: '',
+      tanahukiUser: '',
+      search: '',
+      himotoUser: '',
+      items: [],
+      newComment: '',
+      headers: [{
+        text: 'ID',
+        value: 'id'
+      }, {
+        text: '氏名',
+        value: 'userName'
+      }, {
+        text: '当番',
+        value: 'gomiFlag'
+      }],
+      pagination: {
+        rowsPerPage: 25
+      }
+    };
+  },
+  created: function created() {
+    this.getTantouUser();
+    console.log(this.tantou);
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/tantou').then(function (res) {
+      return _this.tantou = res.data.data;
+    })["catch"](function (error) {
+      return console.log(error.res.data);
+    });
+    console.log(this.tantou);
+  },
+  methods: {
+    getTantouUser: function getTantouUser() {
+      var _this2 = this;
+
+      axios.get('/api/tantou').then(function (res) {
+        return _this2.tantou = res.data.data;
+      })["catch"](function (error) {
+        return console.log(error.res.data);
+      });
+      /*
+      var gomiUser = this.tantou['data'].filter(function(item, index){
+       if (item.gomiFlag == 1) return true;
+      });
+      console.log(gomiUser);
+      console.log(this.tantou);
+      var seisouUser = this.tantou.filter(function(item, index){
+       if (item.souziFlag == '1') return true;
+      });
+      var serverUser = this.tantou.filter(function(item, index){
+       if (item.serverSoujiFlag == '1') return true;
+      });
+      var tanahukiUser = this.tantou.filter(function(item, index){
+       if (item.seisouFlag == '1') return true;
+      });
+      var himotoUser = this.tantou.filter(function(item, index){
+       if (item.hinomotoFlag == '1') return true;
+      });
+        this.gomiUser     = gomiUser;
+      this.seisouUser   = seisouUser;
+      this.serverUser   = serverUser;
+      this.tanahukiUser = tanahukiUser;
+      this.himotoUser   = himotoUser;
+      */
+    },
+    openTantouModal: function openTantouModal(type) {
+      this.type = type;
+      this.getTantouUser();
+      this.showTantouModal = true;
+      console.log(this.tantou);
+    },
+    updateSelectLocation: function updateSelectLocation(u) {
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = u.locationId;
+      var location = u.locationName2;
+      var locationPhon = u.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.showLocationModal = false;
+    },
+    update: function update(userProfile) {
+      axios.patch("/api/dashboarduser/".concat(userProfile.id), userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      this.getDashbordUser();
+      this.showUpdateUserModal = false;
     }
   }
 });
@@ -10628,6 +10911,20 @@ exports.push([module.i, "\n.green-box {\r\n  padding:5px;\r\n  background-color:
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
 exports.push([module.i, "\n.zaiseki-badge, .riseki-badge, .torikomi-badge,.renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50;\n}\n.riseki-badge {\r\n  background-color: #FF9800;\n}\n.torikomi-badge {\r\n  background-color: #2196F3;\n}\n.renraku-badge {\r\n  background-color: #9C27B0;\n}\n.taiseki-badge {\r\n  background-color: #E91E63;\n}\n.tt div[role=listitem]:nth-of-type(1).tt {\r\n  background-color: #4CAF50 !important;\r\n  color:#fff\n}\n.tt div[role=listitem]:nth-of-type(2) {\r\n  background-color: #FF9800 !important;\r\n  color:#fff\n}\n.tt div[role=listitem]:nth-of-type(3) {\r\n  background-color: #2196F3 !important;\r\n  color:#fff\n}\n.tt div[role=listitem]:nth-of-type(4) {\r\n  background-color: #9C27B0 !important;\r\n  color:#fff\n}\n.tt div[role=listitem]:nth-of-type(5) {\r\n  background-color: #E91E63 !important;\r\n  color:#fff\n}\n.v-list {\r\n  padding: 0 !important;\n}\r\n", ""]);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, "\n.zaiseki-badge {\n  background-color: #4CAF50;\n}\n.riseki-badge {\n  background-color: #FF9800;\n}\n.torikomi-badge {\n  background-color: #2196F3;\n}\n.renraku-badge {\n  background-color: #9C27B0;\n}\n.taiseki-badge {\n  background-color: #E91E63;\n}\n", ""]);
 
 
 /***/ }),
@@ -49978,6 +50275,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./TantouUser.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -52001,13 +52328,7 @@ var render = function() {
                           },
                           [_vm._v("transfer_within_a_station")]
                         ),
-                        _vm._v(
-                          " " +
-                            _vm._s(dashboarduser.location) +
-                            "(" +
-                            _vm._s(dashboarduser.locationPhon) +
-                            ")"
-                        )
+                        _vm._v(" " + _vm._s(dashboarduser.location))
                       ],
                       1
                     ),
@@ -52400,11 +52721,7 @@ var render = function() {
                           },
                           expression: "comment"
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("Email Address")
-                      ])
+                      })
                     ],
                     1
                   ),
@@ -52575,13 +52892,7 @@ var render = function() {
                         },
                         [_vm._v("transfer_within_a_station")]
                       ),
-                      _vm._v(
-                        " " +
-                          _vm._s(dashboarduser.location) +
-                          "(" +
-                          _vm._s(dashboarduser.locationPhon) +
-                          ")"
-                      )
+                      _vm._v(" " + _vm._s(dashboarduser.location))
                     ],
                     1
                   ),
@@ -53623,6 +53934,510 @@ var render = function() {
                                 '\n                  Your search for "' +
                                   _vm._s(_vm.search) +
                                   '" found no results.\n                  '
+                              )
+                            ]
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
+                },
+                [
+                  _c("v-progress-linear", {
+                    attrs: { indeterminate: "" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "progress",
+                        fn: function() {
+                          return undefined
+                        },
+                        proxy: true
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=template&id=34c0c340&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/TantouUser.vue?vue&type=template&id=34c0c340& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { staticStyle: { padding: "0" }, attrs: { "grid-list-md": "" } },
+    [
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c(
+            "v-icon",
+            {
+              staticStyle: { cursor: "pointer", color: "#4CAF50 !important" },
+              on: {
+                click: function($event) {
+                  return _vm.openTantouModal(0)
+                }
+              }
+            },
+            [_vm._v("delete_sweep")]
+          ),
+          _vm._v("  ゴミ捨て当番\n        ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c("v-text-field", {
+            attrs: { disabled: "disabled" },
+            model: {
+              value: _vm.gomiUser,
+              callback: function($$v) {
+                _vm.gomiUser = $$v
+              },
+              expression: "gomiUser"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c(
+            "v-icon",
+            {
+              staticStyle: { cursor: "pointer", color: "#FF9800  !important" },
+              on: {
+                click: function($event) {
+                  return _vm.openTantouModal(1)
+                }
+              }
+            },
+            [_vm._v("transfer_within_a_station")]
+          ),
+          _vm._v("  掃除機当番\n        ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c("v-text-field", {
+            attrs: { disabled: "disabled" },
+            model: {
+              value: _vm.seisouUser,
+              callback: function($$v) {
+                _vm.seisouUser = $$v
+              },
+              expression: "seisouUser"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c(
+            "v-icon",
+            {
+              staticStyle: { cursor: "pointer", color: "#2196F3  !important" },
+              on: {
+                click: function($event) {
+                  return _vm.openTantouModal(2)
+                }
+              }
+            },
+            [_vm._v("router")]
+          ),
+          _vm._v("  サーバ/ミーディング掃除当番\n          ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c("v-text-field", {
+            attrs: { disabled: "disabled" },
+            model: {
+              value: _vm.serverUser,
+              callback: function($$v) {
+                _vm.serverUser = $$v
+              },
+              expression: "serverUser"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c(
+            "v-icon",
+            {
+              staticStyle: { cursor: "pointer", color: "#9C27B0  !important" },
+              on: {
+                click: function($event) {
+                  return _vm.openTantouModal(3)
+                }
+              }
+            },
+            [_vm._v("blur_on")]
+          ),
+          _vm._v("  棚拭き当番\n          ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c("v-text-field", {
+            attrs: { disabled: "disabled" },
+            model: {
+              value: _vm.tanahukiUser,
+              callback: function($$v) {
+                _vm.tanahukiUser = $$v
+              },
+              expression: "tanahukiUser"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c(
+            "v-icon",
+            {
+              staticStyle: { cursor: "pointer", color: "#E91E63  !important" },
+              on: {
+                click: function($event) {
+                  return _vm.openTantouModal(4)
+                }
+              }
+            },
+            [_vm._v("power")]
+          ),
+          _vm._v("  火元管理当番\n          ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        {
+          staticStyle: { padding: "0 !important" },
+          attrs: { lg3: "", md12: "", xs12: "" }
+        },
+        [
+          _c("v-text-field", {
+            attrs: { disabled: "disabled" },
+            model: {
+              value: _vm.himotoUser,
+              callback: function($$v) {
+                _vm.himotoUser = $$v
+              },
+              expression: "himotoUser"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.showTantouModal,
+            callback: function($$v) {
+              _vm.showTantouModal = $$v
+            },
+            expression: "showTantouModal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-title",
+                [
+                  this.type == "0"
+                    ? _c(
+                        "p",
+                        [
+                          _c(
+                            "v-icon",
+                            { staticStyle: { color: "#4CAF50  !important" } },
+                            [_vm._v("delete_sweep")]
+                          ),
+                          _vm._v("ゴミ捨て当番")
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  this.type == "1"
+                    ? _c(
+                        "p",
+                        [
+                          _c(
+                            "v-icon",
+                            { staticStyle: { color: "#FF9800  !important" } },
+                            [_vm._v("transfer_within_a_station")]
+                          ),
+                          _vm._v("  掃除機当番")
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  this.type == "2"
+                    ? _c(
+                        "p",
+                        [
+                          _c(
+                            "v-icon",
+                            { staticStyle: { color: "#2196F3  !important" } },
+                            [_vm._v("router")]
+                          ),
+                          _vm._v("  サーバ/ミーディング掃除当番")
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  this.type == "3"
+                    ? _c(
+                        "p",
+                        [
+                          _c(
+                            "v-icon",
+                            { staticStyle: { color: "#9C27B0  !important" } },
+                            [_vm._v("blur_on")]
+                          ),
+                          _vm._v("  棚拭き当番")
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  this.type == "4"
+                    ? _c(
+                        "p",
+                        [
+                          _c(
+                            "v-icon",
+                            { staticStyle: { color: "#E91E63  !important" } },
+                            [_vm._v("power")]
+                          ),
+                          _vm._v("  火元管理当番")
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "search",
+                      label: "Search",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-data-table",
+                {
+                  staticClass: "elevation-1",
+                  attrs: {
+                    headers: _vm.headers,
+                    items: _vm.tantou,
+                    search: _vm.search,
+                    pagination: _vm.pagination,
+                    loading: true,
+                    "sort-by": ["ID"]
+                  },
+                  on: {
+                    "update:pagination": function($event) {
+                      _vm.pagination = $event
+                    }
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "items",
+                      fn: function(tantou) {
+                        return [
+                          _c(
+                            "tr",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateSelectLocation(tantou.item)
+                                }
+                              }
+                            },
+                            [
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(tantou.item.id))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(tantou.item.userName))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "'text-xs" }, [
+                                tantou.item["gomiFlag"] == 1
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "zaiseki-badge" },
+                                      [_vm._v("ゴミ捨て当番")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                tantou.item["souziFlag"] == 1
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "riseki-badge" },
+                                      [_vm._v("掃除機当番")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                tantou.item["serverSoujiFlag"] == 1
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "torikomi-badge" },
+                                      [_vm._v("サーバ/ミーディング掃除当番")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                tantou.item["seisouFlag"] == 1
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "renraku-badge" },
+                                      [_vm._v("棚拭き当番")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                tantou.item["hinomotoFlag"] == 1
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "taiseki-badge" },
+                                      [_vm._v("火元管理当番")]
+                                    )
+                                  : _vm._e()
+                              ])
+                            ]
+                          )
+                        ]
+                      }
+                    },
+                    {
+                      key: "no-results",
+                      fn: function() {
+                        return [
+                          _c(
+                            "v-alert",
+                            {
+                              attrs: {
+                                value: true,
+                                color: "error",
+                                icon: "warning"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                '\n                Your search for "' +
+                                  _vm._s(_vm.search) +
+                                  '" found no results.\n                '
                               )
                             ]
                           )
@@ -95322,6 +96137,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashbord_DashBordUserControl2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../dashbord/DashBordUserControl2 */ "./resources/assets/js/dashbord/DashBordUserControl2.vue");
 /* harmony import */ var _dashbord_DashBordComponentTv__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../dashbord/DashBordComponentTv */ "./resources/assets/js/dashbord/DashBordComponentTv.vue");
 /* harmony import */ var _dashbord_DashBordComponentIn__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../dashbord/DashBordComponentIn */ "./resources/assets/js/dashbord/DashBordComponentIn.vue");
+/* harmony import */ var _dashbord_TantouUser__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../dashbord/TantouUser */ "./resources/assets/js/dashbord/TantouUser.vue");
+
 
 
 
@@ -95358,6 +96175,9 @@ var routes = [{
 }, {
   path: '/inputTable',
   component: _dashbord_DashBordUserControl2__WEBPACK_IMPORTED_MODULE_8__["default"]
+}, {
+  path: '/TantouUser',
+  component: _dashbord_TantouUser__WEBPACK_IMPORTED_MODULE_11__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes,
@@ -96134,6 +96954,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordUserControl2_vue_vue_type_template_id_62d0b14d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordUserControl2_vue_vue_type_template_id_62d0b14d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashbord/TantouUser.vue":
+/*!*****************************************************!*\
+  !*** ./resources/assets/js/dashbord/TantouUser.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TantouUser_vue_vue_type_template_id_34c0c340___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TantouUser.vue?vue&type=template&id=34c0c340& */ "./resources/assets/js/dashbord/TantouUser.vue?vue&type=template&id=34c0c340&");
+/* harmony import */ var _TantouUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TantouUser.vue?vue&type=script&lang=js& */ "./resources/assets/js/dashbord/TantouUser.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TantouUser_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TantouUser.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TantouUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TantouUser_vue_vue_type_template_id_34c0c340___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TantouUser_vue_vue_type_template_id_34c0c340___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/dashbord/TantouUser.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashbord/TantouUser.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/assets/js/dashbord/TantouUser.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TantouUser.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./TantouUser.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashbord/TantouUser.vue?vue&type=template&id=34c0c340&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/js/dashbord/TantouUser.vue?vue&type=template&id=34c0c340& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_template_id_34c0c340___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TantouUser.vue?vue&type=template&id=34c0c340& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/TantouUser.vue?vue&type=template&id=34c0c340&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_template_id_34c0c340___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TantouUser_vue_vue_type_template_id_34c0c340___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

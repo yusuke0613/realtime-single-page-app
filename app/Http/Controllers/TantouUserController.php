@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Model\TantouUser;
 use Illuminate\Http\Request;
+use App\Http\Resources\TantouUserResource;
+use Illuminate\Http\Response;
+
+
 
 class TantouUserController extends Controller
 {
@@ -14,7 +18,7 @@ class TantouUserController extends Controller
      */
     public function index()
     {
-        //
+        return TantouUserResource::collection(TantouUser::get());
     }
 
     /**
@@ -69,7 +73,15 @@ class TantouUserController extends Controller
      */
     public function update(Request $request, TantouUser $tantouUser)
     {
-        //
+        TantouUser::where('id', $request->id)->update([
+            'gomiFlag'           =>$request->gomiFlag,
+            'souziFlag'          =>$request->souziFlag,
+            'seisouFlag'         =>$request->seisouFlag,
+            'serverSoujiFlag'    =>$request->serverSoujiFlag,
+            'hinomotoFlag'       =>$request->hinomotoFlag,
+
+        ]);
+        return response($request, Response::HTTP_ACCEPTED);
     }
 
     /**
