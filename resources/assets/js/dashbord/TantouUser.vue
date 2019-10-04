@@ -1,5 +1,6 @@
 <template>
-    <v-container grid-list-md style="padding:0">
+      <v-flex>
+        <v-card xs12 class="m-3 px-3">
   
         <v-flex lg3 md12 xs12 style="padding:0 !important">
         <v-icon style="cursor:pointer;　color:#4CAF50 !important;" @click="openTantouModal(0)">delete_sweep</v-icon>  ゴミ捨て当番
@@ -50,7 +51,36 @@
               disabled=disabled 
             ></v-text-field>
         </v-flex>
-    
+        <v-data-table 
+              :headers="headers"
+              :items="tantou"
+              :search="search"
+              :pagination.sync="pagination"
+              :loading="true"
+              class="elevation-1"
+              :sort-by="['ID']"
+          >
+            <v-progress-linear v-slot:progress indeterminate></v-progress-linear>
+            <template v-slot:items="tantou">
+                <tr @click="updateSelectLocation(tantou.item)">
+                  <td class="text-xs" >{{ tantou.item.id }}</td>
+                  <td class="text-xs" >{{ tantou.item.userName }}</td>
+                  <td class="'text-xs">
+                    <span v-if="tantou.item['gomiFlag']          == 1" class="zaiseki-badge">ゴミ捨て当番</span>
+                    <span v-if="tantou.item['souziFlag']         == 1" class="riseki-badge">掃除機当番</span>
+                    <span v-if="tantou.item['serverSoujiFlag']   == 1" class="torikomi-badge">サーバ/ミーディング掃除当番</span>
+                    <span v-if="tantou.item['seisouFlag']             == 1" class="renraku-badge">棚拭き当番</span>
+                    <span v-if="tantou.item['hinomotoFlag']      == 1" class="taiseki-badge">火元管理当番</span>
+                  </td> 
+                </tr>
+            </template>
+            <template v-slot:no-results>
+                <v-alert :value="true" color="error" icon="warning">
+                Your search for "{{ search }}" found no results.
+                </v-alert>
+            </template>
+          </v-data-table>
+
 
      
       <v-dialog v-model="showTantouModal" >
@@ -103,7 +133,9 @@
           </v-data-table>
         </v-card>
 　　  </v-dialog>
-    </v-container>
+        </v-card>
+      </v-flex>
+  
 
 
 
@@ -116,6 +148,7 @@
             return {
                 dashboardusers: [],
                 tantou:[],
+                tantous:{},
                 type:'',
                 comment:'',
                 dashboarduser: [{ id: 1, name: 'aのitem' },{ id: 2, name: 'bのitem' }],
@@ -147,18 +180,26 @@
         created() {
           this.getTantouUser();
       
-          console.log(this.tantou);
+          console.log(this.tantous);
         },
         mounted :function(){
              axios.get('/api/tantou')
             .then(res => this.tantou = res.data.data)
             .catch(error => console.log(error.res.data))
-          console.log(this.tantou);
+         
         },
         methods: {
+
+           getDashbordUser() {
+             axios.get('/api/dashboarduser')
+            .then(res => this.dashboardusers = res.data.data)
+            .catch(error => console.log(error.res.data))
+      
+          },
+
           getTantouUser() {
              axios.get('/api/tantou')
-            .then(res => this.tantou = res.data.data)
+            .then(res => this.tantous = res.data.data)
             .catch(error => console.log(error.res.data))
              
              /*
@@ -194,7 +235,7 @@
             this.type = type;
             this.getTantouUser();
             this.showTantouModal= true;
-            console.log(this.tantou);
+            console.log(this.tantous);
           },
 
 

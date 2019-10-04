@@ -3,8 +3,8 @@
     <v-layout row wrap >
       <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" lg4 md6 xs12>
         <v-card v-bind:class="{ 
-          'zaiseki-box' : dashboarduser. status  === 0, 
-          'riseki-box'  : dashboarduser.status    === 1, 
+          'zaiseki-box' : dashboarduser. status === 0, 
+          'riseki-box'  : dashboarduser.status  === 1, 
           'torikomi-box': dashboarduser. status === 2,
           'renraku-box' : dashboarduser. status === 3,
           'taiseki-box' : dashboarduser. status === 4,
@@ -23,8 +23,6 @@
           <p style="font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
           <v-divider color="white"></v-divider>
           <p style="font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">chat</v-icon> {{dashboarduser.comment}}</p>
-          
-
         </v-card>
       </v-flex>
     </v-layout> 
@@ -42,9 +40,10 @@
                 showUserModal: false,
                 showCommentModal: false,
                 widgets: false,
-                isModal: false,                        // Modak表示フラグ
+                isModal: false,                      
                 items: [],  
-                newComment:'',                           // すべてのアイテム
+                newComment:'', 
+                                      
             }
         },
 
