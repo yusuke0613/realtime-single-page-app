@@ -78,8 +78,7 @@ class TantouUserController extends Controller
             'souziFlag'          =>$request->souziFlag,
             'seisouFlag'         =>$request->seisouFlag,
             'serverSoujiFlag'    =>$request->serverSoujiFlag,
-            'hinomotoFlag'       =>$request->hinomotoFlag,
-
+            'hinomotoFlag'       =>$request->hinomotoFlag
         ]);
         return response($request, Response::HTTP_ACCEPTED);
     }

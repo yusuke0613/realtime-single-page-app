@@ -3913,11 +3913,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      dashboardusers: [],
+      dashboardusers: {},
       tantou: [],
+      selectTantou: [],
+      showwTantouModal: false,
       type: '',
       comment: '',
       dashboarduser: [{
@@ -3957,7 +3965,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getTantouUser();
-    console.log(this.tantou);
   },
   mounted: function mounted() {
     var _this = this;
@@ -3967,7 +3974,6 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       return console.log(error.res.data);
     });
-    console.log(this.tantou);
   },
   methods: {
     getTantouUser: function getTantouUser() {
@@ -3978,87 +3984,123 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
-      /*
-      var gomiUser = this.tantou['data'].filter(function(item, index){
-       if (item.gomiFlag == 1) return true;
-      });
-      console.log(gomiUser);
-      console.log(this.tantou);
-      var seisouUser = this.tantou.filter(function(item, index){
-       if (item.souziFlag == '1') return true;
-      });
-      var serverUser = this.tantou.filter(function(item, index){
-       if (item.serverSoujiFlag == '1') return true;
-      });
-      var tanahukiUser = this.tantou.filter(function(item, index){
-       if (item.seisouFlag == '1') return true;
-      });
-      var himotoUser = this.tantou.filter(function(item, index){
-       if (item.hinomotoFlag == '1') return true;
-      });
-        this.gomiUser     = gomiUser;
-      this.seisouUser   = seisouUser;
-      this.serverUser   = serverUser;
-      this.tanahukiUser = tanahukiUser;
-      this.himotoUser   = himotoUser;
-      */
     },
     openTantouModal: function openTantouModal(type) {
       this.type = type;
       this.getTantouUser();
       this.showTantouModal = true;
-      console.log(this.tantou);
     },
-    updateSelectLocation: function updateSelectLocation(u) {
-      var id = this.dashboarduser.id;
-      var status = this.dashboarduser.status;
-      var displayId = this.dashboarduser.displayId;
-      var displayName = this.dashboarduser.displayName;
-      var status = this.dashboarduser.status;
-      var firstName = this.dashboarduser.firstName;
-      var lastName = this.dashboarduser.lastName;
-      var rankNo = this.dashboarduser.rankNo;
-      var rankName = this.dashboarduser.rankName;
-      var phoneNo = this.dashboarduser.phoneNo;
-      var belongsId = this.dashboarduser.belongsId;
-      var belongsName = this.dashboarduser.belongsName;
-      var mail = this.dashboarduser.mail;
-      var locationId = u.locationId;
-      var location = u.locationName2;
-      var locationPhon = u.phoneNo;
-      var comentNum = this.dashboarduser.comentNum;
-      var comment = this.dashboarduser.comment;
-      var userProfile = {
-        id: id,
-        displayId: displayId,
-        displayName: displayName,
-        status: status,
-        firstName: firstName,
-        lastName: lastName,
-        rankNo: rankNo,
-        rankName: rankName,
-        phoneNo: phoneNo,
-        belongsId: belongsId,
-        belongsName: belongsName,
-        mail: mail,
-        locationId: locationId,
-        location: location,
-        locationPhon: locationPhon,
-        comentNum: comentNum,
-        comment: comment
-      };
-      console.log(userProfile);
-      this.update(userProfile);
-      this.showLocationModal = false;
+    updateSelectTantou: function updateSelectTantou(tantou) {
+      this.selectTantou = tantou;
+      this.showwTantouModal = true;
+    },
+    updateTantou: function updateTantou(u) {
+      var gomiUser = this.tantou.filter(function (item, index) {
+        if (item.gomiFlag == 1) return true;
+      });
+      var souziUser = this.tantou.filter(function (item, index) {
+        if (item.souziFlag == 1) return true;
+      });
+      var seisouUser = this.tantou.filter(function (item, index) {
+        if (item.seisouFlag == 1) return true;
+      });
+      var hinomotoUser = this.tantou.filter(function (item, index) {
+        if (item.hinomotoFlag == 1) return true;
+      });
+      var serverSoujiUser = this.tantou.filter(function (item, index) {
+        if (item.serverSoujiFlag == 1) return true;
+      });
+      var id = 0;
+      var gomiFlag = 0;
+      var souziFlag = 0;
+      var seisouFlag = 0;
+      var serverSoujiFlag = 0;
+      var hinomotoFlag = 0;
+
+      if (gomiUser.length != 0) {
+        if (gomiUser[0]['id'] == this.selectTantou['id']) {
+          gomiFlag = 1;
+        }
+      }
+
+      if (souziUser.length != 0) {
+        if (souziUser[0]['id'] == this.selectTantou['id']) {
+          souziFlag = 1;
+        }
+      }
+
+      if (seisouUser.length != 0) {
+        if (seisouUser['id'] == this.selectTantou['id']) {
+          seisouFlag = 1;
+        }
+      }
+
+      if (serverSoujiUser.length != 0) {
+        if (serverSoujiUser['id'] == this.selectTantou['id']) {
+          serverSoujiFlag = 1;
+        }
+      }
+
+      if (hinomotoUser.length != 0) {
+        if (hinomotoUser['id'] == this.selectTantou['id']) {
+          hinomotoFlag = 0;
+        }
+      }
+
+      if (u == 0) {
+        id = gomiUser[0]['id'];
+        var userProfile = {
+          id: id,
+          gomiFlag: gomiFlag,
+          souziFlag: souziFlag,
+          seisouFlag: seisouFlag,
+          hinomotoFlag: hinomotoFlag,
+          serverSoujiFlag: serverSoujiFlag
+        };
+        this.update(userProfile);
+        userProfile = {
+          id: this.selectTantou['id'],
+          gomiFlag: 1,
+          souziFlag: souziFlag,
+          seisouFlag: seisouFlag,
+          hinomotoFlag: hinomotoFlag,
+          serverSoujiFlag: serverSoujiFlag
+        };
+        this.update(userProfile);
+        console.log(userProfile);
+      }
+
+      if (u == 1) {
+        id = souziUser[0]['id'];
+        var userProfile = {
+          id: id,
+          gomiFlag: gomiFlag,
+          souziFlag: souziFlag,
+          seisouFlag: seisouFlag,
+          hinomotoFlag: hinomotoFlag,
+          serverSoujiFlag: serverSoujiFlag
+        };
+        this.update(userProfile);
+        userProfile = {
+          id: this.selectTantou['id'],
+          gomiFlag: gomiFlag,
+          souziFlag: 1,
+          seisouFlag: seisouFlag,
+          hinomotoFlag: hinomotoFlag,
+          serverSoujiFlag: serverSoujiFlag
+        };
+        this.update(userProfile);
+        console.log(userProfile);
+      }
+
+      this.getTantouUser();
     },
     update: function update(userProfile) {
-      axios.patch("/api/dashboarduser/".concat(userProfile.id), userProfile).then(function (res) {
+      axios.patch("/api/tantou/".concat(userProfile.id), userProfile).then(function (res) {
         return console.log(res.data);
       })["catch"](function (error) {
         return console.log(error.res);
       });
-      this.getDashbordUser();
-      this.showUpdateUserModal = false;
     }
   }
 });
@@ -10924,7 +10966,7 @@ exports.push([module.i, "\n.zaiseki-badge, .riseki-badge, .torikomi-badge,.renra
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.zaiseki-badge {\n  background-color: #4CAF50;\n}\n.riseki-badge {\n  background-color: #FF9800;\n}\n.torikomi-badge {\n  background-color: #2196F3;\n}\n.renraku-badge {\n  background-color: #9C27B0;\n}\n.taiseki-badge {\n  background-color: #E91E63;\n}\n", ""]);
+exports.push([module.i, "\n.zaiseki-badge {\n    background-color: #4CAF50;\n}\n.riseki-badge {\n    background-color: #FF9800;\n}\n.torikomi-badge {\n    background-color: #2196F3;\n}\n.renraku-badge {\n    background-color: #9C27B0;\n}\n.taiseki-badge {\n    background-color: #E91E63;\n}\n.zaiseki-list {\n  padding:3px;\n  color: #fff;\n  text-align: center;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\n  padding:3Px;\n  color: #fff;\n  text-align: center;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #FF9800 !important;\n}\n.torikomi-list {\n  margin: auto;\n  padding:3px;\n  text-align: center;\n  color: #fff;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #2196F3 !important;\n}\n.renraku-list {\n  padding:3Px;\n  text-align: center;\n  color: #fff;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #9C27B0 !important;\n}\n.taiseki-list {\n  padding:3px;\n  color: #fff;\n  text-align: center;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\nopacity: 0.5 ;\n}\n.riseki-list:hover {\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\nopacity: 0.5 ;\n}\n.renraku-list:hover {\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\nopacity: 0.5 ;\n}\n", ""]);
 
 
 /***/ }),
@@ -53996,226 +54038,308 @@ var render = function() {
     { staticStyle: { padding: "0" }, attrs: { "grid-list-md": "" } },
     [
       _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
+        "v-card",
         [
           _c(
-            "v-icon",
-            {
-              staticStyle: { cursor: "pointer", color: "#4CAF50 !important" },
-              on: {
-                click: function($event) {
-                  return _vm.openTantouModal(0)
+            "v-card-title",
+            [
+              this.type == "0"
+                ? _c(
+                    "p",
+                    [
+                      _c(
+                        "v-icon",
+                        { staticStyle: { color: "#4CAF50  !important" } },
+                        [_vm._v("delete_sweep")]
+                      ),
+                      _vm._v("ゴミ捨て当番")
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.type == "1"
+                ? _c(
+                    "p",
+                    [
+                      _c(
+                        "v-icon",
+                        { staticStyle: { color: "#FF9800  !important" } },
+                        [_vm._v("transfer_within_a_station")]
+                      ),
+                      _vm._v("  掃除機当番")
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.type == "2"
+                ? _c(
+                    "p",
+                    [
+                      _c(
+                        "v-icon",
+                        { staticStyle: { color: "#2196F3  !important" } },
+                        [_vm._v("router")]
+                      ),
+                      _vm._v("  サーバ/ミーディング掃除当番")
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.type == "3"
+                ? _c(
+                    "p",
+                    [
+                      _c(
+                        "v-icon",
+                        { staticStyle: { color: "#9C27B0  !important" } },
+                        [_vm._v("blur_on")]
+                      ),
+                      _vm._v("  棚拭き当番")
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.type == "4"
+                ? _c(
+                    "p",
+                    [
+                      _c(
+                        "v-icon",
+                        { staticStyle: { color: "#E91E63  !important" } },
+                        [_vm._v("power")]
+                      ),
+                      _vm._v("  火元管理当番")
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  "append-icon": "search",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": ""
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
                 }
-              }
-            },
-            [_vm._v("delete_sweep")]
+              })
+            ],
+            1
           ),
-          _vm._v("  ゴミ捨て当番\n        ")
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
-          _c("v-text-field", {
-            attrs: { disabled: "disabled" },
-            model: {
-              value: _vm.gomiUser,
-              callback: function($$v) {
-                _vm.gomiUser = $$v
-              },
-              expression: "gomiUser"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
+          _vm._v(" "),
           _c(
-            "v-icon",
+            "v-data-table",
             {
-              staticStyle: { cursor: "pointer", color: "#FF9800  !important" },
-              on: {
-                click: function($event) {
-                  return _vm.openTantouModal(1)
-                }
-              }
-            },
-            [_vm._v("transfer_within_a_station")]
-          ),
-          _vm._v("  掃除機当番\n        ")
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
-          _c("v-text-field", {
-            attrs: { disabled: "disabled" },
-            model: {
-              value: _vm.seisouUser,
-              callback: function($$v) {
-                _vm.seisouUser = $$v
+              staticClass: "elevation-1",
+              attrs: {
+                headers: _vm.headers,
+                items: _vm.tantou,
+                search: _vm.search,
+                pagination: _vm.pagination,
+                loading: true,
+                "sort-by": ["ID"]
               },
-              expression: "seisouUser"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
-          _c(
-            "v-icon",
-            {
-              staticStyle: { cursor: "pointer", color: "#2196F3  !important" },
               on: {
-                click: function($event) {
-                  return _vm.openTantouModal(2)
+                "update:pagination": function($event) {
+                  _vm.pagination = $event
                 }
-              }
-            },
-            [_vm._v("router")]
-          ),
-          _vm._v("  サーバ/ミーディング掃除当番\n          ")
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
-          _c("v-text-field", {
-            attrs: { disabled: "disabled" },
-            model: {
-              value: _vm.serverUser,
-              callback: function($$v) {
-                _vm.serverUser = $$v
               },
-              expression: "serverUser"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
-          _c(
-            "v-icon",
-            {
-              staticStyle: { cursor: "pointer", color: "#9C27B0  !important" },
-              on: {
-                click: function($event) {
-                  return _vm.openTantouModal(3)
+              scopedSlots: _vm._u([
+                {
+                  key: "items",
+                  fn: function(tantou) {
+                    return [
+                      _c(
+                        "tr",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.updateSelectTantou(tantou.item)
+                            }
+                          }
+                        },
+                        [
+                          _c("td", { staticClass: "text-xs" }, [
+                            _vm._v(_vm._s(tantou.item.id))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-xs" }, [
+                            _vm._v(_vm._s(tantou.item.userName))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "'text-xs" }, [
+                            tantou.item["gomiFlag"] == 1
+                              ? _c("span", { staticClass: "zaiseki-badge" }, [
+                                  _vm._v("ゴミ捨て当番")
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            tantou.item["souziFlag"] == 1
+                              ? _c("span", { staticClass: "riseki-badge" }, [
+                                  _vm._v("掃除機当番")
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            tantou.item["serverSoujiFlag"] == 1
+                              ? _c("span", { staticClass: "torikomi-badge" }, [
+                                  _vm._v("サーバ/ミーディング掃除当番")
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            tantou.item["seisouFlag"] == 1
+                              ? _c("span", { staticClass: "renraku-badge" }, [
+                                  _vm._v("棚拭き当番")
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            tantou.item["hinomotoFlag"] == 1
+                              ? _c("span", { staticClass: "taiseki-badge" }, [
+                                  _vm._v("火元管理当番")
+                                ])
+                              : _vm._e()
+                          ])
+                        ]
+                      )
+                    ]
+                  }
+                },
+                {
+                  key: "no-results",
+                  fn: function() {
+                    return [
+                      _c(
+                        "v-alert",
+                        {
+                          attrs: {
+                            value: true,
+                            color: "error",
+                            icon: "warning"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            '\n                Your search for "' +
+                              _vm._s(_vm.search) +
+                              '" found no results.\n                '
+                          )
+                        ]
+                      )
+                    ]
+                  },
+                  proxy: true
                 }
-              }
+              ])
             },
-            [_vm._v("blur_on")]
-          ),
-          _vm._v("  棚拭き当番\n          ")
+            [
+              _c("v-progress-linear", {
+                attrs: { indeterminate: "" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "progress",
+                    fn: function() {
+                      return undefined
+                    },
+                    proxy: true
+                  }
+                ])
+              })
+            ],
+            1
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c(
-        "v-flex",
+        "v-dialog",
         {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
+          model: {
+            value: _vm.showwTantouModal,
+            callback: function($$v) {
+              _vm.showwTantouModal = $$v
+            },
+            expression: "showwTantouModal"
+          }
         },
         [
-          _c("v-text-field", {
-            attrs: { disabled: "disabled" },
-            model: {
-              value: _vm.tanahukiUser,
-              callback: function($$v) {
-                _vm.tanahukiUser = $$v
-              },
-              expression: "tanahukiUser"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
-          _c(
-            "v-icon",
-            {
-              staticStyle: { cursor: "pointer", color: "#E91E63  !important" },
-              on: {
-                click: function($event) {
-                  return _vm.openTantouModal(4)
+          _c("v-card", [
+            _c(
+              "div",
+              {
+                staticClass: "zaiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateTantou(0)
+                  }
                 }
-              }
-            },
-            [_vm._v("power")]
-          ),
-          _vm._v("  火元管理当番\n          ")
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        {
-          staticStyle: { padding: "0 !important" },
-          attrs: { lg3: "", md12: "", xs12: "" }
-        },
-        [
-          _c("v-text-field", {
-            attrs: { disabled: "disabled" },
-            model: {
-              value: _vm.himotoUser,
-              callback: function($$v) {
-                _vm.himotoUser = $$v
               },
-              expression: "himotoUser"
-            }
-          })
+              [_vm._v("ゴミ捨て当番")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "riseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateTantou(1)
+                  }
+                }
+              },
+              [_vm._v("掃除機当番")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "torikomi-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateTantou(2)
+                  }
+                }
+              },
+              [_vm._v("サーバ/ミーディング掃除当番")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "renraku-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateTantou(3)
+                  }
+                }
+              },
+              [_vm._v("棚拭き当番")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "taiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateTantou(4)
+                  }
+                }
+              },
+              [_vm._v("火元管理当番")]
+            )
+          ])
         ],
         1
       ),
@@ -54343,7 +54467,6 @@ var render = function() {
                     items: _vm.tantou,
                     search: _vm.search,
                     pagination: _vm.pagination,
-                    loading: true,
                     "sort-by": ["ID"]
                   },
                   on: {
@@ -97340,8 +97463,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })
