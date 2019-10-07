@@ -3864,18 +3864,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3921,7 +3909,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.getTantouUser();
     this.getTantou();
   },
   methods: {
@@ -3944,8 +3931,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateSelectTantou: function updateSelectTantou(tantou) {
+      this.getTantou();
       this.getTantouUser();
-      console.log(tantou);
       this.type = tantou['id'];
       this.showTantouModal = true;
     },
@@ -3962,14 +3949,10 @@ __webpack_require__.r(__webpack_exports__);
         userName: userName
       };
       this.update(userProfile);
-      this.getTantouUser();
-      this.getTantou();
       this.showTantouModal = false;
     },
     update: function update(userProfile) {
-      axios.patch("/api/tantou/".concat(userProfile.id), userProfile).then(function (res) {
-        return console.log(res.data);
-      })["catch"](function (error) {
+      axios.patch("/api/tantou/".concat(userProfile.id), userProfile).then(this.getTantou())["catch"](function (error) {
         return console.log(error.res);
       });
     }
@@ -53978,88 +53961,6 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-dialog",
-        {
-          model: {
-            value: _vm.showwTantouModal,
-            callback: function($$v) {
-              _vm.showwTantouModal = $$v
-            },
-            expression: "showwTantouModal"
-          }
-        },
-        [
-          _c("v-card", [
-            _c(
-              "div",
-              {
-                staticClass: "zaiseki-list",
-                on: {
-                  click: function($event) {
-                    return _vm.updateTantou(0)
-                  }
-                }
-              },
-              [_vm._v("ゴミ捨て当番")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "riseki-list",
-                on: {
-                  click: function($event) {
-                    return _vm.updateTantou(1)
-                  }
-                }
-              },
-              [_vm._v("掃除機当番")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "torikomi-list",
-                on: {
-                  click: function($event) {
-                    return _vm.updateTantou(2)
-                  }
-                }
-              },
-              [_vm._v("サーバ/ミーディング掃除当番")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "renraku-list",
-                on: {
-                  click: function($event) {
-                    return _vm.updateTantou(3)
-                  }
-                }
-              },
-              [_vm._v("棚拭き当番")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "taiseki-list",
-                on: {
-                  click: function($event) {
-                    return _vm.updateTantou(4)
-                  }
-                }
-              },
-              [_vm._v("火元管理当番")]
-            )
-          ])
         ],
         1
       ),

@@ -21,23 +21,11 @@
                     <span v-if="tantou.item['id']         == 5" class="taiseki-badge">火元管理</span>
                   </td>
                   <td class="text-xs" >{{ tantou.item.userName }}</td>
-
                 </tr>
             </template>
           </v-data-table>
       </v-card>
 
-      <v-dialog v-model="showwTantouModal" >
-        <v-card >
-          <div class="zaiseki-list"   @click="updateTantou(0)">ゴミ捨て当番</div>
-          <div class="riseki-list"    @click="updateTantou(1)">掃除機当番</div>
-          <div class="torikomi-list"  @click="updateTantou(2)">サーバ/ミーディング掃除当番</div>
-          <div class="renraku-list"   @click="updateTantou(3)">棚拭き当番</div>
-          <div class="taiseki-list"   @click="updateTantou(4)">火元管理当番</div>
-        </v-card>
-　　  </v-dialog>
-
-     
       <v-dialog v-model="showTantouModal" >
         <v-card >
           <v-card-title>
@@ -121,7 +109,6 @@
             }
         },
         created() {
-          this.getTantouUser();
           this.getTantou();
         },
         methods: {
@@ -137,8 +124,8 @@
           },
 
           updateSelectTantou(tantou) {
+            this.getTantou();
             this.getTantouUser();
-            console.log(tantou);
             this.type = tantou['id'];
             this.showTantouModal = true;
           },
@@ -154,14 +141,12 @@
               id:id,
               userName:userName
             };
-            this.update(userProfile);
-            this.getTantouUser();  
-            this.getTantou(); 
+            this.update(userProfile); 
             this.showTantouModal = false;
           },
           update(userProfile) {
               axios.patch(`/api/tantou/${userProfile.id}`, userProfile)
-              .then(res =>  console.log(res.data))
+              .then(this.getTantou())
               .catch(error => console.log(error.res))
           },
         }
