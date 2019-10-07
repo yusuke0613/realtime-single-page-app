@@ -3952,9 +3952,10 @@ __webpack_require__.r(__webpack_exports__);
       this.showTantouModal = false;
     },
     update: function update(userProfile) {
-      axios.patch("/api/tantou/".concat(userProfile.id), userProfile).then(this.getTantou())["catch"](function (error) {
+      axios.patch("/api/tantou/".concat(userProfile.id), userProfile).then(commit('update', res.data))["catch"](function (error) {
         return console.log(error.res);
       });
+      this.getTantou();
     }
   }
 });

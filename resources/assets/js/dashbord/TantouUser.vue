@@ -145,9 +145,11 @@
             this.showTantouModal = false;
           },
           update(userProfile) {
-              axios.patch(`/api/tantou/${userProfile.id}`, userProfile)
-              .then(this.getTantou())
+               axios.patch(`/api/tantou/${userProfile.id}`, userProfile)
+              .then(commit('update', res.data))
               .catch(error => console.log(error.res))
+
+              this.getTantou();
           },
         }
     }
