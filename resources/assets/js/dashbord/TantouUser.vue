@@ -24,11 +24,6 @@
 
                 </tr>
             </template>
-            <template v-slot:no-results>
-                <v-alert :value="true" color="error" icon="warning">
-                Your search for "{{ search }}" found no results.
-                </v-alert>
-            </template>
           </v-data-table>
       </v-card>
 
@@ -160,14 +155,14 @@
               userName:userName
             };
             this.update(userProfile);
+            this.getTantouUser();  
+            this.getTantou(); 
             this.showTantouModal = false;
           },
           update(userProfile) {
               axios.patch(`/api/tantou/${userProfile.id}`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-              this.getTantouUser();  
-              this.getTantou(); 
           },
         }
     }

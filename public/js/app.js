@@ -3876,11 +3876,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3967,6 +3962,8 @@ __webpack_require__.r(__webpack_exports__);
         userName: userName
       };
       this.update(userProfile);
+      this.getTantouUser();
+      this.getTantou();
       this.showTantouModal = false;
     },
     update: function update(userProfile) {
@@ -3975,8 +3972,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error.res);
       });
-      this.getTantouUser();
-      this.getTantou();
     }
   }
 });
@@ -53964,31 +53959,6 @@ var render = function() {
                       )
                     ]
                   }
-                },
-                {
-                  key: "no-results",
-                  fn: function() {
-                    return [
-                      _c(
-                        "v-alert",
-                        {
-                          attrs: {
-                            value: true,
-                            color: "error",
-                            icon: "warning"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            '\n                Your search for "' +
-                              _vm._s(_vm.search) +
-                              '" found no results.\n                '
-                          )
-                        ]
-                      )
-                    ]
-                  },
-                  proxy: true
                 }
               ])
             },
