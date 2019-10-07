@@ -2693,7 +2693,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       widgets: false,
       showStatusModal: false,
       isModal: false
-    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "headers", [{
+    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
       text: 'ID',
       value: 'locationId'
     }, {
@@ -3911,6 +3911,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getTantou();
   },
+  mounted: function mounted() {
+    this.getTantou();
+  },
   methods: {
     getTantouUser: function getTantouUser() {
       var _this = this;
@@ -3950,12 +3953,14 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.update(userProfile);
       this.showTantouModal = false;
+      this.getTantou();
     },
     update: function update(userProfile) {
-      axios.patch("/api/tantou/".concat(userProfile.id), userProfile).then(commit('update', res.data))["catch"](function (error) {
+      axios.patch("/api/tantou/".concat(userProfile.id), userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
         return console.log(error.res);
       });
-      this.getTantou();
     }
   }
 });

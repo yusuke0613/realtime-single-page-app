@@ -125,6 +125,7 @@
                 items: [],  
                 locations:[],
                 newComment:'', 
+                search:'',
                 headers: [
                   { text: 'ID', value: 'locationId' },
                   { text: 'LOCATION', value: 'locationName1' },

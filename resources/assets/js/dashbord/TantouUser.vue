@@ -111,6 +111,9 @@
         created() {
           this.getTantou();
         },
+        mounted() {
+          this.getTantou();
+        },
         methods: {
           getTantouUser() {
              axios.get('/api/tantouUser')
@@ -143,13 +146,12 @@
             };
             this.update(userProfile); 
             this.showTantouModal = false;
+            this.getTantou();
           },
           update(userProfile) {
-               axios.patch(`/api/tantou/${userProfile.id}`, userProfile)
-              .then(commit('update', res.data))
+              axios.patch(`/api/tantou/${userProfile.id}`, userProfile)
+              .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-
-              this.getTantou();
           },
         }
     }
