@@ -62,3 +62,9 @@ window.Echo.channel('dashBordChannel')
 .listen('DashBordEvent', (e) => {
     console.log(e);
 })
+
+window.Echo.channel('likeChannel')
+.listen('LikeEvent', (e) => {
+    console.log(e);
+})
+

@@ -6,6 +6,7 @@ use App\Model\Tantou;
 use Illuminate\Http\Request;
 use App\Http\Resources\TantouResource;
 use Illuminate\Http\Response;
+use App\Events\LikeEvent;
 
 class TantouController extends Controller
 {
@@ -74,6 +75,7 @@ class TantouController extends Controller
         Tantou::where('id', $request->id)->update([
             'userName'=>$request->userName,
         ]);
+        event(new LikeEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 

@@ -3909,6 +3909,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
+    Echo.channel("likeChannel").listen("LikeEvent", function (e) {
+      _this.getTantou();
+    });
     this.getTantou();
   },
   mounted: function mounted() {
@@ -3916,19 +3921,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getTantouUser: function getTantouUser() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('/api/tantouUser').then(function (res) {
-        return _this.tantouUser = res.data.data;
+        return _this2.tantouUser = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
     },
     getTantou: function getTantou() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/tantou').then(function (res) {
-        return _this2.tantou = res.data.data;
+        return _this3.tantou = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
@@ -96018,6 +96023,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   disableStats: true
 });
 window.Echo.channel('dashBordChannel').listen('DashBordEvent', function (e) {
+  console.log(e);
+});
+window.Echo.channel('likeChannel').listen('LikeEvent', function (e) {
   console.log(e);
 });
 

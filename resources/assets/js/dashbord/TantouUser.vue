@@ -109,6 +109,10 @@
             }
         },
         created() {
+          Echo.channel("likeChannel")
+          .listen("LikeEvent", (e) => {
+             this.getTantou();
+          })
           this.getTantou();
         },
         mounted() {

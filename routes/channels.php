@@ -19,3 +19,9 @@ Broadcast::channel('dashBordChannel', function () {
     return true;
 });
 
+Broadcast::channel('likeChannel', function () {
+    return true;
+});
+
+
+
