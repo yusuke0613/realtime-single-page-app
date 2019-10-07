@@ -17,7 +17,8 @@ use App\User;
 Route::apiResource('/dashboarduser', 'DashBoardUserController');
 Route::apiResource('/location', 'LocationController');
 Route::apiResource('/comment', 'CommentController');
-Route::apiResource('/tantou', 'TantouUserController');
+Route::apiResource('/tantouUser', 'TantouUserController');
+Route::apiResource('/tantou', 'TantouController');
 
 Route::group([
 

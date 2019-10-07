@@ -14,7 +14,7 @@
                 <v-icon>home</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>HOME</v-list-tile-title>
+                <v-list-tile-title>ホーム</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </router-link>
@@ -24,28 +24,18 @@
                 <v-icon>view_headline</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>Table</v-list-tile-title>
+                <v-list-tile-title>テーブルビュー</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </router-link>
 
-          <router-link to="/dashbord">
-            <v-list-tile>
-              <v-list-tile-action>
-                <v-icon>dashboard</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>DASHBOARD</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </router-link>
-          <router-link to="/dashboeradmin">
+          <router-link to="/TantouUser">
             <v-list-tile>
               <v-list-tile-action >
                 <v-icon>settings</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>SETTING</v-list-tile-title>
+                <v-list-tile-title>当番表</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </router-link>

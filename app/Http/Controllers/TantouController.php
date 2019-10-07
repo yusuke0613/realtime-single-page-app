@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\TantouUser;
+use App\Model\Tantou;
 use Illuminate\Http\Request;
-use App\Http\Resources\TantouUserResource;
+use App\Http\Resources\TantouResource;
 use Illuminate\Http\Response;
 
-
-
-class TantouUserController extends Controller
+class TantouController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,7 @@ class TantouUserController extends Controller
      */
     public function index()
     {
-        return TantouUserResource::collection(TantouUser::get());
+        return TantouResource::collection(Tantou::get());
     }
 
     /**
@@ -45,10 +43,10 @@ class TantouUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\TantouUser  $tantouUser
+     * @param  \App\Model\Tantou  $tantou
      * @return \Illuminate\Http\Response
      */
-    public function show(TantouUser $tantouUser)
+    public function show(Tantou $tantou)
     {
         //
     }
@@ -56,10 +54,10 @@ class TantouUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\TantouUser  $tantouUser
+     * @param  \App\Model\Tantou  $tantou
      * @return \Illuminate\Http\Response
      */
-    public function edit(TantouUser $tantouUser)
+    public function edit(Tantou $tantou)
     {
         //
     }
@@ -68,17 +66,13 @@ class TantouUserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\TantouUser  $tantouUser
+     * @param  \App\Model\Tantou  $tantou
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TantouUser $tantouUser)
+    public function update(Request $request, Tantou $tantou)
     {
-        TantouUser::where('id', $request->id)->update([
-            'gomiFlag'           =>$request->gomiFlag,
-            'souziFlag'          =>$request->souziFlag,
-            'seisouFlag'         =>$request->seisouFlag,
-            'serverSoujiFlag'    =>$request->serverSoujiFlag,
-            'hinomotoFlag'       =>$request->hinomotoFlag
+        Tantou::where('id', $request->id)->update([
+            'userName'=>$request->userName,
         ]);
         return response($request, Response::HTTP_ACCEPTED);
     }
@@ -86,10 +80,10 @@ class TantouUserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\TantouUser  $tantouUser
+     * @param  \App\Model\Tantou  $tantou
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TantouUser $tantouUser)
+    public function destroy(Tantou $tantou)
     {
         //
     }
