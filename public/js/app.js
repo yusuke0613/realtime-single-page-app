@@ -2659,19 +2659,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -10775,7 +10762,7 @@ exports.push([module.i, "\n.green-box {\r\n  padding:3px;\r\n  background-color:
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:\"white\" !important;\n}\n.first-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#E91E63 !important;\n}\n.second-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:rgb(40, 53, 147) !important;\n}\n.third-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#009688 !important;\n}\n.color-nomal {\r\n  font-size:12px;\r\n  color: #fff !important;\n}\n.color-orange {\r\n  font-size:12px;\r\n  color: orange !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.torikomi-badge {\r\n  background-color: #2196F3; \r\n  cursor: pointer;\n}\n.renraku-badge {\r\n  background-color: #9C27B0; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.riseki-box {\r\n  background-color: #4CAF50;\n}\n.zaiseki-box {\r\n  padding:3px;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-box {\r\n  padding:3Px;\r\n  background-color: #FF9800 !important;\n}\n.torikomi-box {\r\n  padding:3px;\r\n  background-color: #2196F3 !important;\n}\n.renraku-box {\r\n  padding:3Px;\r\n  background-color: #9C27B0 !important;\n}\n.taiseki-box {\r\n  padding:3px;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3Px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.torikomi-list {\r\n  margin: auto;\r\n  padding:3px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #2196F3 !important;\n}\n.renraku-list {\r\n  padding:3Px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #9C27B0 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:\"white\" !important;\n}\n.first-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#E91E63 !important;\n}\n.second-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:rgb(40, 53, 147) !important;\n}\n.third-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#009688 !important;\n}\n.color-nomal {\r\n  font-size:12px;\r\n  color: #fff !important;\n}\n.color-orange {\r\n  font-size:12px;\r\n  color: orange !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.torikomi-badge {\r\n  background-color: #2196F3; \r\n  cursor: pointer;\n}\n.renraku-badge {\r\n  background-color: #9C27B0; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.riseki-box {\r\n  background-color: #4CAF50;\n}\n.zaiseki-box {\r\n  padding:3px;\r\n  background-color: #34495e !important;\n}\n.riseki-box {\r\n  padding:3Px;\r\n  background-color: #c0392b !important;\n}\n.torikomi-box {\r\n  padding:3px;\r\n  background-color: #3F51B5 !important;\n}\n.renraku-box {\r\n  padding:3Px;\r\n  background-color: #009688 !important;\n}\n.taiseki-box {\r\n  padding:3px;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3Px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.torikomi-list {\r\n  margin: auto;\r\n  padding:3px;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #2196F3 !important;\n}\n.renraku-list {\r\n  padding:3Px;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #9C27B0 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\r\n\r\n", ""]);
 
 
 /***/ }),
@@ -52036,552 +52023,22 @@ var render = function() {
       _c(
         "v-layout",
         { attrs: { row: "", wrap: "" } },
-        [
-          _vm._l(_vm.dashboardusers, function(dashboarduser) {
-            return _c(
-              "v-flex",
-              { key: dashboarduser.id, attrs: { lg4: "", md6: "", xs12: "" } },
-              [
-                _c(
-                  "v-card",
-                  {
-                    class: {
-                      "zaiseki-box": dashboarduser.status === 0,
-                      "riseki-box": dashboarduser.status === 1,
-                      "torikomi-box": dashboarduser.status === 2,
-                      "renraku-box": dashboarduser.status === 3,
-                      "taiseki-box": dashboarduser.status === 4
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticStyle: {
-                          display: "flex",
-                          "justify-content": "space-between",
-                          padding: "1px",
-                          "font-size": "20px",
-                          "background-color": "#fff"
-                        }
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticStyle: {
-                              "text-align": "center",
-                              "font-size": "18px",
-                              "font-weight": "bold"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(dashboarduser.displayName) +
-                                "\n            "
-                            ),
-                            dashboarduser.status == 0
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass: "zaiseki-badge",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.openStatusModal(
-                                          dashboarduser
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("在席")]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            dashboarduser.status == 1
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass: "riseki-badge",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.openStatusModal(
-                                          dashboarduser
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("離席中")]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            dashboarduser.status == 2
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass: "torikomi-badge",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.openStatusModal(
-                                          dashboarduser
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("取り込み中")]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            dashboarduser.status == 3
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass: "renraku-badge",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.openStatusModal(
-                                          dashboarduser
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("連絡不可")]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            dashboarduser.status == 4
-                              ? _c(
-                                  "span",
-                                  {
-                                    staticClass: "taiseki-badge",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.openStatusModal(
-                                          dashboarduser
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("退席中")]
-                                )
-                              : _vm._e()
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("P", { staticStyle: { "font-size": "14px" } }, [
-                          _vm._v(
-                            _vm._s(dashboarduser.belongsName) +
-                              "/" +
-                              _vm._s(dashboarduser.rankName) +
-                              "/(" +
-                              _vm._s(dashboarduser.phoneNo) +
-                              ")"
-                          )
-                        ])
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        staticStyle: {
-                          cursor: "pointer",
-                          "font-size": "14px",
-                          padding: "1px",
-                          margin: "0",
-                          color: "#fff"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.openLocationModal(dashboarduser)
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "v-icon",
-                          {
-                            staticStyle: {
-                              "font-size": "14px",
-                              padding: "1px",
-                              margin: "0",
-                              color: "#fff"
-                            }
-                          },
-                          [_vm._v("transfer_within_a_station")]
-                        ),
-                        _vm._v(" " + _vm._s(dashboarduser.location))
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider", { attrs: { color: "white" } }),
-                    _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        staticStyle: {
-                          cursor: "pointer",
-                          "font-size": "14px",
-                          padding: "1px",
-                          margin: "0",
-                          color: "#fff",
-                          "text-overflow": "overflow: hidden",
-                          height: "22px"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.openCommentModal(dashboarduser)
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "v-icon",
-                          {
-                            staticStyle: {
-                              "font-size": "14px",
-                              padding: "1px",
-                              margin: "0",
-                              color: "#fff"
-                            }
-                          },
-                          [_vm._v("chat")]
-                        ),
-                        _vm._v(" " + _vm._s(dashboarduser.comment))
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          }),
-          _vm._v(" "),
-          _c(
-            "v-dialog",
+        _vm._l(_vm.dashboardusers, function(dashboarduser) {
+          return _c(
+            "v-flex",
             {
-              model: {
-                value: _vm.showLocationModal,
-                callback: function($$v) {
-                  _vm.showLocationModal = $$v
-                },
-                expression: "showLocationModal"
-              }
-            },
-            [
-              _c(
-                "v-card",
-                [
-                  _c(
-                    "v-card-title",
-                    [
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          "append-icon": "search",
-                          label: "Search",
-                          "single-line": "",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.search,
-                          callback: function($$v) {
-                            _vm.search = $$v
-                          },
-                          expression: "search"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-data-table",
-                    {
-                      staticClass: "elevation-1",
-                      attrs: {
-                        "color:orange": "",
-                        headers: _vm.headers,
-                        items: _vm.locations,
-                        search: _vm.search,
-                        loading: true,
-                        "sort-by": ["ID"]
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "items",
-                          fn: function(location) {
-                            return [
-                              _c(
-                                "tr",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.updateSelectLocation(
-                                        location.item
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("td", { staticClass: "text-xs" }, [
-                                    _vm._v(_vm._s(location.item.locationId))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "text-xs" }, [
-                                    _vm._v(_vm._s(location.item.locationName1))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "text-xs" }, [
-                                    _vm._v(_vm._s(location.item.locationName2))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "text-xs" }, [
-                                    _vm._v(_vm._s(location.item.phoneNo))
-                                  ])
-                                ]
-                              )
-                            ]
-                          }
-                        },
-                        {
-                          key: "no-results",
-                          fn: function() {
-                            return [
-                              _c(
-                                "v-alert",
-                                {
-                                  attrs: {
-                                    value: true,
-                                    color: "error",
-                                    icon: "warning"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    '\n                  Your search for "' +
-                                      _vm._s(_vm.search) +
-                                      '" found no results.\n                  '
-                                  )
-                                ]
-                              )
-                            ]
-                          },
-                          proxy: true
-                        }
-                      ])
-                    },
-                    [
-                      _c("v-progress-linear", {
-                        attrs: { indeterminate: "" },
-                        scopedSlots: _vm._u([
-                          {
-                            key: "progress",
-                            fn: function() {
-                              return undefined
-                            },
-                            proxy: true
-                          }
-                        ])
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-dialog",
-            {
-              model: {
-                value: _vm.showStatusModal,
-                callback: function($$v) {
-                  _vm.showStatusModal = $$v
-                },
-                expression: "showStatusModal"
-              }
-            },
-            [
-              _c("v-card", [
-                _c(
-                  "div",
-                  {
-                    staticClass: "zaiseki-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(0)
-                      }
-                    }
-                  },
-                  [_vm._v("在席")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "riseki-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(1)
-                      }
-                    }
-                  },
-                  [_vm._v("離席中")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "torikomi-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(2)
-                      }
-                    }
-                  },
-                  [_vm._v("取り込み中")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "renraku-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(3)
-                      }
-                    }
-                  },
-                  [_vm._v("連絡不可")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "taiseki-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(4)
-                      }
-                    }
-                  },
-                  [_vm._v("退席中")]
-                )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-dialog",
-            {
-              model: {
-                value: _vm.showStatusModal,
-                callback: function($$v) {
-                  _vm.showStatusModal = $$v
-                },
-                expression: "showStatusModal"
-              }
-            },
-            [
-              _c("v-card", [
-                _c(
-                  "div",
-                  {
-                    staticClass: "zaiseki-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(0)
-                      }
-                    }
-                  },
-                  [_vm._v("在席")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "riseki-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(1)
-                      }
-                    }
-                  },
-                  [_vm._v("離席中")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "torikomi-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(2)
-                      }
-                    }
-                  },
-                  [_vm._v("取り込み中")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "renraku-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(3)
-                      }
-                    }
-                  },
-                  [_vm._v("連絡不可")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "taiseki-list",
-                    on: {
-                      click: function($event) {
-                        return _vm.updateStatus(4)
-                      }
-                    }
-                  },
-                  [_vm._v("退席中")]
-                )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-dialog",
-            {
-              model: {
-                value: _vm.showCommentModal,
-                callback: function($$v) {
-                  _vm.showCommentModal = $$v
-                },
-                expression: "showCommentModal"
-              }
+              key: dashboarduser.id,
+              attrs: { xl3: "", lg4: "", md6: "", xs12: "" }
             },
             [
               _c(
                 "v-card",
                 {
-                  staticStyle: { padding: "10px !important" },
-                  on: {
-                    click: function($event) {
-                      $event.stopPropagation()
-                    }
+                  class: {
+                    "zaiseki-box": dashboarduser.belongsId === 0,
+                    "riseki-box": dashboarduser.belongsId === 1,
+                    "torikomi-box": dashboarduser.belongsId === 2,
+                    "renraku-box": dashboarduser.belongsId === 3
                   }
                 },
                 [
@@ -52589,37 +52046,189 @@ var render = function() {
                     "div",
                     {
                       staticStyle: {
-                        "text-overflow": "ellipsis !important",
-                        height: "80px !important"
+                        display: "flex",
+                        "justify-content": "space-between",
+                        padding: "1px",
+                        "font-size": "20px",
+                        "background-color": "#fff"
                       }
                     },
                     [
-                      _c("v-text-field", {
-                        attrs: { counter: 30, "overflow-y-hidden": "" },
-                        model: {
-                          value: _vm.comment,
-                          callback: function($$v) {
-                            _vm.comment = $$v
-                          },
-                          expression: "comment"
-                        }
-                      })
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            "font-size": "18px",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(dashboarduser.displayName) +
+                              "\n                "
+                          ),
+                          dashboarduser.status == 0
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "zaiseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("在席")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.status == 1
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "riseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("離席")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.status == 2
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "torikomi-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("取り込み中")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.status == 3
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "renraku-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("連絡不可")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.status == 4
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "taiseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("退席")]
+                              )
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("P", { staticStyle: { "font-size": "14px" } }, [
+                        _vm._v(
+                          _vm._s(dashboarduser.belongsName) +
+                            "/" +
+                            _vm._s(dashboarduser.rankName) +
+                            "/(" +
+                            _vm._s(dashboarduser.phoneNo) +
+                            ")"
+                        )
+                      ])
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
+                    "p",
                     {
-                      staticStyle: { color: "#fff" },
-                      attrs: { color: "blue-grey darken-4", type: "button" },
+                      staticStyle: {
+                        cursor: "pointer",
+                        "font-size": "14px",
+                        padding: "1px",
+                        margin: "0",
+                        color: "#fff"
+                      },
                       on: {
                         click: function($event) {
-                          return _vm.updateComment()
+                          return _vm.openLocationModal(dashboarduser)
                         }
                       }
                     },
-                    [_vm._v("Update")]
+                    [
+                      _c(
+                        "v-icon",
+                        {
+                          staticStyle: {
+                            "font-size": "14px",
+                            padding: "1px",
+                            margin: "0",
+                            color: "#fff"
+                          }
+                        },
+                        [_vm._v("transfer_within_a_station")]
+                      ),
+                      _vm._v(" " + _vm._s(dashboarduser.location))
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider", { attrs: { color: "white" } }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        cursor: "pointer",
+                        "font-size": "14px",
+                        padding: "1px",
+                        margin: "0",
+                        color: "#fff",
+                        "text-overflow": "overflow: hidden",
+                        height: "22px"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.openCommentModal(dashboarduser)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        {
+                          staticStyle: {
+                            "font-size": "14px",
+                            padding: "1px",
+                            margin: "0",
+                            color: "#fff"
+                          }
+                        },
+                        [_vm._v("chat")]
+                      ),
+                      _vm._v(" " + _vm._s(dashboarduser.comment))
+                    ],
+                    1
                   )
                 ],
                 1
@@ -52627,8 +52236,291 @@ var render = function() {
             ],
             1
           )
+        }),
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.showLocationModal,
+            callback: function($$v) {
+              _vm.showLocationModal = $$v
+            },
+            expression: "showLocationModal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-title",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "search",
+                      label: "Search",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-data-table",
+                {
+                  staticClass: "elevation-1",
+                  attrs: {
+                    "color:orange": "",
+                    headers: _vm.headers,
+                    items: _vm.locations,
+                    search: _vm.search,
+                    loading: true,
+                    "sort-by": ["ID"]
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "items",
+                      fn: function(location) {
+                        return [
+                          _c(
+                            "tr",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateSelectLocation(location.item)
+                                }
+                              }
+                            },
+                            [
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationId))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationName1))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationName2))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.phoneNo))
+                              ])
+                            ]
+                          )
+                        ]
+                      }
+                    },
+                    {
+                      key: "no-results",
+                      fn: function() {
+                        return [
+                          _c(
+                            "v-alert",
+                            {
+                              attrs: {
+                                value: true,
+                                color: "error",
+                                icon: "warning"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                '\n                  Your search for "' +
+                                  _vm._s(_vm.search) +
+                                  '" found no results.\n                  '
+                              )
+                            ]
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
+                },
+                [
+                  _c("v-progress-linear", {
+                    attrs: { indeterminate: "" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "progress",
+                        fn: function() {
+                          return undefined
+                        },
+                        proxy: true
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
-        2
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500" },
+          model: {
+            value: _vm.showStatusModal,
+            callback: function($$v) {
+              _vm.showStatusModal = $$v
+            },
+            expression: "showStatusModal"
+          }
+        },
+        [
+          _c("v-card", [
+            _c(
+              "div",
+              {
+                staticClass: "zaiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(0)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("accessibility_new")]
+                ),
+                _vm._v(" 在席")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "riseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(1)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("transfer_within_a_station")]
+                ),
+                _vm._v("離席")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "taiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(4)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("home")]
+                ),
+                _vm._v("退席")
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.showCommentModal,
+            callback: function($$v) {
+              _vm.showCommentModal = $$v
+            },
+            expression: "showCommentModal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            {
+              staticStyle: { padding: "10px !important" },
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    "text-overflow": "ellipsis !important",
+                    height: "80px !important"
+                  }
+                },
+                [
+                  _c("v-text-field", {
+                    attrs: { counter: 30, "overflow-y-hidden": "" },
+                    model: {
+                      value: _vm.comment,
+                      callback: function($$v) {
+                        _vm.comment = $$v
+                      },
+                      expression: "comment"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  staticStyle: { color: "#fff" },
+                  attrs: { color: "blue-grey darken-4", type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.updateComment()
+                    }
+                  }
+                },
+                [_vm._v("Update")]
+              )
+            ],
+            1
+          )
+        ],
+        1
       )
     ],
     1

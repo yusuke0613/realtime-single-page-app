@@ -1,32 +1,32 @@
 <template>
-  <v-container grid-list-md style="padding:0">
-    <v-layout row wrap >
-      <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" lg4 md6 xs12>
-        <v-card v-bind:class="{ 
-          'zaiseki-box' : dashboarduser. status === 0, 
-          'riseki-box'  : dashboarduser.status  === 1, 
-          'torikomi-box': dashboarduser. status === 2,
-          'renraku-box' : dashboarduser. status === 3,
-          'taiseki-box' : dashboarduser. status === 4,
-        }">
-            <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;">
-              <div style="text-align:center;font-size:18px;font-weight: bold; ">{{dashboarduser.displayName}}
-              <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
-              <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席中</span>
-              <span v-if="dashboarduser.status==2" class="torikomi-badge" @click="openStatusModal(dashboarduser)">取り込み中</span>
-              <span v-if="dashboarduser.status==3" class="renraku-badge"  @click="openStatusModal(dashboarduser)">連絡不可</span>
-              <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席中</span>
-              </div>
-              <P  style="font-size:14px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
-            </div>
-          <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
-          <v-divider color="white"></v-divider>
-          <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:22px"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
-          
-         
 
-        </v-card>
-      </v-flex>
+    <v-container grid-list-md style="padding:0">
+        <v-layout row wrap>
+          <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" xl3 lg4 md6 xs12>
+            <v-card v-bind:class="{ 
+              'zaiseki-box' : dashboarduser.belongsId === 0, 
+              'riseki-box'  : dashboarduser.belongsId === 1, 
+              'torikomi-box': dashboarduser.belongsId === 2,
+              'renraku-box' : dashboarduser.belongsId === 3,
+            }">
+                <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;">
+                  <div style="text-align:center;font-size:18px;font-weight: bold; ">{{dashboarduser.displayName}}
+                  <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
+                  <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
+                  <span v-if="dashboarduser.status==2" class="torikomi-badge" @click="openStatusModal(dashboarduser)">取り込み中</span>
+                  <span v-if="dashboarduser.status==3" class="renraku-badge"  @click="openStatusModal(dashboarduser)">連絡不可</span>
+                  <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
+                  </div>
+                  <P  style="font-size:14px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
+                </div>
+              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
+              <v-divider color="white"></v-divider>
+              <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:22px"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
+            </v-card>
+          </v-flex>
+        </v-layout>
+
+
       <v-dialog v-model="showLocationModal" >
             <v-card >
               <v-card-title>
@@ -66,23 +66,11 @@
               </v-data-table>
             </v-card>
   　　    </v-dialog>
-           <v-dialog v-model="showStatusModal" >
-            <v-card >
-              <div class="zaiseki-list"   @click="updateStatus(0)">在席</div>
-              <div class="riseki-list"    @click="updateStatus(1)">離席中</div>
-              <div class="torikomi-list"  @click="updateStatus(2)">取り込み中</div>
-              <div class="renraku-list"   @click="updateStatus(3)">連絡不可</div>
-              <div class="taiseki-list"   @click="updateStatus(4)">退席中</div>
-            </v-card>
-  　　    </v-dialog>
-
-           <v-dialog v-model="showStatusModal" >
-            <v-card >
-              <div class="zaiseki-list"   @click="updateStatus(0)">在席</div>
-              <div class="riseki-list"    @click="updateStatus(1)">離席中</div>
-              <div class="torikomi-list"  @click="updateStatus(2)">取り込み中</div>
-              <div class="renraku-list"   @click="updateStatus(3)">連絡不可</div>
-              <div class="taiseki-list"   @click="updateStatus(4)">退席中</div>
+           <v-dialog v-model="showStatusModal" width="500">
+            <v-card>
+                <div class="zaiseki-list"   @click="updateStatus(0)"><v-icon style="color:#fff;font-size:30px;">accessibility_new</v-icon> 在席</div>
+                <div class="riseki-list"    @click="updateStatus(1)"><v-icon style="color:#fff;font-size:30px;">transfer_within_a_station</v-icon>離席</div>
+                <div class="taiseki-list"   @click="updateStatus(4)"><v-icon style="color:#fff;font-size:30px;">home</v-icon>退席</div>
             </v-card>
   　　    </v-dialog>
 
@@ -103,8 +91,7 @@
             >Update</v-btn>
              </v-card>
   　　    </v-dialog>
-    </v-layout> 
-  </v-container>  
+    </v-container>
 </template>
 
 <script>
@@ -411,22 +398,22 @@
 
 .zaiseki-box {
   padding:3px;
-  background-color: #4CAF50 !important;
+  background-color: #34495e !important;
 }
 
 .riseki-box {
   padding:3Px;
-  background-color: #FF9800 !important;
+  background-color: #c0392b !important;
 }
 
 .torikomi-box {
   padding:3px;
-  background-color: #2196F3 !important;
+  background-color: #3F51B5 !important;
 }
 
 .renraku-box {
   padding:3Px;
-  background-color: #9C27B0 !important;
+  background-color: #009688 !important;
 }
 
 .taiseki-box {
@@ -436,6 +423,7 @@
 
 .zaiseki-list {
   padding:3px;
+  font-size: 30px;
   color: #fff;
   text-align: center;
   font-weight: bold; 
@@ -446,6 +434,7 @@
 .riseki-list {
   padding:3Px;
   color: #fff;
+  font-size: 30px;
   text-align: center;
   font-weight: bold; 
   cursor: pointer;
@@ -455,6 +444,7 @@
 .torikomi-list {
   margin: auto;
   padding:3px;
+  font-size: 30px;
   text-align: center;
   color: #fff;
   font-weight: bold; 
@@ -464,6 +454,7 @@
 
 .renraku-list {
   padding:3Px;
+  font-size: 30px;
   text-align: center;
   color: #fff;
   font-weight: bold; 
@@ -473,6 +464,7 @@
 
 .taiseki-list {
   padding:3px;
+  font-size: 30px;
   color: #fff;
   text-align: center;
   font-weight: bold; 
