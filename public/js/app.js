@@ -1864,6 +1864,11 @@ __webpack_require__.r(__webpack_exports__);
     toolbar: _Toolbar__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppFooter: _Appfooter__WEBPACK_IMPORTED_MODULE_1__["default"],
     Login: _login_Login__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    test: function test() {
+      return !location.pathname.match(/^\/dashbord/);
+    }
   }
 });
 
@@ -2893,6 +2898,92 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2926,9 +3017,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       dashboardusers: {},
+      seatMoal: false,
       comments: [],
+      comment: '',
       dashboarduser: [{
         id: 1,
         name: 'aのitem'
@@ -2940,28 +3035,221 @@ __webpack_require__.r(__webpack_exports__);
       showUserModal: false,
       showCommentModal: false,
       widgets: false,
-      isModal: false,
-      items: [],
-      newComment: ''
-    };
+      showStatusModal: false,
+      isModal: false
+    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
+      text: 'ID',
+      value: 'locationId'
+    }, {
+      text: 'LOCATION',
+      value: 'locationName1'
+    }, {
+      text: 'NAME',
+      value: 'locationName2'
+    }, {
+      text: 'PHONE',
+      value: 'phoneNo'
+    }]), _ref;
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
+    // releasedAtFromNowを1分ごとに更新する
+    window.setInterval(function () {
+      _this.openSeatModal();
+    }, 1000 * 10);
+  },
+  created: function created() {
+    var _this2 = this;
+
     Echo.channel("dashBordChannel").listen("DashBordEvent", function (e) {
-      _this.getDashbordUser();
+      _this2.getDashbordUser();
     });
     this.getDashbordUser();
   },
   methods: {
     getDashbordUser: function getDashbordUser() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/dashboarduser').then(function (res) {
-        return _this2.dashboardusers = res.data.data;
+        return _this3.dashboardusers = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
+    },
+    getLocation: function getLocation() {
+      var _this4 = this;
+
+      axios.get('/api/location').then(function (res) {
+        return _this4.locations = res.data.data;
+      })["catch"](function (error) {
+        return console.log(error.res.data);
+      });
+    },
+    openLocationModal: function openLocationModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.getLocation();
+      this.showLocationModal = true;
+    },
+    openSeatModal: function openSeatModal() {
+      if (this.seatMoal == true) {
+        this.seatMoal = false;
+      } else {
+        this.seatMoal = true;
+      }
+    },
+    openStatusModal: function openStatusModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.showStatusModal = true;
+    },
+    openCommentModal: function openCommentModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.comment = dashboarduser.comment;
+      this.showCommentModal = true;
+    },
+    updateSelectLocation: function updateSelectLocation(u) {
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = u.locationId;
+      var location = u.locationName2;
+      var locationPhon = u.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.showLocationModal = false;
+    },
+    update: function update(userProfile) {
+      axios.patch("/api/dashboarduser/".concat(userProfile.id), userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      this.getDashbordUser();
+      this.showUpdateUserModal = false;
+    },
+    updateStatus: function updateStatus(status) {
+      var id = this.dashboarduser.id;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+
+      if (status == 0) {
+        var locationId = 999;
+        var location = '自席';
+      }
+
+      if (status == 4) {
+        var locationId = 1000;
+        var location = '休み';
+      }
+
+      var locationPhon = this.dashboarduser.locationPhon;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.showStatusModal = false;
+    },
+    updateComment: function updateComment() {
+      var id = this.dashboarduser.id;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.locationPhon;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.comment;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.showCommentModal = false;
     }
   }
 });
@@ -10776,7 +11064,7 @@ exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  pad
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:\"white\" !important;\n}\n.first-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#E91E63 !important;\n}\n.second-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:rgb(40, 53, 147) !important;\n}\n.third-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#009688 !important;\n}\n.color-nomal {\r\n  font-size:12px;\r\n  color: #fff !important;\n}\n.color-orange {\r\n  font-size:12px;\r\n  color: orange !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50;\n}\n.riseki-badge {\r\n  background-color: #FF9800;\n}\n.torikomi-badge {\r\n  background-color: #2196F3;\n}\n.renraku-badge {\r\n  background-color: #9C27B0;\n}\n.taiseki-badge {\r\n  background-color: #E91E63;\n}\n.riseki-box {\r\n  background-color: #4CAF50;\n}\n.zaiseki-box {\r\n  padding:3px;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-box {\r\n  padding:3Px;\r\n  background-color: #FF9800 !important;\n}\n.torikomi-box {\r\n  padding:3px;\r\n  background-color: #2196F3 !important;\n}\n.renraku-box {\r\n  padding:3Px;\r\n  background-color: #9C27B0 !important;\n}\n.taiseki-box {\r\n  padding:3px;\r\n  background-color: #E91E63 !important;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 5px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 24px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 24px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\r\n\r\n", ""]);
 
 
 /***/ }),
@@ -50801,7 +51089,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("toolbar"),
+      _vm.test() ? _c("toolbar") : _vm._e(),
       _vm._v(" "),
       _c(
         "v-content",
@@ -50823,7 +51111,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("app-footer")
+      _vm.test() ? _c("app-footer") : _vm._e()
     ],
     1
   )
@@ -52558,17 +52846,23 @@ var render = function() {
         _vm._l(_vm.dashboardusers, function(dashboarduser) {
           return _c(
             "v-flex",
-            { key: dashboarduser.id, attrs: { lg4: "", md6: "", xs12: "" } },
+            {
+              key: dashboarduser.id,
+              attrs: { xl4: "", lg4: "", md6: "", xs12: "" }
+            },
             [
               _c(
                 "v-card",
                 {
                   class: {
-                    "zaiseki-box": dashboarduser.status === 0,
-                    "riseki-box": dashboarduser.status === 1,
-                    "torikomi-box": dashboarduser.status === 2,
-                    "renraku-box": dashboarduser.status === 3,
-                    "taiseki-box": dashboarduser.status === 4
+                    "zaiseki-box-d": dashboarduser.status === 0,
+                    "riseki-box-d": dashboarduser.status === 1,
+                    "taiseki-box-d": dashboarduser.status === 4
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.openSeatModal()
+                    }
                   }
                 },
                 [
@@ -52579,7 +52873,6 @@ var render = function() {
                         display: "flex",
                         "justify-content": "space-between",
                         padding: "1px",
-                        "font-size": "20px",
                         "background-color": "#fff"
                       }
                     },
@@ -52589,68 +52882,130 @@ var render = function() {
                         {
                           staticStyle: {
                             "text-align": "center",
-                            "font-size": "18px",
+                            "font-size": "42px",
                             "font-weight": "bold"
                           }
                         },
                         [
                           _vm._v(
-                            _vm._s(dashboarduser.displayName) + "\n            "
+                            _vm._s(dashboarduser.displayName) +
+                              "\n                "
                           ),
                           dashboarduser.status == 0
-                            ? _c("span", { staticClass: "zaiseki-badge" }, [
-                                _vm._v("在席")
-                              ])
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "zaiseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("在席")]
+                              )
                             : _vm._e(),
                           _vm._v(" "),
                           dashboarduser.status == 1
-                            ? _c("span", { staticClass: "riseki-badge" }, [
-                                _vm._v("離席中")
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          dashboarduser.status == 2
-                            ? _c("span", { staticClass: "torikomi-badge" }, [
-                                _vm._v("取り込み中")
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          dashboarduser.status == 3
-                            ? _c("span", { staticClass: "renraku-badge" }, [
-                                _vm._v("連絡不可")
-                              ])
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "riseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("離席")]
+                              )
                             : _vm._e(),
                           _vm._v(" "),
                           dashboarduser.status == 4
-                            ? _c("span", { staticClass: "taiseki-badge" }, [
-                                _vm._v("退席中")
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "taiseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("退席")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 0
+                            ? _c("span", { staticClass: "zero-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 1
+                            ? _c("span", { staticClass: "first-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 2
+                            ? _c("span", { staticClass: "second-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 3
+                            ? _c("span", { staticClass: "third-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
                               ])
                             : _vm._e()
                         ]
-                      ),
-                      _vm._v(" "),
-                      _c("P", { staticStyle: { "font-size": "14px" } }, [
-                        _vm._v(
-                          _vm._s(dashboarduser.belongsName) +
-                            "/" +
-                            _vm._s(dashboarduser.rankName) +
-                            "/(" +
-                            _vm._s(dashboarduser.phoneNo) +
-                            ")"
-                        )
-                      ])
-                    ],
-                    1
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
                     "p",
                     {
                       staticStyle: {
-                        "font-size": "14px",
+                        cursor: "pointer",
+                        "font-size": "28px",
                         padding: "1px",
                         margin: "0",
                         color: "#fff"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.openLocationModal(dashboarduser)
+                        }
                       }
                     },
                     [
@@ -52658,7 +53013,7 @@ var render = function() {
                         "v-icon",
                         {
                           staticStyle: {
-                            "font-size": "14px",
+                            "font-size": "28px",
                             padding: "1px",
                             margin: "0",
                             color: "#fff"
@@ -52677,10 +53032,18 @@ var render = function() {
                     "p",
                     {
                       staticStyle: {
-                        "font-size": "14px",
+                        cursor: "pointer",
+                        "font-size": "20px",
                         padding: "1px",
                         margin: "0",
-                        color: "#fff"
+                        color: "#fff",
+                        "text-overflow": "overflow: hidden",
+                        height: "32px"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.openCommentModal(dashboarduser)
+                        }
                       }
                     },
                     [
@@ -52688,7 +53051,7 @@ var render = function() {
                         "v-icon",
                         {
                           staticStyle: {
-                            "font-size": "14px",
+                            "font-size": "20px",
                             padding: "1px",
                             margin: "0",
                             color: "#fff"
@@ -52707,6 +53070,310 @@ var render = function() {
             1
           )
         }),
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.showLocationModal,
+            callback: function($$v) {
+              _vm.showLocationModal = $$v
+            },
+            expression: "showLocationModal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-title",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "search",
+                      label: "Search",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-data-table",
+                {
+                  staticClass: "elevation-1",
+                  attrs: {
+                    "color:orange": "",
+                    headers: _vm.headers,
+                    items: _vm.locations,
+                    search: _vm.search,
+                    loading: true,
+                    "sort-by": ["ID"]
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "items",
+                      fn: function(location) {
+                        return [
+                          _c(
+                            "tr",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateSelectLocation(location.item)
+                                }
+                              }
+                            },
+                            [
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationId))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationName1))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationName2))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.phoneNo))
+                              ])
+                            ]
+                          )
+                        ]
+                      }
+                    },
+                    {
+                      key: "no-results",
+                      fn: function() {
+                        return [
+                          _c(
+                            "v-alert",
+                            {
+                              attrs: {
+                                value: true,
+                                color: "error",
+                                icon: "warning"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                '\n                  Your search for "' +
+                                  _vm._s(_vm.search) +
+                                  '" found no results.\n                  '
+                              )
+                            ]
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
+                },
+                [
+                  _c("v-progress-linear", {
+                    attrs: { indeterminate: "" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "progress",
+                        fn: function() {
+                          return undefined
+                        },
+                        proxy: true
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500" },
+          model: {
+            value: _vm.showStatusModal,
+            callback: function($$v) {
+              _vm.showStatusModal = $$v
+            },
+            expression: "showStatusModal"
+          }
+        },
+        [
+          _c("v-card", [
+            _c(
+              "div",
+              {
+                staticClass: "zaiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(0)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("accessibility_new")]
+                ),
+                _vm._v(" 在席")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "riseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(1)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("transfer_within_a_station")]
+                ),
+                _vm._v("離席")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "taiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(4)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("home")]
+                ),
+                _vm._v("退席")
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.showCommentModal,
+            callback: function($$v) {
+              _vm.showCommentModal = $$v
+            },
+            expression: "showCommentModal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            {
+              staticStyle: { padding: "10px !important" },
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    "text-overflow": "ellipsis !important",
+                    height: "80px !important"
+                  }
+                },
+                [
+                  _c("v-text-field", {
+                    attrs: { counter: 30, "overflow-y-hidden": "" },
+                    model: {
+                      value: _vm.comment,
+                      callback: function($$v) {
+                        _vm.comment = $$v
+                      },
+                      expression: "comment"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  staticStyle: { color: "#fff" },
+                  attrs: { color: "blue-grey darken-4", type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.updateComment()
+                    }
+                  }
+                },
+                [_vm._v("Update")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { fullscreen: "", "hide-overlay": "" },
+          model: {
+            value: _vm.seatMoal,
+            callback: function($$v) {
+              _vm.seatMoal = $$v
+            },
+            expression: "seatMoal"
+          }
+        },
+        [
+          _c("v-img", {
+            staticStyle: { "background-color": "rgba(0,0,0,.9) !important" },
+            attrs: { src: "/seat.png", width: "100%", contain: "true" }
+          })
+        ],
         1
       )
     ],

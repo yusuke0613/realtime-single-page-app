@@ -1,6 +1,6 @@
 <template>
     <div>
-    <toolbar></toolbar>
+    <toolbar v-if="test()"></toolbar>
      <v-content>
       <v-container fluid fill-height>
         <v-fade-transition mode="out-in">
@@ -8,7 +8,7 @@
         </v-fade-transition>
       </v-container>
     </v-content>
-    <app-footer></app-footer>
+    <app-footer v-if="test()"></app-footer>
    
     </div>
 </template>
@@ -18,8 +18,16 @@
     import AppFooter from './Appfooter'
     import Login from '../login/Login'
     export default {
-        components:{toolbar,AppFooter,Login}
+        components:{toolbar,AppFooter,Login},
+        methods:{
+          test() {
+            return !location.pathname.match(/^\/dashbord/);
+          }
+        }
     }
+
+   
+  
 </script>
 
 <style>
