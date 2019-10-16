@@ -12,7 +12,7 @@
             >
 
                 <div style="display: flex; justify-content: space-between; padding:1px;background-color:#fff;">
-                  <div style="text-align:center;font-size:42px;font-weight: bold; ">{{dashboarduser.displayName}}
+                  <div style="text-align:center;font-size:32px;font-weight: bold; ">{{dashboarduser.displayName}}
                   <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
                   <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
                   <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
@@ -23,7 +23,7 @@
                   </div>
                   
                 </div>
-              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:28px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:28px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
+              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:24px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:28px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
               <v-divider color="white"></v-divider>
               <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:20px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:32px"><v-icon style="font-size:20px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
             </v-card>
@@ -366,7 +366,7 @@
   padding: 3px 6px;
   margin-right: 8px;
   margin-left: 1px;
-  font-size: 24px !important;
+  font-size: 16px !important;
   color: white;
   border-radius: 6px;
   box-shadow: 0 0 3px #ddd;
@@ -392,7 +392,7 @@
   padding: 3px 6px;
   margin-right: 8px;
   margin-left: 1px;
-  font-size: 24px !important;
+  font-size: 16px !important;
   color: white;
   border-radius: 6px;
   box-shadow: 0 0 3px #ddd;
