@@ -106,7 +106,6 @@
               src='/seat.png'
               width="100%"
               style ="background-color:rgba(255,255,255,0.9) !important"
-              contain="true"
             ></v-img>
   　　    </v-dialog>
 

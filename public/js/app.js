@@ -3015,7 +3015,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -53371,7 +53370,7 @@ var render = function() {
             staticStyle: {
               "background-color": "rgba(255,255,255,0.9) !important"
             },
-            attrs: { src: "/seat.png", width: "100%", contain: "true" }
+            attrs: { src: "/seat.png", width: "100%" }
           })
         ],
         1
