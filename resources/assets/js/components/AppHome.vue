@@ -21,7 +21,7 @@
         components:{toolbar,AppFooter,Login},
         methods:{
           test() {
-            return !location.pathname.match(/^\/dashbord/);
+            return !location.pathname.match(/^\/dashboard/);
           }
         }
     }

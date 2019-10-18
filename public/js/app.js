@@ -1867,7 +1867,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     test: function test() {
-      return !location.pathname.match(/^\/dashbord/);
+      return !location.pathname.match(/^\/dashboard/);
     }
   }
 });
