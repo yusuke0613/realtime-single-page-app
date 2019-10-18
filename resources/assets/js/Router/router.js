@@ -22,7 +22,7 @@ const routes = [
     {path: '/logout', component: Logout},
     {path: '/dashboeradmin', component: DashBordUserControl},
     {path: '/test', component: DashBordComponent},
-    {path: '/dashbord', component: DashBordComponentTv},
+    {path: '/dashboard', component: DashBordComponentTv},
     {path: '/inputTable', component: DashBordUserControl2},
     {path: '/TantouUser', component: TantouUser},
 ]

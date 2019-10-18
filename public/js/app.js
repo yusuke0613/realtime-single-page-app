@@ -3015,6 +3015,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -3051,37 +3052,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       value: 'phoneNo'
     }]), _ref;
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    // releasedAtFromNowを1分ごとに更新する
-    window.setInterval(function () {
-      _this.openSeatModal();
-    }, 1000 * 10);
+  mounted: function mounted() {// releasedAtFromNowを1分ごとに更新する
+    //window.setInterval(() => {
+    //  this.openSeatModal()
+    //}, 1000 * 10)
   },
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
     Echo.channel("dashBordChannel").listen("DashBordEvent", function (e) {
-      _this2.getDashbordUser();
+      _this.getDashbordUser();
     });
     this.getDashbordUser();
   },
   methods: {
     getDashbordUser: function getDashbordUser() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get('/api/dashboarduser').then(function (res) {
-        return _this3.dashboardusers = res.data.data;
+        return _this2.dashboardusers = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
     },
     getLocation: function getLocation() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios.get('/api/location').then(function (res) {
-        return _this4.locations = res.data.data;
+        return _this3.locations = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
@@ -11064,7 +11062,7 @@ exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  pad
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 5px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 5px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.v-enter {\r\n  transform: translate(-100px, 0);\r\n  opacity: 0;\n}\n.v-enter-to {\r\n  opacity: 1;\n}\n.v-enter-active {\r\n  transition: all 1s 0s ease;\n}\n.v-leave {\r\n  transform: translate(0, 0);\r\n  opacity: 1;\n}\n.v-leave-to {\r\n  transform: translate(100px, 0);\r\n  opacity: 0;\n}\n.v-leave-active {\r\n  transition: all .5s 0s ease;\n}\r\n\r\n", ""]);
 
 
 /***/ }),
@@ -53359,7 +53357,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { fullscreen: "", "hide-overlay": "" },
+          attrs: { fullscreen: "", "hide-overlay": "", transition: "”out-in”" },
           model: {
             value: _vm.seatMoal,
             callback: function($$v) {
@@ -53370,7 +53368,9 @@ var render = function() {
         },
         [
           _c("v-img", {
-            staticStyle: { "background-color": "rgba(0,0,0,.9) !important" },
+            staticStyle: {
+              "background-color": "rgba(255,255,255,0.9) !important"
+            },
             attrs: { src: "/seat.png", width: "100%", contain: "true" }
           })
         ],
@@ -96442,7 +96442,7 @@ var routes = [{
   path: '/test',
   component: _dashbord_UserModal__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
-  path: '/dashbord',
+  path: '/dashboard',
   component: _dashbord_DashBordComponentTv__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
   path: '/inputTable',

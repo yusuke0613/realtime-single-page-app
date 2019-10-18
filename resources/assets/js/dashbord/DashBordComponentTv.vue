@@ -100,11 +100,12 @@
           v-model="seatMoal" 
           fullscreen
           hide-overlay
+          transition=”out-in”
         >
             <v-img
               src='/seat.png'
               width="100%"
-              style ="background-color:rgba(0,0,0,.9) !important"
+              style ="background-color:rgba(255,255,255,0.9) !important"
               contain="true"
             ></v-img>
   　　    </v-dialog>
@@ -143,9 +144,9 @@
         },
         mounted () {
           // releasedAtFromNowを1分ごとに更新する
-          window.setInterval(() => {
-            this.openSeatModal()
-          }, 1000 * 10)
+          //window.setInterval(() => {
+          //  this.openSeatModal()
+          //}, 1000 * 10)
         },
         created() {
           Echo.channel("dashBordChannel")
@@ -480,6 +481,30 @@ opacity: 0.5 ;
 
 .taiseki-list:hover {
 opacity: 0.5 ;
+}
+
+
+
+.v-enter {
+  transform: translate(-100px, 0);
+  opacity: 0;
+}
+.v-enter-to {
+  opacity: 1;
+}
+.v-enter-active {
+  transition: all 1s 0s ease;
+}
+.v-leave {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+.v-leave-to {
+  transform: translate(100px, 0);
+  opacity: 0;
+}
+.v-leave-active {
+  transition: all .5s 0s ease;
 }
 
 </style>
