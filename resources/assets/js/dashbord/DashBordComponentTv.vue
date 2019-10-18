@@ -143,9 +143,9 @@
         },
         mounted () {
           // releasedAtFromNowを1分ごとに更新する
-          //window.setInterval(() => {
-          //  this.openSeatModal()
-          //}, 1000 * 10)
+          window.setInterval(() => {
+            this.openSeatModal()
+          }, 1000 * 10)
         },
         created() {
           Echo.channel("dashBordChannel")

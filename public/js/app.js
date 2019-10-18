@@ -3051,34 +3051,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       value: 'phoneNo'
     }]), _ref;
   },
-  mounted: function mounted() {// releasedAtFromNowを1分ごとに更新する
-    //window.setInterval(() => {
-    //  this.openSeatModal()
-    //}, 1000 * 10)
-  },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
+    // releasedAtFromNowを1分ごとに更新する
+    window.setInterval(function () {
+      _this.openSeatModal();
+    }, 1000 * 10);
+  },
+  created: function created() {
+    var _this2 = this;
+
     Echo.channel("dashBordChannel").listen("DashBordEvent", function (e) {
-      _this.getDashbordUser();
+      _this2.getDashbordUser();
     });
     this.getDashbordUser();
   },
   methods: {
     getDashbordUser: function getDashbordUser() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/dashboarduser').then(function (res) {
-        return _this2.dashboardusers = res.data.data;
+        return _this3.dashboardusers = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
     },
     getLocation: function getLocation() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('/api/location').then(function (res) {
-        return _this3.locations = res.data.data;
+        return _this4.locations = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
