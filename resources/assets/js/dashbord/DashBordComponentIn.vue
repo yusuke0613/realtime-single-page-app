@@ -9,16 +9,27 @@
               'torikomi-box': dashboarduser.belongsId === 2,
               'renraku-box' : dashboarduser.belongsId === 3,
             }">
-                <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;">
+                <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;" >
                   <div style="text-align:center;font-size:18px;font-weight: bold; ">{{dashboarduser.displayName}}
                   <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
                   <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
                   <span v-if="dashboarduser.status==2" class="torikomi-badge" @click="openStatusModal(dashboarduser)">取り込み中</span>
                   <span v-if="dashboarduser.status==3" class="renraku-badge"  @click="openStatusModal(dashboarduser)">連絡不可</span>
                   <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
+
+                  <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge">ゴミ</span>
+                  <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge">掃除</span>
+                  <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge">棚拭き</span>
+                  <span v-if="dashboarduser.serverFlag==1"   class="renraku-badge">サーバ</span>
+                  <span v-if="dashboarduser.hinomotoFlag==1" class="taiseki-badge">火元</span>
                   </div>
-                  <P  style="font-size:14px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
+                  <P  v-if="dashboarduser.rankNo<5" @click="openToubanModal(dashboarduser)" style="font-size:10px; cursor: pointer;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
+                  <P  v-if="dashboarduser.rankNo>4" style="font-size:10px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
                 </div>
+                
+               <div>
+              </div>
+              <v-divider color="white"></v-divider>
               <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
               <v-divider color="white"></v-divider>
               <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:22px"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
@@ -66,7 +77,7 @@
               </v-data-table>
             </v-card>
   　　    </v-dialog>
-           <v-dialog v-model="showStatusModal" width="500">
+          <v-dialog v-model="showStatusModal" width="500">
             <v-card>
                 <div class="zaiseki-list"   @click="updateStatus(0)"><v-icon style="color:#fff;font-size:30px;">accessibility_new</v-icon> 在席</div>
                 <div class="riseki-list"    @click="updateStatus(1)"><v-icon style="color:#fff;font-size:30px;">transfer_within_a_station</v-icon>離席</div>
@@ -91,6 +102,17 @@
             >Update</v-btn>
              </v-card>
   　　    </v-dialog>
+
+          <v-dialog v-model="toubanModal" width="500">
+            <v-card>
+                <div class="zaiseki-list"    @click="gomi()"><v-icon style="color:#fff;font-size:30px;">delete_sweep</v-icon> ゴミ当番</div>
+                <div class="riseki-list"     @click="tanafuki()"><v-icon style="color:#fff;font-size:30px;">transfer_within_a_station</v-icon>棚拭き</div>
+                <div class="taiseki-list"    @click="server()"><v-icon style="color:#fff;font-size:30px;">router</v-icon>サーバ掃除</div>
+                <div class="renraku-list"    @click="souziki()"><v-icon style="color:#fff;font-size:30px;">blur_on</v-icon>掃除機</div>
+                <div class="torikomi-list"   @click="himoto()"><v-icon style="color:#fff;font-size:30px;">power</v-icon>火元当番</div>
+            </v-card>
+  　　    </v-dialog>
+
     </v-container>
 </template>
 
@@ -108,7 +130,8 @@
                 widgets: false,
                 showStatusModal:false,
                 isModal: false,   
-                showCommentModal:false,                     // Modak表示フラグ
+                showCommentModal:false,   
+                toubanModal:false,
                 items: [],  
                 locations:[],
                 newComment:'', 
@@ -148,6 +171,12 @@
             this.showLocationModal= true;
           },
 
+
+          openToubanModal(dashboarduser) {
+            this.dashboarduser = dashboarduser;
+            this.toubanModal = true;
+          },
+
           openStatusModal(dashboarduser){
             this.dashboarduser = dashboarduser;
             this.showStatusModal= true;
@@ -177,7 +206,12 @@
             var location        = u.locationName2;
             var locationPhon    = u.phoneNo;
             var comentNum       = this.dashboarduser.comentNum;
-            var comment      = this.dashboarduser.comment;
+            var comment         = this.dashboarduser.comment;
+            var gomiFlag        = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
+            var serverFlag      = this.dashboarduser.serverFlag;
 
             const userProfile = {
               id:id,
@@ -197,7 +231,11 @@
               locationPhon:locationPhon,
               comentNum:comentNum,
               comment:comment,
-
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
             }
             console.log(userProfile);
             this.update(userProfile)
@@ -239,6 +277,11 @@
             var locationPhon    = this.dashboarduser.locationPhon;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;
+             var gomiFlag       = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
+            var serverFlag      = this.dashboarduser.serverFlag;
 
             const userProfile = {
               id:id,
@@ -258,6 +301,11 @@
               locationPhon:locationPhon,
               comentNum:comentNum,
               comment:comment,
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
 
             }
             console.log(userProfile);
@@ -283,6 +331,11 @@
             var locationPhon    = this.dashboarduser.locationPhon;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.comment;
+            var gomiFlag        = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
+            var serverFlag      = this.dashboarduser.serverFlag;
 
             const userProfile = {
               id:id,
@@ -302,12 +355,335 @@
               locationPhon:locationPhon,
               comentNum:comentNum,
               comment:comment,
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
 
             }
             console.log(userProfile);
             this.update(userProfile)
             this.showCommentModal = false;
-          }
+          },
+
+          gomi () {
+            axios.put(`/api/gomi`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
+            var id              = this.dashboarduser.id;
+            var status          = this.dashboarduser.status;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = this.dashboarduser.status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = this.dashboarduser.locationId;
+            var location        = this.dashboarduser.location;
+            var locationPhon    = this.dashboarduser.phoneNo;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment         = this.dashboarduser.comment;
+
+            if (this.dashboarduser.gomiFlag == 0) {
+               var gomiFlag     = 1;
+            } else {
+               var gomiFlag     = 0;
+            }
+           
+            var souziFlag       = this.dashboarduser.souziFlag;
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
+            var serverFlag      = this.dashboarduser.serverFlag;
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.toubanModal = false;
+          },
+
+           tanafuki () {
+            axios.put(`/api/seisou`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
+            var id              = this.dashboarduser.id;
+            var status          = this.dashboarduser.status;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = this.dashboarduser.status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = this.dashboarduser.locationId;
+            var location        = this.dashboarduser.location;
+            var locationPhon    = this.dashboarduser.phoneNo;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment         = this.dashboarduser.comment;
+            var gomiFlag        = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
+            if (this.dashboarduser.seisouFlag == 0) {
+               var seisouFlag     = 1;
+            } else {
+               var seisouFlag     = 0;
+            }
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
+            var serverFlag      = this.dashboarduser.serverFlag;
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.toubanModal = false;
+          },
+
+           server () {
+            axios.put(`/api/server`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
+            var id              = this.dashboarduser.id;
+            var status          = this.dashboarduser.status;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = this.dashboarduser.status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = this.dashboarduser.locationId;
+            var location        = this.dashboarduser.location;
+            var locationPhon    = this.dashboarduser.phoneNo;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment         = this.dashboarduser.comment;
+            var gomiFlag        = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
+            
+            if (this.dashboarduser.serverFlag == 0) {
+               var serverFlag     = 1;
+            } else {
+               var serverFlag     = 0;
+            }
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.toubanModal = false;
+          },
+
+           souziki () {
+            axios.put(`/api/souzi`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
+            var id              = this.dashboarduser.id;
+            var status          = this.dashboarduser.status;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = this.dashboarduser.status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = this.dashboarduser.locationId;
+            var location        = this.dashboarduser.location;
+            var locationPhon    = this.dashboarduser.phoneNo;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment         = this.dashboarduser.comment;
+            var gomiFlag        = this.dashboarduser.gomiFlag;
+
+            if (this.dashboarduser.souziFlag == 0) {
+               var souziFlag     = 1;
+            } else {
+               var souziFlag     = 0;
+            }
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
+            var serverFlag      = this.dashboarduser.serverFlag;
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.toubanModal = false;
+          },
+
+
+           himoto () {
+            axios.put(`/api/hinomoto`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
+            var id              = this.dashboarduser.id;
+            var status          = this.dashboarduser.status;
+            var displayId       = this.dashboarduser.displayId;
+            var displayName     = this.dashboarduser.displayName;
+            var status          = this.dashboarduser.status;
+            var firstName       = this.dashboarduser.firstName;
+            var lastName        = this.dashboarduser.lastName;
+            var rankNo          = this.dashboarduser.rankNo;
+            var rankName        = this.dashboarduser.rankName;
+            var phoneNo         = this.dashboarduser.phoneNo;
+            var belongsId       = this.dashboarduser.belongsId;
+            var belongsName     = this.dashboarduser.belongsName;
+            var mail            = this.dashboarduser.mail;
+            var locationId      = this.dashboarduser.locationId;
+            var location        = this.dashboarduser.location;
+            var locationPhon    = this.dashboarduser.phoneNo;
+            var comentNum       = this.dashboarduser.comentNum;
+            var comment         = this.dashboarduser.comment;
+
+
+            var gomiFlag       = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            if (this.dashboarduser.hinomotoFlag == 0) {
+               var hinomotoFlag     = 1;
+            } else {
+               var hinomotoFlag     = 0;
+            }
+            var serverFlag      = this.dashboarduser.serverFlag;
+
+            const userProfile = {
+              id:id,
+              displayId:displayId,
+              displayName:displayName,
+              status:status,
+              firstName:firstName,
+              lastName:lastName,
+              rankNo:rankNo,
+              rankName:rankName,
+              phoneNo:phoneNo,
+              belongsId:belongsId,
+              belongsName:belongsName,
+              mail:mail,
+              locationId:locationId,
+              location:location,
+              locationPhon:locationPhon,
+              comentNum:comentNum,
+              comment:comment,
+              gomiFlag:gomiFlag,
+              souziFlag:souziFlag,
+              seisouFlag:seisouFlag,
+              hinomotoFlag:hinomotoFlag,
+              serverFlag:serverFlag,
+            }
+            console.log(userProfile);
+            this.update(userProfile)
+            this.toubanModal = false;
+          },
+
 
         } 
     }
@@ -359,9 +735,9 @@
 
 .zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {
   padding: 3px 6px;
-  margin-right: 8px;
-  margin-left: 1px;
-  font-size: 12px;
+  margin-right: 1px !important;
+  margin-left: 1px !important;
+  font-size: 12px !important;
   color: white;
   border-radius: 6px;
   box-shadow: 0 0 3px #ddd;

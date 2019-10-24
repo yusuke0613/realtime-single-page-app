@@ -13,9 +13,9 @@
 
                 <div style="display: flex; justify-content: space-between; padding:1px;background-color:#fff;">
                   <div style="text-align:center;font-size:32px;font-weight: bold; ">{{dashboarduser.displayName}}
-                  <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
-                  <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
-                  <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
+                  <span v-if="dashboarduser.status==0" class="zaiseki-badge-tv"  @click="openStatusModal(dashboarduser)">在席</span>
+                  <span v-if="dashboarduser.status==1" class="riseki-badge-tv"   @click="openStatusModal(dashboarduser)">離席</span>
+                  <span v-if="dashboarduser.status==4" class="taiseki-badge-tv"  @click="openStatusModal(dashboarduser)">退席</span>
                   <span v-if="dashboarduser.belongsId === 0" class="zero-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                   <span v-if="dashboarduser.belongsId === 1" class="first-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                   <span v-if="dashboarduser.belongsId === 2" class="second-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
@@ -362,7 +362,7 @@
     padding: 2px !important;
 }
 
-.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {
+.zaiseki-badge-tv, .riseki-badge-tv, .torikomi-badge-tv, .renraku-badge-tv, .taiseki-badge-tv {
   padding: 3px 6px;
   margin-right: 8px;
   margin-left: 1px;
@@ -373,17 +373,17 @@
   white-space: nowrap;
 }
 
-.zaiseki-badge {
+.zaiseki-badge-tv {
   background-color: #4CAF50; 
   cursor: pointer;
 }
 
-.riseki-badge {
+.riseki-badge-tv {
   background-color: #FF9800; 
   cursor: pointer;
 }
 
-.taiseki-badge {
+.taiseki-badge-tv {
   background-color: #E91E63; 
   cursor: pointer;
 }

@@ -2664,6 +2664,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -2685,7 +2707,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       widgets: false,
       showStatusModal: false,
       isModal: false
-    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
+    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "toubanModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
       text: 'ID',
       value: 'locationId'
     }, {
@@ -2731,6 +2753,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getLocation();
       this.showLocationModal = true;
     },
+    openToubanModal: function openToubanModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.toubanModal = true;
+    },
     openStatusModal: function openStatusModal(dashboarduser) {
       this.dashboarduser = dashboarduser;
       this.showStatusModal = true;
@@ -2759,6 +2785,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var locationPhon = u.phoneNo;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
       var userProfile = {
         id: id,
         displayId: displayId,
@@ -2776,7 +2807,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         location: location,
         locationPhon: locationPhon,
         comentNum: comentNum,
-        comment: comment
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
       };
       console.log(userProfile);
       this.update(userProfile);
@@ -2820,6 +2856,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var locationPhon = this.dashboarduser.locationPhon;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
       var userProfile = {
         id: id,
         displayId: displayId,
@@ -2837,7 +2878,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         location: location,
         locationPhon: locationPhon,
         comentNum: comentNum,
-        comment: comment
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
       };
       console.log(userProfile);
       this.update(userProfile);
@@ -2861,6 +2907,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var locationPhon = this.dashboarduser.locationPhon;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
       var userProfile = {
         id: id,
         displayId: displayId,
@@ -2878,11 +2929,331 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         location: location,
         locationPhon: locationPhon,
         comentNum: comentNum,
-        comment: comment
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
       };
       console.log(userProfile);
       this.update(userProfile);
       this.showCommentModal = false;
+    },
+    gomi: function gomi() {
+      axios.put("/api/gomi", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+
+      if (this.dashboarduser.gomiFlag == 0) {
+        var gomiFlag = 1;
+      } else {
+        var gomiFlag = 0;
+      }
+
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    tanafuki: function tanafuki() {
+      axios.put("/api/seisou", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+
+      if (this.dashboarduser.seisouFlag == 0) {
+        var seisouFlag = 1;
+      } else {
+        var seisouFlag = 0;
+      }
+
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    server: function server() {
+      axios.put("/api/server", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+
+      if (this.dashboarduser.serverFlag == 0) {
+        var serverFlag = 1;
+      } else {
+        var serverFlag = 0;
+      }
+
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    souziki: function souziki() {
+      axios.put("/api/souzi", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+
+      if (this.dashboarduser.souziFlag == 0) {
+        var souziFlag = 1;
+      } else {
+        var souziFlag = 0;
+      }
+
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    himoto: function himoto() {
+      axios.put("/api/hinomoto", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+
+      if (this.dashboarduser.hinomotoFlag == 0) {
+        var hinomotoFlag = 1;
+      } else {
+        var hinomotoFlag = 0;
+      }
+
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
     }
   }
 });
@@ -11179,7 +11550,7 @@ exports.push([module.i, "\n.green-box {\r\n  padding:3px;\r\n  background-color:
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:\"white\" !important;\n}\n.first-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#E91E63 !important;\n}\n.second-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:rgb(40, 53, 147) !important;\n}\n.third-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#009688 !important;\n}\n.color-nomal {\r\n  font-size:12px;\r\n  color: #fff !important;\n}\n.color-orange {\r\n  font-size:12px;\r\n  color: orange !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.torikomi-badge {\r\n  background-color: #2196F3; \r\n  cursor: pointer;\n}\n.renraku-badge {\r\n  background-color: #9C27B0; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.riseki-box {\r\n  background-color: #4CAF50;\n}\n.zaiseki-box {\r\n  padding:3px;\r\n  background-color: #34495e !important;\n}\n.riseki-box {\r\n  padding:3Px;\r\n  background-color: #c0392b !important;\n}\n.torikomi-box {\r\n  padding:3px;\r\n  background-color: #3F51B5 !important;\n}\n.renraku-box {\r\n  padding:3Px;\r\n  background-color: #009688 !important;\n}\n.taiseki-box {\r\n  padding:3px;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3Px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.torikomi-list {\r\n  margin: auto;\r\n  padding:3px;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #2196F3 !important;\n}\n.renraku-list {\r\n  padding:3Px;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #9C27B0 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:\"white\" !important;\n}\n.first-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#E91E63 !important;\n}\n.second-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:rgb(40, 53, 147) !important;\n}\n.third-box {\r\n  font-size:16px  !important;\r\n  padding: 4px; \r\n  color:#009688 !important;\n}\n.color-nomal {\r\n  font-size:12px;\r\n  color: #fff !important;\n}\n.color-orange {\r\n  font-size:12px;\r\n  color: orange !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 1px !important;\r\n  margin-left: 1px !important;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.torikomi-badge {\r\n  background-color: #2196F3; \r\n  cursor: pointer;\n}\n.renraku-badge {\r\n  background-color: #9C27B0; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.riseki-box {\r\n  background-color: #4CAF50;\n}\n.zaiseki-box {\r\n  padding:3px;\r\n  background-color: #34495e !important;\n}\n.riseki-box {\r\n  padding:3Px;\r\n  background-color: #c0392b !important;\n}\n.torikomi-box {\r\n  padding:3px;\r\n  background-color: #3F51B5 !important;\n}\n.renraku-box {\r\n  padding:3Px;\r\n  background-color: #009688 !important;\n}\n.taiseki-box {\r\n  padding:3px;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3Px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.torikomi-list {\r\n  margin: auto;\r\n  padding:3px;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #2196F3 !important;\n}\n.renraku-list {\r\n  padding:3Px;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  color: #fff;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #9C27B0 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\r\n\r\n", ""]);
 
 
 /***/ }),
@@ -11193,7 +11564,7 @@ exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  pad
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 5px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.v-enter {\r\n  transform: translate(-100px, 0);\r\n  opacity: 0;\n}\n.v-enter-to {\r\n  opacity: 1;\n}\n.v-enter-active {\r\n  transition: all 1s 0s ease;\n}\n.v-leave {\r\n  transform: translate(0, 0);\r\n  opacity: 1;\n}\n.v-leave-to {\r\n  transform: translate(100px, 0);\r\n  opacity: 0;\n}\n.v-leave-active {\r\n  transition: all .5s 0s ease;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 5px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge-tv, .riseki-badge-tv, .torikomi-badge-tv, .renraku-badge-tv, .taiseki-badge-tv {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge-tv {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge-tv {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge-tv {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.v-enter {\r\n  transform: translate(-100px, 0);\r\n  opacity: 0;\n}\n.v-enter-to {\r\n  opacity: 1;\n}\n.v-enter-active {\r\n  transition: all 1s 0s ease;\n}\n.v-leave {\r\n  transform: translate(0, 0);\r\n  opacity: 1;\n}\n.v-leave-to {\r\n  transform: translate(100px, 0);\r\n  opacity: 0;\n}\n.v-leave-active {\r\n  transition: all .5s 0s ease;\n}\r\n\r\n", ""]);
 
 
 /***/ }),
@@ -52558,23 +52929,86 @@ var render = function() {
                                 },
                                 [_vm._v("退席")]
                               )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.gomiFlag == 1
+                            ? _c("span", { staticClass: "zaiseki-badge" }, [
+                                _vm._v("ゴミ")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.souziFlag == 1
+                            ? _c("span", { staticClass: "riseki-badge" }, [
+                                _vm._v("掃除")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.seisouFlag == 1
+                            ? _c("span", { staticClass: "torikomi-badge" }, [
+                                _vm._v("棚拭き")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.serverFlag == 1
+                            ? _c("span", { staticClass: "renraku-badge" }, [
+                                _vm._v("サーバ")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.hinomotoFlag == 1
+                            ? _c("span", { staticClass: "taiseki-badge" }, [
+                                _vm._v("火元")
+                              ])
                             : _vm._e()
                         ]
                       ),
                       _vm._v(" "),
-                      _c("P", { staticStyle: { "font-size": "14px" } }, [
-                        _vm._v(
-                          _vm._s(dashboarduser.belongsName) +
-                            "/" +
-                            _vm._s(dashboarduser.rankName) +
-                            "/(" +
-                            _vm._s(dashboarduser.phoneNo) +
-                            ")"
-                        )
-                      ])
+                      dashboarduser.rankNo < 5
+                        ? _c(
+                            "P",
+                            {
+                              staticStyle: {
+                                "font-size": "10px",
+                                cursor: "pointer"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.openToubanModal(dashboarduser)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(dashboarduser.belongsName) +
+                                  "/" +
+                                  _vm._s(dashboarduser.rankName) +
+                                  "/(" +
+                                  _vm._s(dashboarduser.phoneNo) +
+                                  ")"
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      dashboarduser.rankNo > 4
+                        ? _c("P", { staticStyle: { "font-size": "10px" } }, [
+                            _vm._v(
+                              _vm._s(dashboarduser.belongsName) +
+                                "/" +
+                                _vm._s(dashboarduser.rankName) +
+                                "/(" +
+                                _vm._s(dashboarduser.phoneNo) +
+                                ")"
+                            )
+                          ])
+                        : _vm._e()
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _c("div"),
+                  _vm._v(" "),
+                  _c("v-divider", { attrs: { color: "white" } }),
                   _vm._v(" "),
                   _c(
                     "p",
@@ -52938,6 +53372,129 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500" },
+          model: {
+            value: _vm.toubanModal,
+            callback: function($$v) {
+              _vm.toubanModal = $$v
+            },
+            expression: "toubanModal"
+          }
+        },
+        [
+          _c("v-card", [
+            _c(
+              "div",
+              {
+                staticClass: "zaiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.gomi()
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("delete_sweep")]
+                ),
+                _vm._v(" ゴミ当番")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "riseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.tanafuki()
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("transfer_within_a_station")]
+                ),
+                _vm._v("棚拭き")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "taiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.server()
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("router")]
+                ),
+                _vm._v("サーバ掃除")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "renraku-list",
+                on: {
+                  click: function($event) {
+                    return _vm.souziki()
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("blur_on")]
+                ),
+                _vm._v("掃除機")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "torikomi-list",
+                on: {
+                  click: function($event) {
+                    return _vm.himoto()
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("power")]
+                ),
+                _vm._v("火元当番")
+              ],
+              1
+            )
+          ])
+        ],
+        1
       )
     ],
     1
@@ -53024,7 +53581,7 @@ var render = function() {
                             ? _c(
                                 "span",
                                 {
-                                  staticClass: "zaiseki-badge",
+                                  staticClass: "zaiseki-badge-tv",
                                   on: {
                                     click: function($event) {
                                       return _vm.openStatusModal(dashboarduser)
@@ -53039,7 +53596,7 @@ var render = function() {
                             ? _c(
                                 "span",
                                 {
-                                  staticClass: "riseki-badge",
+                                  staticClass: "riseki-badge-tv",
                                   on: {
                                     click: function($event) {
                                       return _vm.openStatusModal(dashboarduser)
@@ -53054,7 +53611,7 @@ var render = function() {
                             ? _c(
                                 "span",
                                 {
-                                  staticClass: "taiseki-badge",
+                                  staticClass: "taiseki-badge-tv",
                                   on: {
                                     click: function($event) {
                                       return _vm.openStatusModal(dashboarduser)
@@ -96634,17 +97191,8 @@ var routes = [{
   path: '/logout',
   component: _login_Logout__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  path: '/dashboeradmin',
-  component: _dashbord_DashBordUserControl__WEBPACK_IMPORTED_MODULE_6__["default"]
-}, {
-  path: '/test',
-  component: _dashbord_UserModal__WEBPACK_IMPORTED_MODULE_7__["default"]
-}, {
   path: '/dashboard',
   component: _dashbord_DashBordComponentTv__WEBPACK_IMPORTED_MODULE_9__["default"]
-}, {
-  path: '/inputTable',
-  component: _dashbord_DashBordUserControl2__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
   path: '/TantouUser',
   component: _dashbord_TantouUser__WEBPACK_IMPORTED_MODULE_11__["default"]
@@ -97885,8 +98433,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\TC117041\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })

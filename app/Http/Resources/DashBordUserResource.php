@@ -31,6 +31,11 @@ class DashBordUserResource extends JsonResource
             'locationPhon'  => $this->locationPhon,
             'comentNum'     => $this->comentNum,
             'comment'       => $this->comment,
+            'gomiFlag'      => $this->gomiFlag,
+            'souziFlag'     => $this->souziFlag,
+            'seisouFlag'    => $this->seisouFlag,
+            'hinomotoFlag'  => $this->hinomotoFlag,
+            'serverFlag'    => $this->serverFlag,
             'updated_at'    => $this->updated_at,
             //'user' => $this->user->name,
         ];

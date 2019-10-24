@@ -19,6 +19,11 @@ Route::apiResource('/location', 'LocationController');
 Route::apiResource('/comment', 'CommentController');
 Route::apiResource('/tantouUser', 'TantouUserController');
 Route::apiResource('/tantou', 'TantouController');
+Route::put('/gomi'          , 'DashBoardUserController@gomi');
+Route::put('/souzi'         , 'DashBoardUserController@souzi');
+Route::put('/seisou'        , 'DashBoardUserController@seisou');
+Route::put('/hinomoto'       , 'DashBoardUserController@hinomoto');
+Route::put('/server'        , 'DashBoardUserController@server');
 
 Route::group([
 
