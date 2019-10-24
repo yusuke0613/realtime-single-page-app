@@ -10,6 +10,7 @@ import DashBordUserControl2 from '../dashbord/DashBordUserControl2'
 import DashBordComponentTv from  '../dashbord/DashBordComponentTv'
 import DashBordComponentIn from '../dashbord/DashBordComponentIn'
 import TantouUser from '../dashbord/TantouUser'
+import DashBordTagForm from '../dashbord/DashBordTagForm'
 
 
 
@@ -25,6 +26,7 @@ const routes = [
     {path: '/dashboard', component: DashBordComponentTv},
     {path: '/inputTable', component: DashBordUserControl2},
     {path: '/TantouUser', component: TantouUser},
+    {path: '/tag'       , component: DashBordTagForm}
 ]
 
 const router = new VueRouter({
