@@ -63,13 +63,27 @@ class DashBoardUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $comentNum
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($comentNum)
     {
-        return  DashBoardUser::find($id);
+        return  DashBoardUser::find($comentNum);
     }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  string  $comentNum
+     * @return \Illuminate\Http\Response
+     */
+    public function tag($request)
+    {
+        
+        return  DashBoardUser::find($request);
+    }
+
 
     /**
      * Update the specified resource in storage.

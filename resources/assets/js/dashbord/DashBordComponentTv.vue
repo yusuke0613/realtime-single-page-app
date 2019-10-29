@@ -12,7 +12,7 @@
             >
 
                 <div style="display: flex; justify-content: space-between; padding:1px;background-color:#fff;">
-                  <div style="text-align:center;font-size:32px;font-weight: bold; ">{{dashboarduser.displayName}}
+                  <div style="text-align:center;font-size:28px;font-weight: bold; ">{{dashboarduser.displayName}}
                   <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
                   <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
                   <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
@@ -23,9 +23,9 @@
                   </div>
                   
                 </div>
-              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:24px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:28px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
+              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff"><v-icon style="font-size:24px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
               <v-divider color="white"></v-divider>
-              <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:20px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:32px"><v-icon style="font-size:20px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
+              <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:32px"><v-icon style="font-size:20px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
             </v-card>
           </v-flex>
         </v-layout>
@@ -99,12 +99,11 @@
          <v-dialog 
           v-model="seatMoal" 
           fullscreen
-          hide-overlay
-          transition=”out-in”
-        >
+         >
             <v-img
               src='/seat.png'
-              width="100%"
+              cover=true
+              height=100vh
               style ="background-color:rgba(255,255,255,0.9) !important"
             ></v-img>
   　　    </v-dialog>
@@ -366,11 +365,12 @@
   padding: 3px 6px;
   margin-right: 8px;
   margin-left: 1px;
-  font-size: 16px !important;
+  font-size: 12px !important;
   color: white;
   border-radius: 6px;
   box-shadow: 0 0 3px #ddd;
   white-space: nowrap;
+  font-weight: normal !important;
 }
 
 .zaiseki-badge {
@@ -392,11 +392,12 @@
   padding: 3px 6px;
   margin-right: 8px;
   margin-left: 1px;
-  font-size: 16px !important;
+  font-size: 12px !important;
   color: white;
   border-radius: 6px;
   box-shadow: 0 0 3px #ddd;
   white-space: nowrap;
+  font-weight: normal !important;
 }
 
 .zero-badge {

@@ -3014,7 +3014,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -11193,7 +11192,7 @@ exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  pad
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 5px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 16px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.v-enter {\r\n  transform: translate(-100px, 0);\r\n  opacity: 0;\n}\n.v-enter-to {\r\n  opacity: 1;\n}\n.v-enter-active {\r\n  transition: all 1s 0s ease;\n}\n.v-leave {\r\n  transform: translate(0, 0);\r\n  opacity: 1;\n}\n.v-leave-to {\r\n  transform: translate(100px, 0);\r\n  opacity: 0;\n}\n.v-leave-active {\r\n  transition: all .5s 0s ease;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 5px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zaiseki-badge {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.v-enter {\r\n  transform: translate(-100px, 0);\r\n  opacity: 0;\n}\n.v-enter-to {\r\n  opacity: 1;\n}\n.v-enter-active {\r\n  transition: all 1s 0s ease;\n}\n.v-leave {\r\n  transform: translate(0, 0);\r\n  opacity: 1;\n}\n.v-leave-to {\r\n  transform: translate(100px, 0);\r\n  opacity: 0;\n}\n.v-leave-active {\r\n  transition: all .5s 0s ease;\n}\r\n\r\n", ""]);
 
 
 /***/ }),
@@ -53011,7 +53010,7 @@ var render = function() {
                         {
                           staticStyle: {
                             "text-align": "center",
-                            "font-size": "32px",
+                            "font-size": "28px",
                             "font-weight": "bold"
                           }
                         },
@@ -53126,7 +53125,7 @@ var render = function() {
                     {
                       staticStyle: {
                         cursor: "pointer",
-                        "font-size": "24px",
+                        "font-size": "18px !important",
                         padding: "1px",
                         margin: "0",
                         color: "#fff"
@@ -53142,7 +53141,7 @@ var render = function() {
                         "v-icon",
                         {
                           staticStyle: {
-                            "font-size": "28px",
+                            "font-size": "24px",
                             padding: "1px",
                             margin: "0",
                             color: "#fff"
@@ -53162,7 +53161,7 @@ var render = function() {
                     {
                       staticStyle: {
                         cursor: "pointer",
-                        "font-size": "20px",
+                        "font-size": "18px !important",
                         padding: "1px",
                         margin: "0",
                         color: "#fff",
@@ -53488,7 +53487,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { fullscreen: "", "hide-overlay": "", transition: "”out-in”" },
+          attrs: { fullscreen: "" },
           model: {
             value: _vm.seatMoal,
             callback: function($$v) {
@@ -53502,7 +53501,7 @@ var render = function() {
             staticStyle: {
               "background-color": "rgba(255,255,255,0.9) !important"
             },
-            attrs: { src: "/seat.png", width: "100%" }
+            attrs: { src: "/seat.png", cover: "true", height: "100vh" }
           })
         ],
         1

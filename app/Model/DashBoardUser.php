@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DashBoardUser extends Model
 {
     public function getRouteKeyName() {
-        return 'id';
+        return 'comentNum';
     }
     protected $guarded = [];
     public function getPathAttribute() {
-        return "/dashboarduse/$this->id";
+        return "/dashboarduse/$this->comentNum";
     }
 
     public function user() {

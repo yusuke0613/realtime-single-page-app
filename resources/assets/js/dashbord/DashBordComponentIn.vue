@@ -154,9 +154,9 @@
           },
 
           openCommentModal(dashboarduser) {
-            this.dashboarduser = dashboarduser;
-            this.comment = dashboarduser.comment;
-            this.showCommentModal= true;
+            this.dashboarduser    = dashboarduser;
+            this.comment          = dashboarduser.comment;
+            this.showCommentModal = true;
           },
 
           updateSelectLocation (u) {
@@ -177,7 +177,7 @@
             var location        = u.locationName2;
             var locationPhon    = u.phoneNo;
             var comentNum       = this.dashboarduser.comentNum;
-            var comment      = this.dashboarduser.comment;
+            var comment         = this.dashboarduser.comment;
 
             const userProfile = {
               id:id,

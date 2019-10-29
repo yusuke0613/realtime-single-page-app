@@ -19,13 +19,13 @@ Route::apiResource('/location', 'LocationController');
 Route::apiResource('/comment', 'CommentController');
 Route::apiResource('/tantouUser', 'TantouUserController');
 Route::apiResource('/tantou', 'TantouController');
+Route::get('dashboarduser/tag/{comentNum}', 'DashBoardUserController@tag');
 
 Route::group([
 
     'prefix' => 'auth'
 
 ], function () {
-
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
