@@ -2562,9 +2562,701 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/DashBordComponentIn.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\TC117041\\Desktop\\realtimeApp\\resources\\assets\\js\\dashbord\\DashBordComponentIn.vue: Unexpected token (210:0)\n\n\u001b[0m \u001b[90m 208 | \u001b[39m            \u001b[36mvar\u001b[39m comentNum       \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdashboarduser\u001b[33m.\u001b[39mcomentNum\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 209 | \u001b[39m            \u001b[36mvar\u001b[39m comment         \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdashboarduser\u001b[33m.\u001b[39mcomment\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 210 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 211 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 212 | \u001b[39m            \u001b[36mvar\u001b[39m gomiFlag        \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdashboarduser\u001b[33m.\u001b[39mgomiFlag\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 213 | \u001b[39m            \u001b[36mvar\u001b[39m souziFlag       \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdashboarduser\u001b[33m.\u001b[39msouziFlag\u001b[33m;\u001b[39m\u001b[0m\n    at Parser.raise (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:6325:17)\n    at Parser.unexpected (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:7642:16)\n    at Parser.parseExprAtom (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8841:20)\n    at Parser.parseExprSubscripts (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8412:23)\n    at Parser.parseMaybeUnary (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8392:21)\n    at Parser.parseExprOps (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8267:23)\n    at Parser.parseMaybeConditional (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8240:23)\n    at Parser.parseMaybeAssign (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8187:21)\n    at Parser.parseExpression (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8135:23)\n    at Parser.parseStatementContent (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9958:23)\n    at Parser.parseStatement (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9829:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:10405:25)\n    at Parser.parseBlockBody (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:10392:10)\n    at Parser.parseBlock (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:10376:10)\n    at Parser.parseFunctionBody (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9424:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9394:10)\n    at Parser.parseMethod (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9348:10)\n    at Parser.parseObjectMethod (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9264:19)\n    at Parser.parseObjPropValue (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9306:23)\n    at Parser.parseObjectMember (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9230:10)\n    at Parser.parseObj (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9154:25)\n    at Parser.parseExprAtom (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8784:28)\n    at Parser.parseExprSubscripts (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8412:23)\n    at Parser.parseMaybeUnary (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8392:21)\n    at Parser.parseExprOps (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8267:23)\n    at Parser.parseMaybeConditional (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8240:23)\n    at Parser.parseMaybeAssign (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8187:21)\n    at Parser.parseObjectProperty (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9281:101)\n    at Parser.parseObjPropValue (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9306:101)\n    at Parser.parseObjectMember (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9230:10)\n    at Parser.parseObj (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:9154:25)\n    at Parser.parseExprAtom (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8784:28)\n    at Parser.parseExprSubscripts (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8412:23)\n    at Parser.parseMaybeUnary (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8392:21)\n    at Parser.parseExprOps (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8267:23)\n    at Parser.parseMaybeConditional (C:\\Users\\TC117041\\Desktop\\realtimeApp\\node_modules\\@babel\\parser\\lib\\index.js:8240:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var _ref;
+
+    return _ref = {
+      dashboardusers: {},
+      comments: [],
+      comment: '',
+      dashboarduser: [{
+        id: 1,
+        name: 'aのitem'
+      }, {
+        id: 2,
+        name: 'bのitem'
+      }],
+      showLocationModal: false,
+      showUserModal: false,
+      showCommentModal: false,
+      widgets: false,
+      showStatusModal: false,
+      isModal: false
+    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "toubanModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
+      text: 'ID',
+      value: 'locationId'
+    }, {
+      text: 'LOCATION',
+      value: 'locationName1'
+    }, {
+      text: 'NAME',
+      value: 'locationName2'
+    }, {
+      text: 'PHONE',
+      value: 'phoneNo'
+    }]), _ref;
+  },
+  created: function created() {
+    var _this = this;
+
+    Echo.channel("dashBordChannel").listen("DashBordEvent", function (e) {
+      _this.getDashbordUser();
+    });
+    this.getDashbordUser();
+  },
+  methods: {
+    getDashbordUser: function getDashbordUser() {
+      var _this2 = this;
+
+      axios.get('/api/dashboarduser').then(function (res) {
+        return _this2.dashboardusers = res.data.data;
+      })["catch"](function (error) {
+        return console.log(error.res.data);
+      });
+    },
+    getLocation: function getLocation() {
+      var _this3 = this;
+
+      axios.get('/api/location').then(function (res) {
+        return _this3.locations = res.data.data;
+      })["catch"](function (error) {
+        return console.log(error.res.data);
+      });
+    },
+    openLocationModal: function openLocationModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.getLocation();
+      this.showLocationModal = true;
+    },
+    openToubanModal: function openToubanModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.toubanModal = true;
+    },
+    openStatusModal: function openStatusModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.showStatusModal = true;
+    },
+    openCommentModal: function openCommentModal(dashboarduser) {
+      this.dashboarduser = dashboarduser;
+      this.comment = dashboarduser.comment;
+      this.showCommentModal = true;
+    },
+    updateSelectLocation: function updateSelectLocation(u) {
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = u.locationId;
+      var location = u.locationName2;
+      var locationPhon = u.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.showLocationModal = false;
+    },
+    update: function update(userProfile) {
+      axios.patch("/api/dashboarduser/".concat(userProfile.id), userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      this.getDashbordUser();
+      this.showUpdateUserModal = false;
+    },
+    updateStatus: function updateStatus(status) {
+      var id = this.dashboarduser.id;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+
+      if (status == 0) {
+        var locationId = 999;
+        var location = '自席';
+      }
+
+      if (status == 4) {
+        var locationId = 1000;
+        var location = '休み';
+      }
+
+      var locationPhon = this.dashboarduser.locationPhon;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.showStatusModal = false;
+    },
+    updateComment: function updateComment() {
+      var id = this.dashboarduser.id;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.locationPhon;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.showCommentModal = false;
+    },
+    gomi: function gomi() {
+      axios.put("/api/gomi", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+
+      if (this.dashboarduser.gomiFlag == 0) {
+        var gomiFlag = 1;
+      } else {
+        var gomiFlag = 0;
+      }
+
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    tanafuki: function tanafuki() {
+      axios.put("/api/seisou", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+
+      if (this.dashboarduser.seisouFlag == 0) {
+        var seisouFlag = 1;
+      } else {
+        var seisouFlag = 0;
+      }
+
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    server: function server() {
+      axios.put("/api/server", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+
+      if (this.dashboarduser.serverFlag == 0) {
+        var serverFlag = 1;
+      } else {
+        var serverFlag = 0;
+      }
+
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    souziki: function souziki() {
+      axios.put("/api/souzi", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+
+      if (this.dashboarduser.souziFlag == 0) {
+        var souziFlag = 1;
+      } else {
+        var souziFlag = 0;
+      }
+
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    },
+    himoto: function himoto() {
+      axios.put("/api/hinomoto", userProfile).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (error) {
+        return console.log(error.res);
+      });
+      var id = this.dashboarduser.id;
+      var status = this.dashboarduser.status;
+      var displayId = this.dashboarduser.displayId;
+      var displayName = this.dashboarduser.displayName;
+      var status = this.dashboarduser.status;
+      var firstName = this.dashboarduser.firstName;
+      var lastName = this.dashboarduser.lastName;
+      var rankNo = this.dashboarduser.rankNo;
+      var rankName = this.dashboarduser.rankName;
+      var phoneNo = this.dashboarduser.phoneNo;
+      var belongsId = this.dashboarduser.belongsId;
+      var belongsName = this.dashboarduser.belongsName;
+      var mail = this.dashboarduser.mail;
+      var locationId = this.dashboarduser.locationId;
+      var location = this.dashboarduser.location;
+      var locationPhon = this.dashboarduser.phoneNo;
+      var comentNum = this.dashboarduser.comentNum;
+      var comment = this.dashboarduser.comment;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+
+      if (this.dashboarduser.hinomotoFlag == 0) {
+        var hinomotoFlag = 1;
+      } else {
+        var hinomotoFlag = 0;
+      }
+
+      var serverFlag = this.dashboarduser.serverFlag;
+      var userProfile = {
+        id: id,
+        displayId: displayId,
+        displayName: displayName,
+        status: status,
+        firstName: firstName,
+        lastName: lastName,
+        rankNo: rankNo,
+        rankName: rankName,
+        phoneNo: phoneNo,
+        belongsId: belongsId,
+        belongsName: belongsName,
+        mail: mail,
+        locationId: locationId,
+        location: location,
+        locationPhon: locationPhon,
+        comentNum: comentNum,
+        comment: comment,
+        gomiFlag: gomiFlag,
+        souziFlag: souziFlag,
+        seisouFlag: seisouFlag,
+        hinomotoFlag: hinomotoFlag,
+        serverFlag: serverFlag
+      };
+      console.log(userProfile);
+      this.update(userProfile);
+      this.toubanModal = false;
+    }
+  }
+});
 
 /***/ }),
 
@@ -2579,13 +3271,6 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
 __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -52832,8 +53517,558 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { staticStyle: { padding: "0" }, attrs: { "grid-list-md": "" } },
+    [
+      _c(
+        "v-layout",
+        { attrs: { row: "", wrap: "" } },
+        _vm._l(_vm.dashboardusers, function(dashboarduser) {
+          return _c(
+            "v-flex",
+            {
+              key: dashboarduser.id,
+              attrs: { xl4: "", lg4: "", md6: "", xs12: "" }
+            },
+            [
+              _c(
+                "v-card",
+                {
+                  class: {
+                    "zaiseki-box-d": dashboarduser.status === 0,
+                    "riseki-box-d": dashboarduser.status === 1,
+                    "taiseki-box-d": dashboarduser.status === 4
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.openSeatModal()
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        display: "flex",
+                        "justify-content": "space-between",
+                        padding: "1px",
+                        "background-color": "#fff"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            "font-size": "28px",
+                            "font-weight": "bold"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(dashboarduser.displayName) +
+                              "\n                "
+                          ),
+                          dashboarduser.status == 0
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "zaiseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("在席")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.status == 1
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "riseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("離席")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.status == 4
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass: "taiseki-badge",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openStatusModal(dashboarduser)
+                                    }
+                                  }
+                                },
+                                [_vm._v("退席")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 0
+                            ? _c("span", { staticClass: "zero-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 1
+                            ? _c("span", { staticClass: "first-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 2
+                            ? _c("span", { staticClass: "second-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          dashboarduser.belongsId === 3
+                            ? _c("span", { staticClass: "third-badge" }, [
+                                _vm._v(
+                                  _vm._s(dashboarduser.belongsName) +
+                                    "/" +
+                                    _vm._s(dashboarduser.rankName) +
+                                    "/(" +
+                                    _vm._s(dashboarduser.phoneNo) +
+                                    ")"
+                                )
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        cursor: "pointer",
+                        "font-size": "18px !important",
+                        padding: "1px",
+                        margin: "0",
+                        color: "#fff"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.openLocationModal(dashboarduser)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        {
+                          staticStyle: {
+                            "font-size": "24px",
+                            padding: "1px",
+                            margin: "0",
+                            color: "#fff"
+                          }
+                        },
+                        [_vm._v("transfer_within_a_station")]
+                      ),
+                      _vm._v(" " + _vm._s(dashboarduser.location))
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider", { attrs: { color: "white" } }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticStyle: {
+                        cursor: "pointer",
+                        "font-size": "18px !important",
+                        padding: "1px",
+                        margin: "0",
+                        color: "#fff",
+                        "text-overflow": "overflow: hidden",
+                        height: "24px !important"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.openCommentModal(dashboarduser)
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        {
+                          staticStyle: {
+                            "font-size": "18px",
+                            padding: "1px",
+                            margin: "0",
+                            color: "#fff"
+                          }
+                        },
+                        [_vm._v("chat")]
+                      ),
+                      _vm._v(" " + _vm._s(dashboarduser.comment))
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        }),
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.showLocationModal,
+            callback: function($$v) {
+              _vm.showLocationModal = $$v
+            },
+            expression: "showLocationModal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-title",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "search",
+                      label: "Search",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-data-table",
+                {
+                  staticClass: "elevation-1",
+                  attrs: {
+                    "color:orange": "",
+                    headers: _vm.headers,
+                    items: _vm.locations,
+                    search: _vm.search,
+                    loading: true,
+                    "sort-by": ["ID"]
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "items",
+                      fn: function(location) {
+                        return [
+                          _c(
+                            "tr",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateSelectLocation(location.item)
+                                }
+                              }
+                            },
+                            [
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationId))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationName1))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.locationName2))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs" }, [
+                                _vm._v(_vm._s(location.item.phoneNo))
+                              ])
+                            ]
+                          )
+                        ]
+                      }
+                    },
+                    {
+                      key: "no-results",
+                      fn: function() {
+                        return [
+                          _c(
+                            "v-alert",
+                            {
+                              attrs: {
+                                value: true,
+                                color: "error",
+                                icon: "warning"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                '\n                  Your search for "' +
+                                  _vm._s(_vm.search) +
+                                  '" found no results.\n                  '
+                              )
+                            ]
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
+                },
+                [
+                  _c("v-progress-linear", {
+                    attrs: { indeterminate: "" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "progress",
+                        fn: function() {
+                          return undefined
+                        },
+                        proxy: true
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500" },
+          model: {
+            value: _vm.showStatusModal,
+            callback: function($$v) {
+              _vm.showStatusModal = $$v
+            },
+            expression: "showStatusModal"
+          }
+        },
+        [
+          _c("v-card", [
+            _c(
+              "div",
+              {
+                staticClass: "zaiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(0)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("accessibility_new")]
+                ),
+                _vm._v(" 在席")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "riseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(1)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("transfer_within_a_station")]
+                ),
+                _vm._v("離席")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "taiseki-list",
+                on: {
+                  click: function($event) {
+                    return _vm.updateStatus(4)
+                  }
+                }
+              },
+              [
+                _c(
+                  "v-icon",
+                  { staticStyle: { color: "#fff", "font-size": "30px" } },
+                  [_vm._v("home")]
+                ),
+                _vm._v("退席")
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          model: {
+            value: _vm.showCommentModal,
+            callback: function($$v) {
+              _vm.showCommentModal = $$v
+            },
+            expression: "showCommentModal"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            {
+              staticStyle: { padding: "10px !important" },
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    "text-overflow": "ellipsis !important",
+                    height: "80px !important"
+                  }
+                },
+                [
+                  _c("v-text-field", {
+                    attrs: { counter: 30, "overflow-y-hidden": "" },
+                    model: {
+                      value: _vm.comment,
+                      callback: function($$v) {
+                        _vm.comment = $$v
+                      },
+                      expression: "comment"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  staticStyle: { color: "#fff" },
+                  attrs: { color: "blue-grey darken-4", type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.updateComment()
+                    }
+                  }
+                },
+                [_vm._v("Update")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { fullscreen: "" },
+          model: {
+            value: _vm.seatMoal,
+            callback: function($$v) {
+              _vm.seatMoal = $$v
+            },
+            expression: "seatMoal"
+          }
+        },
+        [
+          _c("v-img", {
+            staticStyle: {
+              "background-color": "rgba(255,255,255,0.9) !important"
+            },
+            attrs: { src: "/seat.png", cover: "true", height: "100vh" }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 

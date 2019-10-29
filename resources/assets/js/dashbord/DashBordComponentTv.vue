@@ -12,17 +12,10 @@
             >
 
                 <div style="display: flex; justify-content: space-between; padding:1px;background-color:#fff;">
-<<<<<<< HEAD
                   <div style="text-align:center;font-size:28px;font-weight: bold; ">{{dashboarduser.displayName}}
                   <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
                   <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
                   <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
-=======
-                  <div style="text-align:center;font-size:32px;font-weight: bold; ">{{dashboarduser.displayName}}
-                  <span v-if="dashboarduser.status==0" class="zaiseki-badge-tv"  @click="openStatusModal(dashboarduser)">在席</span>
-                  <span v-if="dashboarduser.status==1" class="riseki-badge-tv"   @click="openStatusModal(dashboarduser)">離席</span>
-                  <span v-if="dashboarduser.status==4" class="taiseki-badge-tv"  @click="openStatusModal(dashboarduser)">退席</span>
->>>>>>> origin/master
                   <span v-if="dashboarduser.belongsId === 0" class="zero-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                   <span v-if="dashboarduser.belongsId === 1" class="first-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                   <span v-if="dashboarduser.belongsId === 2" class="second-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
@@ -32,7 +25,7 @@
                 </div>
               <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff"><v-icon style="font-size:24px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
               <v-divider color="white"></v-divider>
-              <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:32px"><v-icon style="font-size:20px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
+              <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:24px !important"><v-icon style="font-size:18px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
             </v-card>
           </v-flex>
         </v-layout>

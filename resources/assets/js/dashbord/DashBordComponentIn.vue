@@ -207,14 +207,11 @@
             var locationPhon    = u.phoneNo;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;
-<<<<<<< HEAD
-=======
             var gomiFlag        = this.dashboarduser.gomiFlag;
             var souziFlag       = this.dashboarduser.souziFlag;
             var seisouFlag      = this.dashboarduser.seisouFlag;
             var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
             var serverFlag      = this.dashboarduser.serverFlag;
->>>>>>> origin/master
 
             const userProfile = {
               id:id,
