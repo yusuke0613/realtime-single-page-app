@@ -3,8 +3,8 @@
     <v-container>
       <v-row>
         <v-radio-group v-model="row" row>
-            <v-radio label="在籍" value="radio-1"></v-radio>
-            <v-radio label="退席" value="radio-2"></v-radio>
+            <v-radio label="在籍" value="1"></v-radio>
+            <v-radio label="退席" value="2"></v-radio>
         </v-radio-group>
 
       　<v-text-field
@@ -54,6 +54,7 @@
 
           someHandler() {
             alert(document.getElementById("tagNo").value);
+            alert(this.row);
           },
 
         

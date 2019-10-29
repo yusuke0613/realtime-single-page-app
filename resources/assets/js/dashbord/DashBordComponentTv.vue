@@ -1,6 +1,6 @@
 <template>
-
-    <v-container grid-list-md style="padding:0">
+  <div style="margin:auto; width:100vw;">
+    <v-container grid-list-md style="padding:1px;margin:auto;">
         <v-layout row wrap>
           <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" xl4 lg4 md6 xs12>
             <v-card v-bind:class="{ 
@@ -10,91 +10,26 @@
               }"
               @click="openSeatModal()"
             >
-
-                <div style="display: flex; justify-content: space-between; padding:1px;background-color:#fff;">
+                <div style="display: flex; justify-content: space-between; padding:5px;font-size:38px; background-color:#fff;" >
                   <div style="text-align:center;font-size:32px;font-weight: bold; ">{{dashboarduser.displayName}}
-                  <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
-                  <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
-                  <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
-                  <span v-if="dashboarduser.belongsId === 0" class="zero-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
-                  <span v-if="dashboarduser.belongsId === 1" class="first-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
-                  <span v-if="dashboarduser.belongsId === 2" class="second-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
-                  <span v-if="dashboarduser.belongsId === 3" class="third-badge">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                  <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge">ゴミ</span>
+                  <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge">掃除</span>
+                  <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge">棚拭き</span>
+                  <span v-if="dashboarduser.serverFlag==1"   class="renraku-badge">サーバ</span>
+                  <span v-if="dashboarduser.hinomotoFlag==1" class="taiseki-badge">火元</span>
                   </div>
-                  
+                  <span v-if="dashboarduser.belongsId === 0" class="zero-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                  <span v-if="dashboarduser.belongsId === 1" class="first-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                  <span v-if="dashboarduser.belongsId === 2" class="second-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                  <span v-if="dashboarduser.belongsId === 3" class="third-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                 </div>
-              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:22px !important; padding:1px; margin:0; color:#fff"><v-icon style="font-size:24px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
+             
+              <p style="font-size:22px !important; padding:1px; margin:0; color:#fff"> {{dashboarduser.location}}</p>
               <v-divider color="white"></v-divider>
-              <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:24px !important"><v-icon style="font-size:18px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
+              <p style="font-size:18px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:24px !important"> {{dashboarduser.comment}}</p>
             </v-card>
           </v-flex>
         </v-layout>
-
-
-      <v-dialog v-model="showLocationModal" >
-            <v-card >
-              <v-card-title>
-                <v-spacer></v-spacer>
-                  <v-text-field
-                      v-model="search"
-                      append-icon="search"
-                      label="Search"
-                      single-line
-                      hide-details  
-                  >
-                  </v-text-field>
-              </v-card-title>
-              <v-data-table color:orange
-                  :headers="headers"
-                  :items="locations"
-                  :search="search"
-
-                  :loading="true"
-                  class="elevation-1"
-                  :sort-by="['ID']"
-              >
-                <v-progress-linear v-slot:progress indeterminate></v-progress-linear>
-                <template v-slot:items="location">
-                    <tr @click="updateSelectLocation(location.item)">
-                    <td class="text-xs" >{{ location.item.locationId }}</td>
-                    <td class="text-xs" >{{ location.item.locationName1 }}</td>
-                    <td class="text-xs" >{{ location.item.locationName2 }}</td>
-                    <td class="text-xs" >{{ location.item.phoneNo }}</td>
-                    </tr>
-                </template>
-                <template v-slot:no-results>
-                    <v-alert :value="true" color="error" icon="warning">
-                    Your search for "{{ search }}" found no results.
-                    </v-alert>
-                </template>
-              </v-data-table>
-            </v-card>
-  　　    </v-dialog>
-        <v-dialog v-model="showStatusModal" width="500">
-            <v-card>
-                <div class="zaiseki-list"   @click="updateStatus(0)"><v-icon style="color:#fff;font-size:30px;">accessibility_new</v-icon> 在席</div>
-                <div class="riseki-list"    @click="updateStatus(1)"><v-icon style="color:#fff;font-size:30px;">transfer_within_a_station</v-icon>離席</div>
-                <div class="taiseki-list"   @click="updateStatus(4)"><v-icon style="color:#fff;font-size:30px;">home</v-icon>退席</div>
-            </v-card>
-  　　    </v-dialog>
-
-           <v-dialog v-model="showCommentModal" >
-             <v-card style="padding:10px !important" @click.stop>
-            <div style="text-overflow: ellipsis !important; height: 80px !important;"> 
-            <v-text-field
-              v-model="comment"
-              :counter="30"
-              overflow-y-hidden
-            ></v-text-field>
-            </div>
-            <v-btn 
-                color="blue-grey darken-4"
-                type="button"
-                style="color:#fff"
-                @click="updateComment();"
-            >Update</v-btn>
-             </v-card>
-  　　    </v-dialog>
 
          <v-dialog 
           v-model="seatMoal" 
@@ -102,14 +37,12 @@
          >
             <v-img
               src='/seat.png'
-              cover=true
               height=100vh
               style ="background-color:rgba(255,255,255,0.9) !important"
             ></v-img>
   　　    </v-dialog>
-
-
     </v-container>
+  </div>
 </template>
 
 <script>
@@ -142,9 +75,11 @@
         },
         mounted () {
           // releasedAtFromNowを1分ごとに更新する
+          /*
           window.setInterval(() => {
             this.openSeatModal()
           }, 1000 * 10)
+          */
         },
         created() {
           Echo.channel("dashBordChannel")
@@ -154,193 +89,19 @@
           this.getDashbordUser();
         },
         methods: {
-          getDashbordUser() {
-             axios.get('/api/dashboarduser')
-            .then(res => this.dashboardusers = res.data.data)
-            .catch(error => console.log(error.res.data))
-      
-          },
-          getLocation() {
-             axios.get('/api/location')
-            .then(res => this.locations = res.data.data)
-            .catch(error => console.log(error.res.data))
-      
-          },
-          openLocationModal(dashboarduser) {
-            this.dashboarduser = dashboarduser;
-            this.getLocation();
-            this.showLocationModal= true;
-          },
           openSeatModal() {
             if (this.seatMoal == true) {
               this.seatMoal = false;
             } else {
               this.seatMoal = true;
             }
-            
           },
-
-          openStatusModal(dashboarduser){
-            this.dashboarduser = dashboarduser;
-            this.showStatusModal= true;
+           getDashbordUser() {
+             axios.get('/api/dashboarduser')
+            .then(res => this.dashboardusers = res.data.data)
+            .catch(error => console.log(error.res.data))
+      
           },
-
-          openCommentModal(dashboarduser) {
-            this.dashboarduser = dashboarduser;
-            this.comment = dashboarduser.comment;
-            this.showCommentModal= true;
-          },
-
-          updateSelectLocation (u) {
-            var id              = this.dashboarduser.id;
-            var status          = this.dashboarduser.status;
-            var displayId       = this.dashboarduser.displayId;
-            var displayName     = this.dashboarduser.displayName;
-            var status          = this.dashboarduser.status;
-            var firstName       = this.dashboarduser.firstName;
-            var lastName        = this.dashboarduser.lastName;
-            var rankNo          = this.dashboarduser.rankNo;
-            var rankName        = this.dashboarduser.rankName;
-            var phoneNo         = this.dashboarduser.phoneNo;
-            var belongsId       = this.dashboarduser.belongsId;
-            var belongsName     = this.dashboarduser.belongsName;
-            var mail            = this.dashboarduser.mail;
-            var locationId      = u.locationId;
-            var location        = u.locationName2;
-            var locationPhon    = u.phoneNo;
-            var comentNum       = this.dashboarduser.comentNum;
-            var comment      = this.dashboarduser.comment;
-
-            const userProfile = {
-              id:id,
-              displayId:displayId,
-              displayName:displayName,
-              status:status,
-              firstName:firstName,
-              lastName:lastName,
-              rankNo:rankNo,
-              rankName:rankName,
-              phoneNo:phoneNo,
-              belongsId:belongsId,
-              belongsName:belongsName,
-              mail:mail,
-              locationId:locationId,
-              location:location,
-              locationPhon:locationPhon,
-              comentNum:comentNum,
-              comment:comment,
-
-            }
-            console.log(userProfile);
-            this.update(userProfile)
-            this.showLocationModal = false;
-          },
-
-          update(userProfile) {
-              axios.patch(`/api/dashboarduser/${userProfile.id}`, userProfile)
-              .then(res =>  console.log(res.data))
-              .catch(error => console.log(error.res))
-              this.getDashbordUser();
-              this.showUpdateUserModal = false
-          },
-
-          updateStatus(status) {
-            var id              = this.dashboarduser.id;
-            var displayId       = this.dashboarduser.displayId;
-            var displayName     = this.dashboarduser.displayName;
-            var status          = status;
-            var firstName       = this.dashboarduser.firstName;
-            var lastName        = this.dashboarduser.lastName;
-            var rankNo          = this.dashboarduser.rankNo;
-            var rankName        = this.dashboarduser.rankName;
-            var phoneNo         = this.dashboarduser.phoneNo;
-            var belongsId       = this.dashboarduser.belongsId;
-            var belongsName     = this.dashboarduser.belongsName;
-            var mail            = this.dashboarduser.mail;
-            var locationId      = this.dashboarduser.locationId;
-            var location        = this.dashboarduser.location;
-            if (status == 0) {
-              var locationId      = 999;
-              var location        = '自席';
-            } 
-            if (status == 4) {
-              var locationId      = 1000;
-              var location        = '休み';
-            }
-
-            var locationPhon    = this.dashboarduser.locationPhon;
-            var comentNum       = this.dashboarduser.comentNum;
-            var comment         = this.dashboarduser.comment;
-
-            const userProfile = {
-              id:id,
-              displayId:displayId,
-              displayName:displayName,
-              status:status,
-              firstName:firstName,
-              lastName:lastName,
-              rankNo:rankNo,
-              rankName:rankName,
-              phoneNo:phoneNo,
-              belongsId:belongsId,
-              belongsName:belongsName,
-              mail:mail,
-              locationId:locationId,
-              location:location,
-              locationPhon:locationPhon,
-              comentNum:comentNum,
-              comment:comment,
-
-            }
-            console.log(userProfile);
-            this.update(userProfile)
-            this.showStatusModal = false;
-          },
-
-          updateComment() {
-            var id              = this.dashboarduser.id;
-            var displayId       = this.dashboarduser.displayId;
-            var displayName     = this.dashboarduser.displayName;
-            var status          = this.dashboarduser.status;
-            var firstName       = this.dashboarduser.firstName;
-            var lastName        = this.dashboarduser.lastName;
-            var rankNo          = this.dashboarduser.rankNo;
-            var rankName        = this.dashboarduser.rankName;
-            var phoneNo         = this.dashboarduser.phoneNo;
-            var belongsId       = this.dashboarduser.belongsId;
-            var belongsName     = this.dashboarduser.belongsName;
-            var mail            = this.dashboarduser.mail;
-            var locationId      = this.dashboarduser.locationId;
-            var location        = this.dashboarduser.location;
-            var locationPhon    = this.dashboarduser.locationPhon;
-            var comentNum       = this.dashboarduser.comentNum;
-            var comment         = this.comment;
-
-            const userProfile = {
-              id:id,
-              displayId:displayId,
-              displayName:displayName,
-              status:status,
-              firstName:firstName,
-              lastName:lastName,
-              rankNo:rankNo,
-              rankName:rankName,
-              phoneNo:phoneNo,
-              belongsId:belongsId,
-              belongsName:belongsName,
-              mail:mail,
-              locationId:locationId,
-              location:location,
-              locationPhon:locationPhon,
-              comentNum:comentNum,
-              comment:comment,
-
-            }
-            console.log(userProfile);
-            this.update(userProfile)
-            this.showCommentModal = false;
-          }
-
         } 
     }
 </script>
@@ -349,7 +110,7 @@
 
 .container {
   padding: 0 !important;
-  padding-top: 5px !important;
+  padding-top: 20px !important;
 }
 
 .container fluid fill-height  {
@@ -505,6 +266,37 @@ opacity: 0.5 ;
 }
 .v-leave-active {
   transition: all .5s 0s ease;
+}
+
+
+.zero-badge-t, .first-badge-t, .second-badge-t, .third-badge-t {
+  /*
+  padding: 3px 6px;
+  margin-right: 8px;
+  margin-left: 1px;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 3px #ddd;
+  white-space: nowrap;
+  */
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+
+.zero-badge-t {
+  color: #34495e !important; 
+}
+
+.first-badge-t {
+  color: #c0392b !important; 
+}
+
+.second-badge-t {
+  color: #3F51B5 !important; 
+}
+
+.third-badge-t {
+  color: #009688 !important; 
 }
 
 </style>

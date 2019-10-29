@@ -110,6 +110,7 @@ class DashBoardUserController extends Controller
             'locationId'     =>$request->locationId,
             'location'       =>$request->location,
             'locationPhon'   =>$request->locationPhon,
+            'comment'        =>$request->comment,
             'comentNum'      =>$request->comentNum,
             'gomiFlag'       =>$request->gomiFlag,
             'souziFlag'      =>$request->souziFlag,
@@ -288,6 +289,37 @@ class DashBoardUserController extends Controller
     }
 
 
+
+    public function zaiseki(Request $request, DashBoardUser $dashBordUser)
+    {
+        $users = DashBordUserResource::collection(DashBoardUser::get());
+        
+        foreach($users as $d){
+            DashBoardUser::where('comentNum', $request->id)->update([
+                'status'         =>0,
+            ]);
+         }
+        
+        //event(new dashBordEvent($request->all()));
+        return response($request, Response::HTTP_ACCEPTED);
+    }
+
+    public function taiseki(Request $request, DashBoardUser $dashBordUser)
+    {
+        $users = DashBordUserResource::collection(DashBoardUser::get());
+        
+        foreach($users as $d){
+            DashBoardUser::where('comentNum', $request->id)->update([
+                'status'         =>4,
+            ]);
+         }
+        
+        //event(new dashBordEvent($request->all()));
+        return response($request, Response::HTTP_ACCEPTED);
+    }
+    
+    
+    
 
 
     /**

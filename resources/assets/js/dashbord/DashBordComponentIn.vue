@@ -3,36 +3,57 @@
     <v-container grid-list-md style="padding:0">
         <v-layout row wrap>
           <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" xl3 lg4 md6 xs12>
-            <v-card v-bind:class="{ 
-              'zaiseki-box' : dashboarduser.belongsId === 0, 
-              'riseki-box'  : dashboarduser.belongsId === 1, 
-              'torikomi-box': dashboarduser.belongsId === 2,
-              'renraku-box' : dashboarduser.belongsId === 3,
-            }">
-                <div style="display: flex; justify-content: space-between; padding:1px;font-size:20px; background-color:#fff;" >
-                  <div style="text-align:center;font-size:18px;font-weight: bold; ">{{dashboarduser.displayName}}
-                  <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
-                  <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
-                  <span v-if="dashboarduser.status==2" class="torikomi-badge" @click="openStatusModal(dashboarduser)">取り込み中</span>
-                  <span v-if="dashboarduser.status==3" class="renraku-badge"  @click="openStatusModal(dashboarduser)">連絡不可</span>
-                  <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
-
+             <v-card v-bind:class="{ 
+              'zaiseki-box-d' : dashboarduser.status === 0, 
+              'riseki-box-d'  : dashboarduser.status === 1, 
+              'taiseki-box-d' : dashboarduser.status === 4,
+              }"
+            >
+                <div style="display: flex; justify-content: space-between; padding:3px;font-size:24px; background-color:#fff;" >
+                  <div style="text-align:center;font-size:20px;font-weight: bold; ">{{dashboarduser.displayName}}
                   <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge">ゴミ</span>
                   <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge">掃除</span>
                   <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge">棚拭き</span>
                   <span v-if="dashboarduser.serverFlag==1"   class="renraku-badge">サーバ</span>
                   <span v-if="dashboarduser.hinomotoFlag==1" class="taiseki-badge">火元</span>
                   </div>
-                  <P  v-if="dashboarduser.rankNo<5" @click="openToubanModal(dashboarduser)" style="font-size:10px; cursor: pointer;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
-                  <P  v-if="dashboarduser.rankNo>4" style="font-size:10px;">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</P>
+                  <span v-if="dashboarduser.belongsId === 0" class="zero-badge-i">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                  <span v-if="dashboarduser.belongsId === 1" class="first-badge-i">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                  <span v-if="dashboarduser.belongsId === 2" class="second-badge-i">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                  <span v-if="dashboarduser.belongsId === 3" class="third-badge-i">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                 </div>
                 
                <div>
               </div>
               <v-divider color="white"></v-divider>
-              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-icon  @click="openStatusModal(dashboarduser)" v-on="on" style="padding-bottom:3px !important;font-size:10px !important; color:#fff;margin:0 !important;padding-left:20px !important;">refresh</v-icon>
+                </template>
+                <span color:orange>在席状態</span>
+              </v-tooltip>
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-icon @click="openLocationModal(dashboarduser);" v-on="on" style="padding-bottom:3px !important;font-size:10px !important; color:#fff;padding-left:20px !important;">transfer_within_a_station</v-icon>
+                </template>
+                <span color:orange>行先変更</span>
+              </v-tooltip>
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-icon @click="openCommentModal(dashboarduser);" v-on="on" style="padding-bottom:3px !important;font-size:10px !important; color:#fff;padding-left:20px !important;">chat</v-icon>
+                </template>
+                <span color:orange>メモ</span>
+              </v-tooltip>
+               <v-tooltip top>
+                <template v-if="dashboarduser.rankNo<5" v-slot:activator="{ on }">
+                  <v-icon @click="openToubanModal(dashboarduser);" v-on="on" style="padding-bottom:3px !important;font-size:10px !important; color:#fff;padding-left:20px !important;">event</v-icon>
+                </template>
+                <span color:orange>当番</span>
+              </v-tooltip>
               <v-divider color="white"></v-divider>
-              <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:14px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:22px"><v-icon style="font-size:14px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
+              <p style="font-size:16px; padding:1px; margin:0; color:#fff">{{dashboarduser.location}}</p>
+              <v-divider color="white"></v-divider>
+              <p style="font-size:16px; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:22px"> {{dashboarduser.comment}}</p>
             </v-card>
           </v-flex>
         </v-layout>
@@ -55,7 +76,7 @@
                   :headers="headers"
                   :items="locations"
                   :search="search"
-
+                  :rows-per-page-items='[25,50,{"text":"All","value":-1}]'
                   :loading="true"
                   class="elevation-1"
                   :sort-by="['ID']"
@@ -106,10 +127,10 @@
           <v-dialog v-model="toubanModal" width="500">
             <v-card>
                 <div class="zaiseki-list"    @click="gomi()"><v-icon style="color:#fff;font-size:30px;">delete_sweep</v-icon> ゴミ当番</div>
-                <div class="riseki-list"     @click="tanafuki()"><v-icon style="color:#fff;font-size:30px;">transfer_within_a_station</v-icon>棚拭き</div>
-                <div class="taiseki-list"    @click="server()"><v-icon style="color:#fff;font-size:30px;">router</v-icon>サーバ掃除</div>
-                <div class="renraku-list"    @click="souziki()"><v-icon style="color:#fff;font-size:30px;">blur_on</v-icon>掃除機</div>
-                <div class="torikomi-list"   @click="himoto()"><v-icon style="color:#fff;font-size:30px;">power</v-icon>火元当番</div>
+                <div class="torikomi-list"   @click="tanafuki()"><v-icon style="color:#fff;font-size:30px;">transfer_within_a_station</v-icon>棚拭き</div>
+                <div class="renraku-list"    @click="server()"><v-icon style="color:#fff;font-size:30px;">router</v-icon>サーバ掃除</div>
+                <div class="riseki-list"     @click="souziki()"><v-icon style="color:#fff;font-size:30px;">blur_on</v-icon>掃除機</div>
+                <div class="taiseki-list"    @click="himoto()"><v-icon style="color:#fff;font-size:30px;">power</v-icon>火元当番</div>
             </v-card>
   　　    </v-dialog>
 
@@ -734,7 +755,7 @@
 }
 
 .zaiseki-badge, .riseki-badge, .torikomi-badge, .renraku-badge, .taiseki-badge {
-  padding: 3px 6px;
+
   margin-right: 1px !important;
   margin-left: 1px !important;
   font-size: 12px !important;
@@ -867,6 +888,52 @@ opacity: 0.5 ;
 
 .taiseki-list:hover {
 opacity: 0.5 ;
+}
+
+.zaiseki-box-d {
+  padding:3px;
+  background-color:#4CAF50 !important;
+}
+
+.riseki-box-d {
+  padding:3Px;
+  background-color:#FF9800 !important;
+}
+
+.taiseki-box-d {
+  padding:3px;
+  background-color:#E91E63 !important;
+}
+
+
+.zero-badge-i, .first-badge-i, .second-badge-i, .third-badge-i {
+  /*
+  padding: 3px 6px;
+  margin-right: 8px;
+  margin-left: 1px;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 3px #ddd;
+  white-space: nowrap;
+  */
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+.zero-badge-i {
+  color: #34495e !important; 
+}
+
+.first-badge-i {
+  color: #c0392b !important; 
+}
+
+.second-badge-i {
+  color: #3F51B5 !important; 
+}
+
+.third-badge-i {
+  color: #009688 !important; 
 }
 
 </style>

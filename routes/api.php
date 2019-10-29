@@ -27,6 +27,9 @@ Route::put('/seisou'        , 'DashBoardUserController@seisou');
 Route::put('/hinomoto'       , 'DashBoardUserController@hinomoto');
 Route::put('/server'        , 'DashBoardUserController@server');
 
+Route::patch('/zaiseki/{id}'  , 'DashBoardUserController@zaiseki');
+Route::patch('/taiseki/{id}'  , 'DashBoardUserController@taiseki');
+
 Route::group([
 
     'prefix' => 'auth'

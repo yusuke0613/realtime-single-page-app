@@ -18,24 +18,13 @@
               </v-list-tile-content>
             </v-list-tile>
           </router-link>
-           <router-link to="/inputTable">
-            <v-list-tile>
-              <v-list-tile-action>
-                <v-icon>view_headline</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>テーブルビュー</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </router-link>
-
           <router-link to="/TantouUser">
             <v-list-tile>
               <v-list-tile-action >
                 <v-icon>settings</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>当番表</v-list-tile-title>
+                <v-list-tile-title>座席表</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </router-link>
