@@ -12,7 +12,7 @@
             >
 
                 <div style="display: flex; justify-content: space-between; padding:1px;background-color:#fff;">
-                  <div style="text-align:center;font-size:28px;font-weight: bold; ">{{dashboarduser.displayName}}
+                  <div style="text-align:center;font-size:32px;font-weight: bold; ">{{dashboarduser.displayName}}
                   <span v-if="dashboarduser.status==0" class="zaiseki-badge"  @click="openStatusModal(dashboarduser)">在席</span>
                   <span v-if="dashboarduser.status==1" class="riseki-badge"   @click="openStatusModal(dashboarduser)">離席</span>
                   <span v-if="dashboarduser.status==4" class="taiseki-badge"  @click="openStatusModal(dashboarduser)">退席</span>
@@ -23,7 +23,7 @@
                   </div>
                   
                 </div>
-              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff"><v-icon style="font-size:24px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
+              <p @click="openLocationModal(dashboarduser)" style="cursor: pointer;font-size:22px !important; padding:1px; margin:0; color:#fff"><v-icon style="font-size:24px; padding:1px; margin:0; color:#fff">transfer_within_a_station</v-icon> {{dashboarduser.location}}</p>
               <v-divider color="white"></v-divider>
               <p @click="openCommentModal(dashboarduser)" style="cursor: pointer;font-size:18px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:24px !important"><v-icon style="font-size:18px; padding:1px; margin:0; color:#fff;">chat</v-icon> {{dashboarduser.comment}}</p>
             </v-card>

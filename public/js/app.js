@@ -53567,7 +53567,7 @@ var render = function() {
                         {
                           staticStyle: {
                             "text-align": "center",
-                            "font-size": "28px",
+                            "font-size": "32px",
                             "font-weight": "bold"
                           }
                         },
@@ -53682,7 +53682,7 @@ var render = function() {
                     {
                       staticStyle: {
                         cursor: "pointer",
-                        "font-size": "18px !important",
+                        "font-size": "22px !important",
                         padding: "1px",
                         margin: "0",
                         color: "#fff"
