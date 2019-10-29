@@ -21,10 +21,7 @@ const routes = [
     {path: '/signup', component: SignUp},
     {path: '/', component: DashBordComponentIn},
     {path: '/logout', component: Logout},
-    {path: '/dashboeradmin', component: DashBordUserControl},
-    {path: '/test', component: DashBordComponent},
     {path: '/dashboard', component: DashBordComponentTv},
-    {path: '/inputTable', component: DashBordUserControl2},
     {path: '/TantouUser', component: TantouUser},
     {path: '/tag'       , component: DashBordTagForm}
 ]

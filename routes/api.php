@@ -19,7 +19,15 @@ Route::apiResource('/location', 'LocationController');
 Route::apiResource('/comment', 'CommentController');
 Route::apiResource('/tantouUser', 'TantouUserController');
 Route::apiResource('/tantou', 'TantouController');
+<<<<<<< HEAD
 Route::get('dashboarduser/tag/{comentNum}', 'DashBoardUserController@tag');
+=======
+Route::put('/gomi'          , 'DashBoardUserController@gomi');
+Route::put('/souzi'         , 'DashBoardUserController@souzi');
+Route::put('/seisou'        , 'DashBoardUserController@seisou');
+Route::put('/hinomoto'       , 'DashBoardUserController@hinomoto');
+Route::put('/server'        , 'DashBoardUserController@server');
+>>>>>>> origin/master
 
 Route::group([
 
