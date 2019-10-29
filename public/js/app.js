@@ -3696,7 +3696,7 @@ __webpack_require__.r(__webpack_exports__);
       this.showCommentModal = true;
     },
     someHandler: function someHandler() {
-      alert('test');
+      alert(document.getElementById("tagNo").value);
     },
     updateStatus: function updateStatus(status) {
       var id = this.dashboarduser.id;

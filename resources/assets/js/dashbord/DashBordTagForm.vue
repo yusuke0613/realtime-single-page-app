@@ -53,7 +53,7 @@
           },
 
           someHandler() {
-            alert('test');
+            alert(document.getElementById("tagNo").value);
           },
 
         
