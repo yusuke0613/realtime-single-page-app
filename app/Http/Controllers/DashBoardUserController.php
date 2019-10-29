@@ -151,7 +151,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        //event(new dashBordEvent($request->all()));
+        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -184,7 +184,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        //event(new dashBordEvent($request->all()));
+        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -217,7 +217,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        //event(new dashBordEvent($request->all()));
+        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -251,7 +251,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        //event(new dashBordEvent($request->all()));
+        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -284,7 +284,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        //event(new dashBordEvent($request->all()));
+        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
