@@ -128,40 +128,42 @@ class DashBoardUserController extends Controller
 
     public function gomi(Request $request, DashBoardUser $dashBordUser)
     {
+        DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
-
                 'gomiFlag'       =>0,
-            
             ]);
          }
-    
+         DB::commit();
         //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
     public function souzi(Request $request, DashBoardUser $dashBordUser)
     {
+        DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'souziFlag'      =>0,
             ]);
          }
+         DB::commit();
         //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
     public function seisou(Request $request, DashBoardUser $dashBordUser)
     {
+        DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'seisouFlag'     =>0,
             ]);
          }
-    
+        DB::commit();
         //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
@@ -169,26 +171,28 @@ class DashBoardUserController extends Controller
 
     public function hinomoto(Request $request, DashBoardUser $dashBordUser)
     {
+        DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'hinomotoFlag'   =>0,
             ]);
          }
-    
+         DB::commit();
         //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
     public function server(Request $request, DashBoardUser $dashBordUser)
     {
+        DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'serverFlag'     =>0,
             ]);
          }
-    
+         DB::commit();
         //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
@@ -198,7 +202,6 @@ class DashBoardUserController extends Controller
     public function zaiseki(Request $request, DashBoardUser $dashBordUser)
     {
         $users = DashBordUserResource::collection(DashBoardUser::get());
-        
         foreach($users as $d){
             DashBoardUser::where('comentNum', $request->id)->update([
                 'status'         =>0,
