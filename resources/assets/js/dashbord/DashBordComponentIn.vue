@@ -449,7 +449,6 @@
               .catch(error => console.log(error.res))
 
             this.getDashbordUser();
-
             this.toubanModal = false;
           },
 
