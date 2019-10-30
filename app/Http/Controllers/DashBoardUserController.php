@@ -127,8 +127,8 @@ class DashBoardUserController extends Controller
 
     public function gomi(Request $request, DashBoardUser $dashBordUser)
     {
-        $users = DashBordUserResource::collection(DashBoardUser::get());
         DB::beginTransaction();
+        $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'gomiFlag'       =>0,
@@ -140,8 +140,8 @@ class DashBoardUserController extends Controller
 
     public function souzi(Request $request, DashBoardUser $dashBordUser)
     {
-        $users = DashBordUserResource::collection(DashBoardUser::get());
         DB::beginTransaction();
+        $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'souziFlag'      =>0,
@@ -153,8 +153,8 @@ class DashBoardUserController extends Controller
 
     public function seisou(Request $request, DashBoardUser $dashBordUser)
     {
-        $users = DashBordUserResource::collection(DashBoardUser::get());
         DB::beginTransaction();
+        $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'seisouFlag'     =>0,
@@ -167,8 +167,8 @@ class DashBoardUserController extends Controller
 
     public function hinomoto(Request $request, DashBoardUser $dashBordUser)
     {
-        $users = DashBordUserResource::collection(DashBoardUser::get());
         DB::beginTransaction();
+        $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'hinomotoFlag'   =>0,
@@ -180,8 +180,8 @@ class DashBoardUserController extends Controller
 
     public function server(Request $request, DashBoardUser $dashBordUser)
     {
-        $users = DashBordUserResource::collection(DashBoardUser::get());
         DB::beginTransaction();
+        $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
                 'serverFlag'     =>0,
