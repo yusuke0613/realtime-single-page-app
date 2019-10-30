@@ -45,20 +45,16 @@
           someHandler() {
             if (this.row == 1) {
               if (this.message != "") {
-                //alert(document.getElementById("tagNo").value);
                 axios.patch(`/api/zaiseki/${this.message}`)
                 .then(res =>  console.log(res.data))
                 .catch(error => console.log(error.res));
-
                 this.message = "";
               }
             } else {
                 if (this.message != "") {
-                  //alert(document.getElementById("tagNo").value);
                   axios.patch(`/api/taiseki/${this.message}`)
                   .then(res =>  console.log(res.data))
                   .catch(error => console.log(error.res));
-
                   this.message = "";
                 }
             }
