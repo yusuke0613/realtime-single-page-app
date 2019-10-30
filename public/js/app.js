@@ -3462,14 +3462,20 @@ __webpack_require__.r(__webpack_exports__);
     someHandler: function someHandler() {
       if (this.row == 1) {
         if (this.message != "") {
-          alert(document.getElementById("tagNo").value);
-          axios.patch("/api/zaiseki/".concat(this.message));
+          axios.patch("/api/zaiseki/".concat(this.message)).then(function (res) {
+            return console.log(res.data);
+          })["catch"](function (error) {
+            return console.log(error.res);
+          });
           this.message = "";
         }
       } else {
         if (this.message != "") {
-          alert(document.getElementById("tagNo").value);
-          axios.patch("/api/taiseki/".concat(this.message));
+          axios.patch("/api/taiseki/".concat(this.message)).then(function (res) {
+            return console.log(res.data);
+          })["catch"](function (error) {
+            return console.log(error.res);
+          });
           this.message = "";
         }
       }
@@ -53162,7 +53168,7 @@ var render = function() {
                             {
                               staticStyle: {
                                 "text-align": "center",
-                                "font-size": "32px",
+                                "font-size": "42px",
                                 "font-weight": "bold"
                               }
                             },

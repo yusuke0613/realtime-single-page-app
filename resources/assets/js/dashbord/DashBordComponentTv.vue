@@ -11,7 +11,7 @@
               @click="openSeatModal()"
             >
                 <div style="display: flex; justify-content: space-between; padding:5px;font-size:38px; background-color:#fff;" >
-                  <div style="text-align:center;font-size:32px;font-weight: bold; ">{{dashboarduser.displayName}}
+                  <div style="text-align:center;font-size:42px;font-weight: bold; ">{{dashboarduser.displayName}}
                   <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge">ゴミ</span>
                   <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge">掃除</span>
                   <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge">棚拭き</span>
