@@ -389,7 +389,7 @@
           },
 
           gomi () {
-            axios.put(`/api/gomi`, userProfile)
+            axios.patch(`/api/gomi`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
@@ -453,7 +453,7 @@
           },
 
            tanafuki () {
-            axios.put(`/api/seisou`, userProfile)
+            axios.patch(`/api/seisou`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
@@ -515,7 +515,7 @@
           },
 
            server () {
-            axios.put(`/api/server`, userProfile)
+            axios.patch(`/api/server`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
@@ -578,7 +578,7 @@
           },
 
            souziki () {
-            axios.put(`/api/souzi`, userProfile)
+            axios.patch(`/api/souzi`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
@@ -642,7 +642,7 @@
 
 
            himoto () {
-            axios.put(`/api/hinomoto`, userProfile)
+            axios.patch(`/api/hinomoto`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 

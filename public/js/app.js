@@ -2951,7 +2951,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showCommentModal = false;
     },
     gomi: function gomi() {
-      axios.put("/api/gomi", userProfile).then(function (res) {
+      axios.patch("/api/gomi", userProfile).then(function (res) {
         return console.log(res.data);
       })["catch"](function (error) {
         return console.log(error.res);
@@ -3014,7 +3014,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toubanModal = false;
     },
     tanafuki: function tanafuki() {
-      axios.put("/api/seisou", userProfile).then(function (res) {
+      axios.patch("/api/seisou", userProfile).then(function (res) {
         return console.log(res.data);
       })["catch"](function (error) {
         return console.log(error.res);
@@ -3077,7 +3077,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toubanModal = false;
     },
     server: function server() {
-      axios.put("/api/server", userProfile).then(function (res) {
+      axios.patch("/api/server", userProfile).then(function (res) {
         return console.log(res.data);
       })["catch"](function (error) {
         return console.log(error.res);
@@ -3140,7 +3140,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toubanModal = false;
     },
     souziki: function souziki() {
-      axios.put("/api/souzi", userProfile).then(function (res) {
+      axios.patch("/api/souzi", userProfile).then(function (res) {
         return console.log(res.data);
       })["catch"](function (error) {
         return console.log(error.res);
@@ -3203,7 +3203,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.toubanModal = false;
     },
     himoto: function himoto() {
-      axios.put("/api/hinomoto", userProfile).then(function (res) {
+      axios.patch("/api/hinomoto", userProfile).then(function (res) {
         return console.log(res.data);
       })["catch"](function (error) {
         return console.log(error.res);

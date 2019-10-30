@@ -127,27 +127,9 @@ class DashBoardUserController extends Controller
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
-                'displayId'      =>$d['displayId'],
-                'displayName'    =>$d['displayName'],
-                'status'         =>$d['status'],
-                'firstName'      =>$d['firstName'],
-                'lastName'       =>$d['lastName'],
-                'rankNo'         =>$d['rankNo'],
-                'rankName'       =>$d['rankName'],
-                'phoneNo'        =>$d['phoneNo'],
-                'belongsId'      =>$d['belongsId'],
-                'belongsName'    =>$d['belongsName'],
-                'mail'           =>$d['mail'],
-                'locationId'     =>$d['locationId'],
-                'location'       =>$d['location'],
-                'locationPhon'   =>$d['locationPhon'],
-                'comentNum'      =>$d['comentNum'],
-                'comment'        =>$d['comment'],
+
                 'gomiFlag'       =>0,
-                'souziFlag'      =>$d['souziFlag'],
-                'seisouFlag'     =>$d['seisouFlag'],
-                'hinomotoFlag'   =>$d['hinomotoFlag'],
-                'serverFlag'     =>$d['serverFlag'],
+            
             ]);
          }
     
@@ -160,27 +142,9 @@ class DashBoardUserController extends Controller
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
-                'displayId'      =>$d['displayId'],
-                'displayName'    =>$d['displayName'],
-                'status'         =>$d['status'],
-                'firstName'      =>$d['firstName'],
-                'lastName'       =>$d['lastName'],
-                'rankNo'         =>$d['rankNo'],
-                'rankName'       =>$d['rankName'],
-                'phoneNo'        =>$d['phoneNo'],
-                'belongsId'      =>$d['belongsId'],
-                'belongsName'    =>$d['belongsName'],
-                'mail'           =>$d['mail'],
-                'locationId'     =>$d['locationId'],
-                'location'       =>$d['location'],
-                'locationPhon'   =>$d['locationPhon'],
-                'comentNum'      =>$d['comentNum'],
-                'comment'        =>$d['comment'],
-                'gomiFlag'       =>$d['gomiFlag'],
+
                 'souziFlag'      =>0,
-                'seisouFlag'     =>$d['seisouFlag'],
-                'hinomotoFlag'   =>$d['hinomotoFlag'],
-                'serverFlag'     =>$d['serverFlag'],
+
             ]);
          }
     
@@ -193,27 +157,7 @@ class DashBoardUserController extends Controller
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
-                'displayId'      =>$d['displayId'],
-                'displayName'    =>$d['displayName'],
-                'status'         =>$d['status'],
-                'firstName'      =>$d['firstName'],
-                'lastName'       =>$d['lastName'],
-                'rankNo'         =>$d['rankNo'],
-                'rankName'       =>$d['rankName'],
-                'phoneNo'        =>$d['phoneNo'],
-                'belongsId'      =>$d['belongsId'],
-                'belongsName'    =>$d['belongsName'],
-                'mail'           =>$d['mail'],
-                'locationId'     =>$d['locationId'],
-                'location'       =>$d['location'],
-                'locationPhon'   =>$d['locationPhon'],
-                'comentNum'      =>$d['comentNum'],
-                'comment'        =>$d['comment'],
-                'gomiFlag'       =>$d['gomiFlag'],
-                'souziFlag'      =>$d['souziFlag'],
                 'seisouFlag'     =>0,
-                'hinomotoFlag'   =>$d['hinomotoFlag'],
-                'serverFlag'     =>$d['serverFlag'],
             ]);
          }
     
@@ -227,27 +171,7 @@ class DashBoardUserController extends Controller
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
-                'displayId'      =>$d['displayId'],
-                'displayName'    =>$d['displayName'],
-                'status'         =>$d['status'],
-                'firstName'      =>$d['firstName'],
-                'lastName'       =>$d['lastName'],
-                'rankNo'         =>$d['rankNo'],
-                'rankName'       =>$d['rankName'],
-                'phoneNo'        =>$d['phoneNo'],
-                'belongsId'      =>$d['belongsId'],
-                'belongsName'    =>$d['belongsName'],
-                'mail'           =>$d['mail'],
-                'locationId'     =>$d['locationId'],
-                'location'       =>$d['location'],
-                'locationPhon'   =>$d['locationPhon'],
-                'comentNum'      =>$d['comentNum'],
-                'comment'        =>$d['comment'],
-                'gomiFlag'       =>$d['gomiFlag'],
-                'souziFlag'      =>$d['souziFlag'],
-                'seisouFlag'     =>$d['seisouFlag'],
                 'hinomotoFlag'   =>0,
-                'serverFlag'     =>$d['serverFlag'],
             ]);
          }
     
@@ -260,26 +184,6 @@ class DashBoardUserController extends Controller
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
-                'displayId'      =>$d['displayId'],
-                'displayName'    =>$d['displayName'],
-                'status'         =>$d['status'],
-                'firstName'      =>$d['firstName'],
-                'lastName'       =>$d['lastName'],
-                'rankNo'         =>$d['rankNo'],
-                'rankName'       =>$d['rankName'],
-                'phoneNo'        =>$d['phoneNo'],
-                'belongsId'      =>$d['belongsId'],
-                'belongsName'    =>$d['belongsName'],
-                'mail'           =>$d['mail'],
-                'locationId'     =>$d['locationId'],
-                'location'       =>$d['location'],
-                'locationPhon'   =>$d['locationPhon'],
-                'comentNum'      =>$d['comentNum'],
-                'comment'        =>$d['comment'],
-                'gomiFlag'       =>$d['gomiFlag'],
-                'souziFlag'      =>$d['souziFlag'],
-                'seisouFlag'     =>$d['seisouFlag'],
-                'hinomotoFlag'   =>$d['hinomotoFlag'],
                 'serverFlag'     =>0,
             ]);
          }
