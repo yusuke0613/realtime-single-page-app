@@ -135,7 +135,6 @@ class DashBoardUserController extends Controller
             ]);
          }
          DB::commit();
-        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -149,7 +148,6 @@ class DashBoardUserController extends Controller
             ]);
          }
          DB::commit();
-        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -163,7 +161,6 @@ class DashBoardUserController extends Controller
             ]);
          }
         DB::commit();
-        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -178,7 +175,6 @@ class DashBoardUserController extends Controller
             ]);
          }
          DB::commit();
-        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -192,7 +188,6 @@ class DashBoardUserController extends Controller
             ]);
          }
          DB::commit();
-        event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -206,22 +201,21 @@ class DashBoardUserController extends Controller
                 'status'         =>0,
             ]);
          }
-        
-        event(new dashBordEvent($request->all()));
+         $users = DashBordUserResource::collection(DashBoardUser::get());
+         event(new dashBordEvent($users->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
     public function taiseki(Request $request, DashBoardUser $dashBordUser)
     {
         $users = DashBordUserResource::collection(DashBoardUser::get());
-        
         foreach($users as $d){
             DashBoardUser::where('comentNum', $request->id)->update([
                 'status'         =>4,
             ]);
          }
-        
-        event(new dashBordEvent($request->all()));
+         $users = DashBordUserResource::collection(DashBoardUser::get());
+         event(new dashBordEvent($users->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
     

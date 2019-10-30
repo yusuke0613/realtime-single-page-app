@@ -11,6 +11,7 @@
           id="tagNo"
           label="Card ID"
           solo
+          v-model="message"
           @change="someHandler"
         ></v-text-field>
       </v-row>
@@ -35,82 +36,28 @@
                 isModal: false,   
                 items: [],  
                 locations:[],
-                row:'radio-1'
+                message:"",
+                row:'1'
             }
         },
 
         methods: {
-          getDashbordUser() {
-             axios.get('/api/dashboarduser')
-            .then(res => this.dashboardusers = res.data.data)
-            .catch(error => console.log(error.res.data))
-          },
-
-          openCommentModal(dashboarduser) {
-            this.dashboarduser = dashboarduser;
-            this.comment = dashboarduser.comment;
-            this.showCommentModal= true;
-          },
-
           someHandler() {
-            alert(document.getElementById("tagNo").value);
-            alert(this.row);
-          },
-
-        
-          updateStatus(status) {
-            var id              = this.dashboarduser.id;
-            var displayId       = this.dashboarduser.displayId;
-            var displayName     = this.dashboarduser.displayName;
-            var status          = status;
-            var firstName       = this.dashboarduser.firstName;
-            var lastName        = this.dashboarduser.lastName;
-            var rankNo          = this.dashboarduser.rankNo;
-            var rankName        = this.dashboarduser.rankName;
-            var phoneNo         = this.dashboarduser.phoneNo;
-            var belongsId       = this.dashboarduser.belongsId;
-            var belongsName     = this.dashboarduser.belongsName;
-            var mail            = this.dashboarduser.mail;
-            var locationId      = this.dashboarduser.locationId;
-            var location        = this.dashboarduser.location;
-            if (status == 0) {
-              var locationId      = 999;
-              var location        = '自席';
-            } 
-            if (status == 4) {
-              var locationId      = 1000;
-              var location        = '休み';
+            if (this.row == 1) {
+              if (this.message != "") {
+                alert(document.getElementById("tagNo").value);
+                axios.patch(`/api/zaiseki/${this.message}`);
+                this.message = "";
+              }
+            } else {
+                if (this.message != "") {
+                  alert(document.getElementById("tagNo").value);
+                  axios.patch(`/api/taiseki/${this.message}`);
+                  this.message = "";
+                }
             }
-
-            var locationPhon    = this.dashboarduser.locationPhon;
-            var comentNum       = this.dashboarduser.comentNum;
-            var comment         = this.dashboarduser.comment;
-
-            const userProfile = {
-              id:id,
-              displayId:displayId,
-              displayName:displayName,
-              status:status,
-              firstName:firstName,
-              lastName:lastName,
-              rankNo:rankNo,
-              rankName:rankName,
-              phoneNo:phoneNo,
-              belongsId:belongsId,
-              belongsName:belongsName,
-              mail:mail,
-              locationId:locationId,
-              location:location,
-              locationPhon:locationPhon,
-              comentNum:comentNum,
-              comment:comment,
-
-            }
-            console.log(userProfile);
-            this.update(userProfile)
-            this.showStatusModal = false;
+           
           },
-
         } 
     }
 </script>

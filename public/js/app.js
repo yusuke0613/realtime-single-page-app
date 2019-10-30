@@ -3432,6 +3432,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3453,79 +3454,25 @@ __webpack_require__.r(__webpack_exports__);
       isModal: false,
       items: [],
       locations: [],
-      row: 'radio-1'
+      message: "",
+      row: '1'
     };
   },
   methods: {
-    getDashbordUser: function getDashbordUser() {
-      var _this = this;
-
-      axios.get('/api/dashboarduser').then(function (res) {
-        return _this.dashboardusers = res.data.data;
-      })["catch"](function (error) {
-        return console.log(error.res.data);
-      });
-    },
-    openCommentModal: function openCommentModal(dashboarduser) {
-      this.dashboarduser = dashboarduser;
-      this.comment = dashboarduser.comment;
-      this.showCommentModal = true;
-    },
     someHandler: function someHandler() {
-      alert(document.getElementById("tagNo").value);
-      alert(this.row);
-    },
-    updateStatus: function updateStatus(status) {
-      var id = this.dashboarduser.id;
-      var displayId = this.dashboarduser.displayId;
-      var displayName = this.dashboarduser.displayName;
-      var status = status;
-      var firstName = this.dashboarduser.firstName;
-      var lastName = this.dashboarduser.lastName;
-      var rankNo = this.dashboarduser.rankNo;
-      var rankName = this.dashboarduser.rankName;
-      var phoneNo = this.dashboarduser.phoneNo;
-      var belongsId = this.dashboarduser.belongsId;
-      var belongsName = this.dashboarduser.belongsName;
-      var mail = this.dashboarduser.mail;
-      var locationId = this.dashboarduser.locationId;
-      var location = this.dashboarduser.location;
-
-      if (status == 0) {
-        var locationId = 999;
-        var location = '自席';
+      if (this.row == 1) {
+        if (this.message != "") {
+          alert(document.getElementById("tagNo").value);
+          axios.patch("/api/zaiseki/".concat(this.message));
+          this.message = "";
+        }
+      } else {
+        if (this.message != "") {
+          alert(document.getElementById("tagNo").value);
+          axios.patch("/api/taiseki/".concat(this.message));
+          this.message = "";
+        }
       }
-
-      if (status == 4) {
-        var locationId = 1000;
-        var location = '休み';
-      }
-
-      var locationPhon = this.dashboarduser.locationPhon;
-      var comentNum = this.dashboarduser.comentNum;
-      var comment = this.dashboarduser.comment;
-      var userProfile = {
-        id: id,
-        displayId: displayId,
-        displayName: displayName,
-        status: status,
-        firstName: firstName,
-        lastName: lastName,
-        rankNo: rankNo,
-        rankName: rankName,
-        phoneNo: phoneNo,
-        belongsId: belongsId,
-        belongsName: belongsName,
-        mail: mail,
-        locationId: locationId,
-        location: location,
-        locationPhon: locationPhon,
-        comentNum: comentNum,
-        comment: comment
-      };
-      console.log(userProfile);
-      this.update(userProfile);
-      this.showStatusModal = false;
     }
   }
 });
@@ -53433,7 +53380,14 @@ var render = function() {
               _vm._v(" "),
               _c("v-text-field", {
                 attrs: { id: "tagNo", label: "Card ID", solo: "" },
-                on: { change: _vm.someHandler }
+                on: { change: _vm.someHandler },
+                model: {
+                  value: _vm.message,
+                  callback: function($$v) {
+                    _vm.message = $$v
+                  },
+                  expression: "message"
+                }
               })
             ],
             1
