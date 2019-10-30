@@ -448,7 +448,7 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.update(userProfile)
+            this.getDashbordUser();
 
             this.toubanModal = false;
           },
@@ -510,7 +510,7 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.update(userProfile)
+            this.getDashbordUser();
             this.toubanModal = false;
           },
 
@@ -573,7 +573,7 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.update(userProfile)
+            this.getDashbordUser();
             this.toubanModal = false;
           },
 
@@ -635,7 +635,7 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.update(userProfile)
+            this.getDashbordUser();
             this.toubanModal = false;
           },
 
@@ -699,7 +699,7 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.update(userProfile)
+            this.getDashbordUser();
             this.toubanModal = false;
           },
 

@@ -130,7 +130,10 @@ class DashBoardUserController extends Controller
         DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
-            DashBoardUser::where('id', $d['id'])->update([
+            DashBoardUser::where('id', $request->id)->update([
+                'gomiFlag'       =>$request->gomiFlag,
+            ]);
+            DashBoardUser::where('id', '!=', $request->id)->update([
                 'gomiFlag'       =>0,
             ]);
          }
@@ -143,7 +146,11 @@ class DashBoardUserController extends Controller
         DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
-            DashBoardUser::where('id', $d['id'])->update([
+            DashBoardUser::where('id', $request->id)->update([
+                'souziFlag'      =>$request->souziFlag,
+            ]);
+
+            DashBoardUser::where('id', '!=', $request->id)->update([
                 'souziFlag'      =>0,
             ]);
          }
@@ -156,8 +163,12 @@ class DashBoardUserController extends Controller
         DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
-            DashBoardUser::where('id', $d['id'])->update([
-                'seisouFlag'     =>0,
+            DashBoardUser::where('id', $request->id)->update([
+                'seisouFlag'      =>$request->seisouFlag,
+            ]);
+
+            DashBoardUser::where('id', '!=', $request->id)->update([
+                'seisouFlag'      =>0,
             ]);
          }
         DB::commit();
@@ -170,8 +181,12 @@ class DashBoardUserController extends Controller
         DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
-            DashBoardUser::where('id', $d['id'])->update([
-                'hinomotoFlag'   =>0,
+            DashBoardUser::where('id', $request->id)->update([
+                'hinomotoFlag'      =>$request->hinomotoFlag,
+            ]);
+
+            DashBoardUser::where('id', '!=', $request->id)->update([
+                'hinomotoFlag'      =>0,
             ]);
          }
          DB::commit();
@@ -183,8 +198,12 @@ class DashBoardUserController extends Controller
         DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
-            DashBoardUser::where('id', $d['id'])->update([
-                'serverFlag'     =>0,
+            DashBoardUser::where('id', $request->id)->update([
+                'serverFlag'      =>$request->serverFlag,
+            ]);
+
+            DashBoardUser::where('id', '!=', $request->id)->update([
+                'serverFlag'      =>0,
             ]);
          }
          DB::commit();
@@ -218,10 +237,6 @@ class DashBoardUserController extends Controller
          event(new dashBordEvent($users->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
-    
-    
-    
-
 
     /**
      * Remove the specified resource from storage.
