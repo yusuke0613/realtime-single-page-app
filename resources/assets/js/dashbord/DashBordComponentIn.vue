@@ -298,7 +298,7 @@
             var locationPhon    = this.dashboarduser.locationPhon;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;
-            var gomiFlag       = this.dashboarduser.gomiFlag;
+            var gomiFlag        = this.dashboarduser.gomiFlag;
             var souziFlag       = this.dashboarduser.souziFlag;
             var seisouFlag      = this.dashboarduser.seisouFlag;
             var hinomotoFlag    = this.dashboarduser.hinomotoFlag;

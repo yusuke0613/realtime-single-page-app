@@ -7,6 +7,7 @@ use App\Model\DashBoardUser;
 use App\Http\Resources\DashBordUserResource;
 use App\Events\DashBordEvent;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class DashBoardUserController extends Controller
 {
@@ -94,6 +95,8 @@ class DashBoardUserController extends Controller
      */
     public function update(Request $request, DashBoardUser $dashBordUser)
     {
+        
+        DB::beginTransaction();
         //broadcast(new dashBordEvent($request->all()))->toOthers();
         DashBoardUser::where('id', $request->id)->update([
             'displayId'      =>$request->displayId,
@@ -118,6 +121,7 @@ class DashBoardUserController extends Controller
             'hinomotoFlag'   =>$request->hinomotoFlag,
             'serverFlag'     =>$request->serverFlag,
             ]);
+        DB::commit();
         event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
@@ -133,7 +137,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        event(new dashBordEvent($request->all()));
+        //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -142,13 +146,10 @@ class DashBoardUserController extends Controller
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DashBoardUser::where('id', $d['id'])->update([
-
                 'souziFlag'      =>0,
-
             ]);
          }
-    
-        event(new dashBordEvent($request->all()));
+        //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -161,7 +162,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        event(new dashBordEvent($request->all()));
+        //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -175,7 +176,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        event(new dashBordEvent($request->all()));
+        //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -188,7 +189,7 @@ class DashBoardUserController extends Controller
             ]);
          }
     
-        event(new dashBordEvent($request->all()));
+        //event(new dashBordEvent($request->all()));
         return response($request, Response::HTTP_ACCEPTED);
     }
 
