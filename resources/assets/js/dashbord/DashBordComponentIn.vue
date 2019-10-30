@@ -389,9 +389,6 @@
           },
 
           gomi () {
-            axios.patch(`/api/gomi`, userProfile)
-              .then(res =>  console.log(res.data))
-              .catch(error => console.log(error.res))
 
             var id              = this.dashboarduser.id;
             var status          = this.dashboarduser.status;
@@ -447,16 +444,16 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
-            console.log(userProfile);
+            axios.patch(`/api/gomi`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
             this.update(userProfile)
+
             this.toubanModal = false;
           },
 
            tanafuki () {
-            axios.patch(`/api/seisou`, userProfile)
-              .then(res =>  console.log(res.data))
-              .catch(error => console.log(error.res))
-
             var id              = this.dashboarduser.id;
             var status          = this.dashboarduser.status;
             var displayId       = this.dashboarduser.displayId;
@@ -509,16 +506,15 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
-            console.log(userProfile);
+            axios.patch(`/api/seisou`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
             this.update(userProfile)
             this.toubanModal = false;
           },
 
            server () {
-            axios.patch(`/api/server`, userProfile)
-              .then(res =>  console.log(res.data))
-              .catch(error => console.log(error.res))
-
             var id              = this.dashboarduser.id;
             var status          = this.dashboarduser.status;
             var displayId       = this.dashboarduser.displayId;
@@ -572,16 +568,16 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
-            console.log(userProfile);
+            
+            axios.patch(`/api/server`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
             this.update(userProfile)
             this.toubanModal = false;
           },
 
            souziki () {
-            axios.patch(`/api/souzi`, userProfile)
-              .then(res =>  console.log(res.data))
-              .catch(error => console.log(error.res))
-
             var id              = this.dashboarduser.id;
             var status          = this.dashboarduser.status;
             var displayId       = this.dashboarduser.displayId;
@@ -635,17 +631,16 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
-            console.log(userProfile);
+            axios.patch(`/api/souzi`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
             this.update(userProfile)
             this.toubanModal = false;
           },
 
 
            himoto () {
-            axios.patch(`/api/hinomoto`, userProfile)
-              .then(res =>  console.log(res.data))
-              .catch(error => console.log(error.res))
-
             var id              = this.dashboarduser.id;
             var status          = this.dashboarduser.status;
             var displayId       = this.dashboarduser.displayId;
@@ -700,7 +695,10 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
-            console.log(userProfile);
+           axios.patch(`/api/hinomoto`, userProfile)
+              .then(res =>  console.log(res.data))
+              .catch(error => console.log(error.res))
+
             this.update(userProfile)
             this.toubanModal = false;
           },
