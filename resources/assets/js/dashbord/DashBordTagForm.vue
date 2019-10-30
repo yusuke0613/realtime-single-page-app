@@ -45,13 +45,13 @@
           someHandler() {
             if (this.row == 1) {
               if (this.message != "") {
-                alert(document.getElementById("tagNo").value);
+                //alert(document.getElementById("tagNo").value);
                 axios.patch(`/api/zaiseki/${this.message}`);
                 this.message = "";
               }
             } else {
                 if (this.message != "") {
-                  alert(document.getElementById("tagNo").value);
+                  //alert(document.getElementById("tagNo").value);
                   axios.patch(`/api/taiseki/${this.message}`);
                   this.message = "";
                 }
