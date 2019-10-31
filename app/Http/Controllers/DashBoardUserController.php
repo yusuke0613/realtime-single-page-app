@@ -133,9 +133,9 @@ class DashBoardUserController extends Controller
             DashBoardUser::where('id', $request->id)->update([
                 'gomiFlag'       =>$request->gomiFlag,
             ]);
-            DashBoardUser::where('id', '!=', $request->id)->update([
-                'gomiFlag'       =>0,
-            ]);
+            //DashBoardUser::where('id', '!=', $request->id)->update([
+            //    'gomiFlag'       =>0,
+            //]);
          }
         DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
