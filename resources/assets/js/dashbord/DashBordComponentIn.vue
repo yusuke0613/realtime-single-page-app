@@ -661,14 +661,14 @@
 
 
             var gomiFlag       = this.dashboarduser.gomiFlag;
-            var souziFlag       = this.dashboarduser.souziFlag;
-            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var souziFlag      = this.dashboarduser.souziFlag;
+            var seisouFlag     = this.dashboarduser.seisouFlag;
             if (this.dashboarduser.hinomotoFlag == 0) {
                var hinomotoFlag     = 1;
             } else {
                var hinomotoFlag     = 0;
             }
-            var serverFlag      = this.dashboarduser.serverFlag;
+            var serverFlag     = this.dashboarduser.serverFlag;
 
             const userProfile = {
               id:id,
