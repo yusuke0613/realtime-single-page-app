@@ -158,7 +158,7 @@ class DashBoardUserController extends Controller
          }
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
-        /DB::commit();
+        DB::commit();
         return response($request, Response::HTTP_ACCEPTED);
     }
 
