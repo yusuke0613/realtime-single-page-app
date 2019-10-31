@@ -389,7 +389,6 @@
           },
 
           gomi () {
-
             var id              = this.dashboarduser.id;
             var status          = this.dashboarduser.status;
             var displayId       = this.dashboarduser.displayId;
