@@ -137,9 +137,9 @@ class DashBoardUserController extends Controller
                 'gomiFlag'       =>0,
             ]);
          }
+        DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
-        DB::commit();
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -156,9 +156,9 @@ class DashBoardUserController extends Controller
                 'souziFlag'      =>0,
             ]);
          }
+        DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
-        DB::commit();
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -175,9 +175,9 @@ class DashBoardUserController extends Controller
                 'seisouFlag'      =>0,
             ]);
          }
+        DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
-        DB::commit();
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -195,9 +195,9 @@ class DashBoardUserController extends Controller
                 'hinomotoFlag'      =>0,
             ]);
          }
+        DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
-        DB::commit();
         return response($request, Response::HTTP_ACCEPTED);
     }
 
@@ -214,9 +214,9 @@ class DashBoardUserController extends Controller
                 'serverFlag'      =>0,
             ]);
          }
+        DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
-        DB::commit();
         return response($request, Response::HTTP_ACCEPTED);
     }
 
