@@ -444,10 +444,12 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
+            /*
             axios.patch(`/api/gomi`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-              
+            */
+            this.update(userProfile)
             this.toubanModal = false;
           },
 
@@ -504,10 +506,12 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
+            /*
             axios.patch(`/api/seisou`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-
+            */
+           this.update(userProfile)
             this.toubanModal = false;
           },
 
@@ -565,11 +569,12 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
-            
+            /*
             axios.patch(`/api/server`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-
+            */
+            this.update(userProfile)
             this.toubanModal = false;
           },
 
@@ -627,10 +632,12 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
+            /*
             axios.patch(`/api/souzi`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-
+            */
+            this.update(userProfile)
             this.toubanModal = false;
           },
 
@@ -690,10 +697,12 @@
               hinomotoFlag:hinomotoFlag,
               serverFlag:serverFlag,
             }
+           /*
            axios.patch(`/api/hinomoto`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-
+            */
+            this.update(userProfile)
             this.toubanModal = false;
           },
 
