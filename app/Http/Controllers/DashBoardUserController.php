@@ -127,21 +127,19 @@ class DashBoardUserController extends Controller
 
     public function gomi(Request $request, DashBoardUser $dashBordUser)
     {
-        //DB::beginTransaction();
+        DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
             DB::beginTransaction();
-            DashBoardUser::where('id', $request->id)->update([
-                'gomiFlag'       =>$request->gomiFlag,
-            ]);
-            //DB::commit();
-            //DB::beginTransaction();
             DashBoardUser::where('id', '!=', $request->id)->update([
                 'gomiFlag'       =>0,
             ]);
-            DB::commit();
+            DashBoardUser::where('id', $request->id)->update([
+                'gomiFlag'       =>$request->gomiFlag,
+            ]);
+            
          }
-        
+        DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
         return response($request, Response::HTTP_ACCEPTED);
