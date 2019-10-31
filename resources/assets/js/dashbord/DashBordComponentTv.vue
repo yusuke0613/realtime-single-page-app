@@ -1,6 +1,6 @@
 <template>
   <div style="margin:auto; width:100vw;">
-    <v-container grid-list-md style="padding:1px;margin:auto;">
+    <v-container grid-list-md style="padding:0px;margin:auto;">
         <v-layout row wrap>
           <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" xl4 lg4 md6 xs12>
             <v-card v-bind:class="{ 
@@ -10,13 +10,13 @@
               }"
               @click="openSeatModal()"
             >
-                <div style="display: flex; justify-content: space-between; padding:5px;font-size:38px; background-color:#fff;" >
-                  <div style="text-align:center;font-size:42px;font-weight: bold; ">{{dashboarduser.displayName}}
-                  <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge">ゴミ</span>
-                  <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge">掃除</span>
-                  <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge">棚拭き</span>
-                  <span v-if="dashboarduser.serverFlag==1"   class="renraku-badge">サーバ</span>
-                  <span v-if="dashboarduser.hinomotoFlag==1" class="taiseki-badge">火元</span>
+                <div style="display: flex; justify-content: space-between; padding:5px;font-size:32px; background-color:#fff;" >
+                  <div style="text-align:center;font-size:38px;font-weight: bold; ">{{dashboarduser.displayName}}
+                  <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge-t">ゴミ</span>
+                  <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge-t">掃除</span>
+                  <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge-t">棚拭き</span>
+                  <span v-if="dashboarduser.serverFlag==1"   class="renraku-badge-t">サーバ</span>
+                  <span v-if="dashboarduser.hinomotoFlag==1" class="taiseki-badge-t">火元</span>
                   </div>
                   <span v-if="dashboarduser.belongsId === 0" class="zero-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                   <span v-if="dashboarduser.belongsId === 1" class="first-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
@@ -24,9 +24,9 @@
                   <span v-if="dashboarduser.belongsId === 3" class="third-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                 </div>
              
-              <p style="font-size:22px !important; padding:1px; margin:0; color:#fff"> {{dashboarduser.location}}</p>
+              <p style="font-size:24px !important; padding:1px; margin:0; color:#fff"> {{dashboarduser.location}}</p>
               <v-divider color="white"></v-divider>
-              <p style="font-size:18px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:24px !important"> {{dashboarduser.comment}}</p>
+              <p style="font-size:20px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:30px !important"> {{dashboarduser.comment}}</p>
             </v-card>
           </v-flex>
         </v-layout>
@@ -75,11 +75,11 @@
         },
         mounted () {
           // releasedAtFromNowを1分ごとに更新する
-          /*
+          
           window.setInterval(() => {
             this.openSeatModal()
           }, 1000 * 10)
-          */
+          
         },
         created() {
           Echo.channel("dashBordChannel")
@@ -110,7 +110,7 @@
 
 .container {
   padding: 0 !important;
-  padding-top: 20px !important;
+  padding-top: 15px !important;
 }
 
 .container fluid fill-height  {
@@ -119,7 +119,7 @@
 }
 
 .container.grid-list-md .layout .flex {
-    padding: 2px !important;
+    padding: 1px !important;
 }
 
 .zaiseki-badge-tv, .riseki-badge-tv, .torikomi-badge-tv, .renraku-badge-tv, .taiseki-badge-tv {
@@ -279,7 +279,7 @@ opacity: 0.5 ;
   box-shadow: 0 0 3px #ddd;
   white-space: nowrap;
   */
-  font-size: 20px !important;
+  font-size: 16px !important;
   font-weight: bold !important;
 }
 
@@ -297,6 +297,41 @@ opacity: 0.5 ;
 
 .third-badge-t {
   color: #009688 !important; 
+}
+
+.zaiseki-badge-t, .riseki-badge-t, .torikomi-badge-t, .renraku-badge-t, .taiseki-badge-t {
+  margin-right: 1px !important;
+  margin-left: 1px !important;
+  padding: 4px !important;
+  font-size: 18px !important;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 6px #ddd;
+  white-space: nowrap;
+}
+
+.zaiseki-badge-t {
+  background-color: #4CAF50; 
+  cursor: pointer;
+}
+
+.riseki-badge-t {
+  background-color: #FF9800; 
+  cursor: pointer;
+}
+
+.torikomi-badge-t {
+  background-color: #2196F3; 
+  cursor: pointer;
+}
+
+.renraku-badge-t {
+  background-color: #9C27B0; 
+  cursor: pointer;
+}
+.taiseki-badge-t {
+  background-color: #E91E63; 
+  cursor: pointer;
 }
 
 </style>

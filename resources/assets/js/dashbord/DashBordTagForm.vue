@@ -1,9 +1,7 @@
 <template>
-  <v-form>
-    <v-container>
-      <v-row>
-        <v-radio-group v-model="row" row>
-            <v-radio label="在籍" value="1"></v-radio>
+  <v-form style="margin:auto !important;">
+        <v-radio-group v-model="row" row style="font-size=100px !important">
+            <v-radio label="在籍" value="1" style="font-size=100px !important"></v-radio>
             <v-radio label="退席" value="2"></v-radio>
         </v-radio-group>
 
@@ -14,10 +12,16 @@
           v-model="message"
           @change="someHandler"
         ></v-text-field>
-      </v-row>
-    </v-container>
+        <v-snackbar
+          style="font-size:38px; padding:5px"
+          v-model="snackbar"
+          :timeout="timeout"
+          color=orange
+        >
+          {{ text }}
+        </v-snackbar>
   </v-form>
-        
+  
 </template>
 
 <script>
@@ -37,7 +41,11 @@
                 items: [],  
                 locations:[],
                 message:"",
-                row:'1'
+                row:'1',
+                snackbar: false,
+                text: 'My timeout is set to 2000.',
+                timeout: 2000,
+                flag:0,
             }
         },
 
@@ -46,14 +54,21 @@
             if (this.row == 1) {
               if (this.message != "") {
                 axios.patch(`/api/zaiseki/${this.message}`)
-                .then(res =>  console.log(res.data))
+                .then(res =>  (this.flag = res.data))
                 .catch(error => console.log(error.res));
                 this.message = "";
+                if (this.flag == 0) {
+                  this.text = '君の名は？'
+                }
+                if (this.flag == 1) {
+                  this.text = 'こんにちわ'
+                }
+                this.snackbar = true;
               }
             } else {
                 if (this.message != "") {
                   axios.patch(`/api/taiseki/${this.message}`)
-                  .then(res =>  console.log(res.data))
+                  .then(res =>  this.flag = res.data)
                   .catch(error => console.log(error.res));
                   this.message = "";
                 }
@@ -62,3 +77,8 @@
         } 
     }
 </script>
+<style>
+ .v-input--selection-controls.v-input .v-label {
+   font-size: 48px;
+ }
+</style>

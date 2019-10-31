@@ -2833,8 +2833,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return console.log(res.data);
       })["catch"](function (error) {
         return console.log(error.res);
-      });
-      this.getDashbordUser();
+      }); //this.getDashbordUser();
+
       this.showUpdateUserModal = false;
     },
     updateStatus: function updateStatus(status) {
@@ -2951,11 +2951,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showCommentModal = false;
     },
     gomi: function gomi() {
-      axios.patch("/api/gomi", userProfile).then(function (res) {
-        return console.log(res.data);
-      })["catch"](function (error) {
-        return console.log(error.res);
-      });
       var id = this.dashboarduser.id;
       var status = this.dashboarduser.status;
       var displayId = this.dashboarduser.displayId;
@@ -3008,17 +3003,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         seisouFlag: seisouFlag,
         hinomotoFlag: hinomotoFlag,
         serverFlag: serverFlag
+        /*
+        axios.patch(`/api/gomi`, userProfile)
+          .then(res =>  console.log(res.data))
+          .catch(error => console.log(error.res))
+        */
+
       };
-      console.log(userProfile);
       this.update(userProfile);
       this.toubanModal = false;
     },
     tanafuki: function tanafuki() {
-      axios.patch("/api/seisou", userProfile).then(function (res) {
-        return console.log(res.data);
-      })["catch"](function (error) {
-        return console.log(error.res);
-      });
       var id = this.dashboarduser.id;
       var status = this.dashboarduser.status;
       var displayId = this.dashboarduser.displayId;
@@ -3037,8 +3032,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var locationPhon = this.dashboarduser.phoneNo;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.dashboarduser.comment;
-      var gomiFlag = this.dashboarduser.gomiFlag;
-      var souziFlag = this.dashboarduser.souziFlag;
 
       if (this.dashboarduser.seisouFlag == 0) {
         var seisouFlag = 1;
@@ -3048,6 +3041,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var hinomotoFlag = this.dashboarduser.hinomotoFlag;
       var serverFlag = this.dashboarduser.serverFlag;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
       var userProfile = {
         id: id,
         displayId: displayId,
@@ -3071,17 +3066,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         seisouFlag: seisouFlag,
         hinomotoFlag: hinomotoFlag,
         serverFlag: serverFlag
+        /*
+        axios.patch(`/api/seisou`, userProfile)
+          .then(res =>  console.log(res.data))
+          .catch(error => console.log(error.res))
+        */
+
       };
-      console.log(userProfile);
       this.update(userProfile);
       this.toubanModal = false;
     },
     server: function server() {
-      axios.patch("/api/server", userProfile).then(function (res) {
-        return console.log(res.data);
-      })["catch"](function (error) {
-        return console.log(error.res);
-      });
       var id = this.dashboarduser.id;
       var status = this.dashboarduser.status;
       var displayId = this.dashboarduser.displayId;
@@ -3100,10 +3095,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var locationPhon = this.dashboarduser.phoneNo;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.dashboarduser.comment;
-      var gomiFlag = this.dashboarduser.gomiFlag;
-      var souziFlag = this.dashboarduser.souziFlag;
-      var seisouFlag = this.dashboarduser.seisouFlag;
-      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
 
       if (this.dashboarduser.serverFlag == 0) {
         var serverFlag = 1;
@@ -3111,6 +3102,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var serverFlag = 0;
       }
 
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
+      var hinomotoFlag = this.dashboarduser.hinomotoFlag;
       var userProfile = {
         id: id,
         displayId: displayId,
@@ -3134,17 +3129,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         seisouFlag: seisouFlag,
         hinomotoFlag: hinomotoFlag,
         serverFlag: serverFlag
+        /*
+        axios.patch(`/api/server`, userProfile)
+          .then(res =>  console.log(res.data))
+          .catch(error => console.log(error.res))
+        */
+
       };
-      console.log(userProfile);
       this.update(userProfile);
       this.toubanModal = false;
     },
     souziki: function souziki() {
-      axios.patch("/api/souzi", userProfile).then(function (res) {
-        return console.log(res.data);
-      })["catch"](function (error) {
-        return console.log(error.res);
-      });
       var id = this.dashboarduser.id;
       var status = this.dashboarduser.status;
       var displayId = this.dashboarduser.displayId;
@@ -3163,7 +3158,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var locationPhon = this.dashboarduser.phoneNo;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.dashboarduser.comment;
-      var gomiFlag = this.dashboarduser.gomiFlag;
 
       if (this.dashboarduser.souziFlag == 0) {
         var souziFlag = 1;
@@ -3171,6 +3165,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var souziFlag = 0;
       }
 
+      var gomiFlag = this.dashboarduser.gomiFlag;
       var seisouFlag = this.dashboarduser.seisouFlag;
       var hinomotoFlag = this.dashboarduser.hinomotoFlag;
       var serverFlag = this.dashboarduser.serverFlag;
@@ -3197,17 +3192,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         seisouFlag: seisouFlag,
         hinomotoFlag: hinomotoFlag,
         serverFlag: serverFlag
+        /*
+        axios.patch(`/api/souzi`, userProfile)
+          .then(res =>  console.log(res.data))
+          .catch(error => console.log(error.res))
+        */
+
       };
-      console.log(userProfile);
       this.update(userProfile);
       this.toubanModal = false;
     },
     himoto: function himoto() {
-      axios.patch("/api/hinomoto", userProfile).then(function (res) {
-        return console.log(res.data);
-      })["catch"](function (error) {
-        return console.log(error.res);
-      });
       var id = this.dashboarduser.id;
       var status = this.dashboarduser.status;
       var displayId = this.dashboarduser.displayId;
@@ -3226,9 +3221,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var locationPhon = this.dashboarduser.phoneNo;
       var comentNum = this.dashboarduser.comentNum;
       var comment = this.dashboarduser.comment;
-      var gomiFlag = this.dashboarduser.gomiFlag;
-      var souziFlag = this.dashboarduser.souziFlag;
-      var seisouFlag = this.dashboarduser.seisouFlag;
 
       if (this.dashboarduser.hinomotoFlag == 0) {
         var hinomotoFlag = 1;
@@ -3237,6 +3229,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var serverFlag = this.dashboarduser.serverFlag;
+      var gomiFlag = this.dashboarduser.gomiFlag;
+      var souziFlag = this.dashboarduser.souziFlag;
+      var seisouFlag = this.dashboarduser.seisouFlag;
       var userProfile = {
         id: id,
         displayId: displayId,
@@ -3260,8 +3255,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         seisouFlag: seisouFlag,
         hinomotoFlag: hinomotoFlag,
         serverFlag: serverFlag
+        /*
+        axios.patch(`/api/hinomoto`, userProfile)
+           .then(res =>  console.log(res.data))
+           .catch(error => console.log(error.res))
+         */
+
       };
-      console.log(userProfile);
       this.update(userProfile);
       this.toubanModal = false;
     }
@@ -3364,19 +3364,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       value: 'phoneNo'
     }]), _ref;
   },
-  mounted: function mounted() {// releasedAtFromNowを1分ごとに更新する
-
-    /*
-    window.setInterval(() => {
-      this.openSeatModal()
-    }, 1000 * 10)
-    */
-  },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
+    // releasedAtFromNowを1分ごとに更新する
+    window.setInterval(function () {
+      _this.openSeatModal();
+    }, 1000 * 10);
+  },
+  created: function created() {
+    var _this2 = this;
+
     Echo.channel("dashBordChannel").listen("DashBordEvent", function (e) {
-      _this.getDashbordUser();
+      _this2.getDashbordUser();
     });
     this.getDashbordUser();
   },
@@ -3389,10 +3389,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     getDashbordUser: function getDashbordUser() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/api/dashboarduser').then(function (res) {
-        return _this2.dashboardusers = res.data.data;
+        return _this3.dashboardusers = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
@@ -3411,6 +3411,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -3455,24 +3459,40 @@ __webpack_require__.r(__webpack_exports__);
       items: [],
       locations: [],
       message: "",
-      row: '1'
+      row: '1',
+      snackbar: false,
+      text: 'My timeout is set to 2000.',
+      timeout: 2000,
+      flag: 0
     };
   },
   methods: {
     someHandler: function someHandler() {
+      var _this = this;
+
       if (this.row == 1) {
         if (this.message != "") {
           axios.patch("/api/zaiseki/".concat(this.message)).then(function (res) {
-            return console.log(res.data);
+            return _this.flag = res.data;
           })["catch"](function (error) {
             return console.log(error.res);
           });
           this.message = "";
+
+          if (this.flag == 0) {
+            this.text = '君の名は？';
+          }
+
+          if (this.flag == 1) {
+            this.text = 'こんにちわ';
+          }
+
+          this.snackbar = true;
         }
       } else {
         if (this.message != "") {
           axios.patch("/api/taiseki/".concat(this.message)).then(function (res) {
-            return console.log(res.data);
+            return _this.flag = res.data;
           })["catch"](function (error) {
             return console.log(error.res);
           });
@@ -11130,7 +11150,21 @@ exports.push([module.i, "\n.zero-box {\r\n  font-size:16px  !important;\r\n  pad
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 20px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 2px !important;\n}\n.zaiseki-badge-tv, .riseki-badge-tv, .torikomi-badge-tv, .renraku-badge-tv, .taiseki-badge-tv {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zaiseki-badge-tv {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge-tv {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge-tv {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.v-enter {\r\n  transform: translate(-100px, 0);\r\n  opacity: 0;\n}\n.v-enter-to {\r\n  opacity: 1;\n}\n.v-enter-active {\r\n  transition: all 1s 0s ease;\n}\n.v-leave {\r\n  transform: translate(0, 0);\r\n  opacity: 1;\n}\n.v-leave-to {\r\n  transform: translate(100px, 0);\r\n  opacity: 0;\n}\n.v-leave-active {\r\n  transition: all .5s 0s ease;\n}\n.zero-badge-t, .first-badge-t, .second-badge-t, .third-badge-t {\r\n  /*\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  */\r\n  font-size: 20px !important;\r\n  font-weight: bold !important;\n}\n.zero-badge-t {\r\n  color: #34495e !important;\n}\n.first-badge-t {\r\n  color: #c0392b !important;\n}\n.second-badge-t {\r\n  color: #3F51B5 !important;\n}\n.third-badge-t {\r\n  color: #009688 !important;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 15px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 1px !important;\n}\n.zaiseki-badge-tv, .riseki-badge-tv, .torikomi-badge-tv, .renraku-badge-tv, .taiseki-badge-tv {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zaiseki-badge-tv {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge-tv {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge-tv {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.v-enter {\r\n  transform: translate(-100px, 0);\r\n  opacity: 0;\n}\n.v-enter-to {\r\n  opacity: 1;\n}\n.v-enter-active {\r\n  transition: all 1s 0s ease;\n}\n.v-leave {\r\n  transform: translate(0, 0);\r\n  opacity: 1;\n}\n.v-leave-to {\r\n  transform: translate(100px, 0);\r\n  opacity: 0;\n}\n.v-leave-active {\r\n  transition: all .5s 0s ease;\n}\n.zero-badge-t, .first-badge-t, .second-badge-t, .third-badge-t {\r\n  /*\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  */\r\n  font-size: 16px !important;\r\n  font-weight: bold !important;\n}\n.zero-badge-t {\r\n  color: #34495e !important;\n}\n.first-badge-t {\r\n  color: #c0392b !important;\n}\n.second-badge-t {\r\n  color: #3F51B5 !important;\n}\n.third-badge-t {\r\n  color: #009688 !important;\n}\n.zaiseki-badge-t, .riseki-badge-t, .torikomi-badge-t, .renraku-badge-t, .taiseki-badge-t {\r\n  margin-right: 1px !important;\r\n  margin-left: 1px !important;\r\n  padding: 4px !important;\r\n  font-size: 18px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 6px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge-t {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge-t {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.torikomi-badge-t {\r\n  background-color: #2196F3; \r\n  cursor: pointer;\n}\n.renraku-badge-t {\r\n  background-color: #9C27B0; \r\n  cursor: pointer;\n}\n.taiseki-badge-t {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\r\n\r\n", ""]);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, "\n.v-input--selection-controls.v-input .v-label {\n  font-size: 48px;\n}\n", ""]);
 
 
 /***/ }),
@@ -50449,6 +50483,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./DashBordTagForm.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/DashBordUserControl.vue?vue&type=style&index=0&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/dashbord/DashBordUserControl.vue?vue&type=style&index=0&lang=css& ***!
@@ -53121,7 +53185,7 @@ var render = function() {
       _c(
         "v-container",
         {
-          staticStyle: { padding: "1px", margin: "auto" },
+          staticStyle: { padding: "0px", margin: "auto" },
           attrs: { "grid-list-md": "" }
         },
         [
@@ -53158,7 +53222,7 @@ var render = function() {
                             display: "flex",
                             "justify-content": "space-between",
                             padding: "5px",
-                            "font-size": "38px",
+                            "font-size": "32px",
                             "background-color": "#fff"
                           }
                         },
@@ -53168,7 +53232,7 @@ var render = function() {
                             {
                               staticStyle: {
                                 "text-align": "center",
-                                "font-size": "42px",
+                                "font-size": "38px",
                                 "font-weight": "bold"
                               }
                             },
@@ -53178,35 +53242,43 @@ var render = function() {
                                   "\n                "
                               ),
                               dashboarduser.gomiFlag == 1
-                                ? _c("span", { staticClass: "zaiseki-badge" }, [
-                                    _vm._v("ゴミ")
-                                  ])
+                                ? _c(
+                                    "span",
+                                    { staticClass: "zaiseki-badge-t" },
+                                    [_vm._v("ゴミ")]
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               dashboarduser.souziFlag == 1
-                                ? _c("span", { staticClass: "riseki-badge" }, [
-                                    _vm._v("掃除")
-                                  ])
+                                ? _c(
+                                    "span",
+                                    { staticClass: "riseki-badge-t" },
+                                    [_vm._v("掃除")]
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               dashboarduser.seisouFlag == 1
                                 ? _c(
                                     "span",
-                                    { staticClass: "torikomi-badge" },
+                                    { staticClass: "torikomi-badge-t" },
                                     [_vm._v("棚拭き")]
                                   )
                                 : _vm._e(),
                               _vm._v(" "),
                               dashboarduser.serverFlag == 1
-                                ? _c("span", { staticClass: "renraku-badge" }, [
-                                    _vm._v("サーバ")
-                                  ])
+                                ? _c(
+                                    "span",
+                                    { staticClass: "renraku-badge-t" },
+                                    [_vm._v("サーバ")]
+                                  )
                                 : _vm._e(),
                               _vm._v(" "),
                               dashboarduser.hinomotoFlag == 1
-                                ? _c("span", { staticClass: "taiseki-badge" }, [
-                                    _vm._v("火元")
-                                  ])
+                                ? _c(
+                                    "span",
+                                    { staticClass: "taiseki-badge-t" },
+                                    [_vm._v("火元")]
+                                  )
                                 : _vm._e()
                             ]
                           ),
@@ -53269,7 +53341,7 @@ var render = function() {
                         "p",
                         {
                           staticStyle: {
-                            "font-size": "22px !important",
+                            "font-size": "24px !important",
                             padding: "1px",
                             margin: "0",
                             color: "#fff"
@@ -53284,12 +53356,12 @@ var render = function() {
                         "p",
                         {
                           staticStyle: {
-                            "font-size": "18px !important",
+                            "font-size": "20px !important",
                             padding: "1px",
                             margin: "0",
                             color: "#fff",
                             "text-overflow": "overflow: hidden",
-                            height: "24px !important"
+                            height: "30px !important"
                           }
                         },
                         [_vm._v(" " + _vm._s(dashboarduser.comment))]
@@ -53357,49 +53429,58 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-form",
+    { staticStyle: { margin: "auto !important" } },
     [
       _c(
-        "v-container",
+        "v-radio-group",
+        {
+          staticStyle: {},
+          attrs: { row: "" },
+          model: {
+            value: _vm.row,
+            callback: function($$v) {
+              _vm.row = $$v
+            },
+            expression: "row"
+          }
+        },
         [
-          _c(
-            "v-row",
-            [
-              _c(
-                "v-radio-group",
-                {
-                  attrs: { row: "" },
-                  model: {
-                    value: _vm.row,
-                    callback: function($$v) {
-                      _vm.row = $$v
-                    },
-                    expression: "row"
-                  }
-                },
-                [
-                  _c("v-radio", { attrs: { label: "在籍", value: "1" } }),
-                  _vm._v(" "),
-                  _c("v-radio", { attrs: { label: "退席", value: "2" } })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-text-field", {
-                attrs: { id: "tagNo", label: "Card ID", solo: "" },
-                on: { change: _vm.someHandler },
-                model: {
-                  value: _vm.message,
-                  callback: function($$v) {
-                    _vm.message = $$v
-                  },
-                  expression: "message"
-                }
-              })
-            ],
-            1
-          )
+          _c("v-radio", {
+            staticStyle: {},
+            attrs: { label: "在籍", value: "1" }
+          }),
+          _vm._v(" "),
+          _c("v-radio", { attrs: { label: "退席", value: "2" } })
         ],
         1
+      ),
+      _vm._v(" "),
+      _c("v-text-field", {
+        attrs: { id: "tagNo", label: "Card ID", solo: "" },
+        on: { change: _vm.someHandler },
+        model: {
+          value: _vm.message,
+          callback: function($$v) {
+            _vm.message = $$v
+          },
+          expression: "message"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          staticStyle: { "font-size": "38px", padding: "5px" },
+          attrs: { timeout: _vm.timeout, color: "orange" },
+          model: {
+            value: _vm.snackbar,
+            callback: function($$v) {
+              _vm.snackbar = $$v
+            },
+            expression: "snackbar"
+          }
+        },
+        [_vm._v("\n        " + _vm._s(_vm.text) + "\n      ")]
       )
     ],
     1
@@ -96791,7 +96872,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DashBordTagForm_vue_vue_type_template_id_18cfdabe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashBordTagForm.vue?vue&type=template&id=18cfdabe& */ "./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=template&id=18cfdabe&");
 /* harmony import */ var _DashBordTagForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DashBordTagForm.vue?vue&type=script&lang=js& */ "./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _DashBordTagForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DashBordTagForm.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -96799,7 +96882,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _DashBordTagForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _DashBordTagForm_vue_vue_type_template_id_18cfdabe___WEBPACK_IMPORTED_MODULE_0__["render"],
   _DashBordTagForm_vue_vue_type_template_id_18cfdabe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -96828,6 +96911,22 @@ component.options.__file = "resources/assets/js/dashbord/DashBordTagForm.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DashBordTagForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./DashBordTagForm.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/dashbord/DashBordTagForm.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_DashBordTagForm_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

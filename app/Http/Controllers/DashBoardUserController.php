@@ -256,27 +256,33 @@ class DashBoardUserController extends Controller
     public function zaiseki(Request $request, DashBoardUser $dashBordUser)
     {
         $users = DashBordUserResource::collection(DashBoardUser::get());
+        $i = 0;
         foreach($users as $d){
-            DashBoardUser::where('comentNum', $request->id)->update([
+            if (DashBoardUser::where('comentNum', $request->id)->update([
                 'status'         =>0,
-            ]);
+            ]) != 0) {
+                $i = 1;
+            }
          }
          $users = DashBordUserResource::collection(DashBoardUser::get());
          event(new dashBordEvent($users->all()));
-        return response($request, Response::HTTP_ACCEPTED);
+        return response($i, Response::HTTP_ACCEPTED);
     }
 
     public function taiseki(Request $request, DashBoardUser $dashBordUser)
     {
         $users = DashBordUserResource::collection(DashBoardUser::get());
+        $i = 0;
         foreach($users as $d){
-            DashBoardUser::where('comentNum', $request->id)->update([
+            if (DashBoardUser::where('comentNum', $request->id)->update([
                 'status'         =>4,
-            ]);
+            ]) != 0) {
+                $i = 1;
+            }
          }
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
-        return response($request, Response::HTTP_ACCEPTED);
+        return response($i, Response::HTTP_ACCEPTED);
     }
 
     /**
