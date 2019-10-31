@@ -178,10 +178,11 @@ class DashBoardUserController extends Controller
             DashBoardUser::where('id', $request->id)->update([
                 'souziFlag'      =>$request->souziFlag,
             ]);
-
+            /*
             DashBoardUser::where('id', '!=', $request->id)->update([
                 'souziFlag'      =>0,
             ]);
+            */
          }
         DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
@@ -197,10 +198,11 @@ class DashBoardUserController extends Controller
             DashBoardUser::where('id', $request->id)->update([
                 'seisouFlag'      =>$request->seisouFlag,
             ]);
-
+            /*
             DashBoardUser::where('id', '!=', $request->id)->update([
                 'seisouFlag'      =>0,
             ]);
+            */
          }
         DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
@@ -217,10 +219,11 @@ class DashBoardUserController extends Controller
             DashBoardUser::where('id', $request->id)->update([
                 'hinomotoFlag'      =>$request->hinomotoFlag,
             ]);
-
+            /*
             DashBoardUser::where('id', '!=', $request->id)->update([
                 'hinomotoFlag'      =>0,
             ]);
+            */
          }
         DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
@@ -236,10 +239,11 @@ class DashBoardUserController extends Controller
             DashBoardUser::where('id', $request->id)->update([
                 'serverFlag'      =>$request->serverFlag,
             ]);
-
+            /*
             DashBoardUser::where('id', '!=', $request->id)->update([
                 'serverFlag'      =>0,
             ]);
+            */
          }
         DB::commit();
         $users = DashBordUserResource::collection(DashBoardUser::get());
