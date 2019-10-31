@@ -127,10 +127,10 @@ class DashBoardUserController extends Controller
 
     public function gomi(Request $request, DashBoardUser $dashBordUser)
     {
-        DB::beginTransaction();
+        //DB::beginTransaction();
         $users = DashBordUserResource::collection(DashBoardUser::get());
         foreach($users as $d){
-            DB::beginTransaction();
+            //DB::beginTransaction();
             DashBoardUser::where('id', '!=', $request->id)->update([
                 'gomiFlag'       =>0,
             ]);
@@ -138,8 +138,8 @@ class DashBoardUserController extends Controller
             //    'gomiFlag'       =>$request->gomiFlag,
             //]);
          }
-        DB::commit();
-        
+        //DB::commit();
+
         DashBoardUser::where('id', $request->id)->update([
             'displayId'      =>$request->displayId,
             'displayName'    =>$request->displayName,
