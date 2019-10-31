@@ -134,12 +134,36 @@ class DashBoardUserController extends Controller
             DashBoardUser::where('id', '!=', $request->id)->update([
                 'gomiFlag'       =>0,
             ]);
-            DashBoardUser::where('id', $request->id)->update([
-                'gomiFlag'       =>$request->gomiFlag,
-            ]);
-            
+            //DashBoardUser::where('id', $request->id)->update([
+            //    'gomiFlag'       =>$request->gomiFlag,
+            //]);
          }
         DB::commit();
+        
+        DashBoardUser::where('id', $request->id)->update([
+            'displayId'      =>$request->displayId,
+            'displayName'    =>$request->displayName,
+            'status'         =>$request->status,
+            'firstName'      =>$request->firstName,
+            'lastName'       =>$request->lastName,
+            'rankNo'         =>$request->rankNo,
+            'rankName'       =>$request->rankName,
+            'phoneNo'        =>$request->phoneNo,
+            'belongsId'      =>$request->belongsId,
+            'belongsName'    =>$request->belongsName,
+            'mail'           =>$request->mail,
+            'locationId'     =>$request->locationId,
+            'location'       =>$request->location,
+            'locationPhon'   =>$request->locationPhon,
+            'comment'        =>$request->comment,
+            'comentNum'      =>$request->comentNum,
+            'gomiFlag'       =>$request->gomiFlag,
+            'souziFlag'      =>$request->souziFlag,
+            'seisouFlag'     =>$request->seisouFlag,
+            'hinomotoFlag'   =>$request->hinomotoFlag,
+            'serverFlag'     =>$request->serverFlag,
+            ]);
+
         $users = DashBordUserResource::collection(DashBoardUser::get());
         event(new dashBordEvent($users->all()));
         return response($request, Response::HTTP_ACCEPTED);
