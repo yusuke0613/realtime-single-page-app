@@ -447,8 +447,7 @@
             axios.patch(`/api/gomi`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-
-            this.getDashbordUser();
+              
             this.toubanModal = false;
           },
 
@@ -509,7 +508,6 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.getDashbordUser();
             this.toubanModal = false;
           },
 
@@ -572,7 +570,6 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.getDashbordUser();
             this.toubanModal = false;
           },
 
@@ -634,7 +631,6 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.getDashbordUser();
             this.toubanModal = false;
           },
 
@@ -698,7 +694,6 @@
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
 
-            this.getDashbordUser();
             this.toubanModal = false;
           },
 
