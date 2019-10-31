@@ -9,7 +9,6 @@
           id="tagNo"
           label="Card ID"
           solo
-          style="visibility:hidden !important"
           v-model="message"
           @change="someHandler"
         ></v-text-field>
