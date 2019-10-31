@@ -3437,6 +3437,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3497,6 +3498,16 @@ __webpack_require__.r(__webpack_exports__);
             return console.log(error.res);
           });
           this.message = "";
+
+          if (this.flag == 0) {
+            this.text = '君の名は？';
+          }
+
+          if (this.flag == 1) {
+            this.text = 'さようなら';
+          }
+
+          this.snackbar = true;
         }
       }
     }
@@ -53456,6 +53467,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("v-text-field", {
+        staticStyle: { visibility: "hidden !important" },
         attrs: { id: "tagNo", label: "Card ID", solo: "" },
         on: { change: _vm.someHandler },
         model: {
