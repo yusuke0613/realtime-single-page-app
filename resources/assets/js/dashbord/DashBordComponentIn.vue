@@ -471,8 +471,6 @@
             var locationPhon    = this.dashboarduser.phoneNo;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;
-            var gomiFlag        = this.dashboarduser.gomiFlag;
-            var souziFlag       = this.dashboarduser.souziFlag;
             if (this.dashboarduser.seisouFlag == 0) {
                var seisouFlag     = 1;
             } else {
@@ -480,6 +478,8 @@
             }
             var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
             var serverFlag      = this.dashboarduser.serverFlag;
+            var gomiFlag        = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
 
             const userProfile = {
               id:id,
@@ -533,16 +533,16 @@
             var locationPhon    = this.dashboarduser.phoneNo;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;
-            var gomiFlag        = this.dashboarduser.gomiFlag;
-            var souziFlag       = this.dashboarduser.souziFlag;
-            var seisouFlag      = this.dashboarduser.seisouFlag;
-            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
             
             if (this.dashboarduser.serverFlag == 0) {
                var serverFlag     = 1;
             } else {
                var serverFlag     = 0;
             }
+            var gomiFlag        = this.dashboarduser.gomiFlag;
+            var souziFlag       = this.dashboarduser.souziFlag;
+            var seisouFlag      = this.dashboarduser.seisouFlag;
+            var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
 
             const userProfile = {
               id:id,
@@ -596,13 +596,13 @@
             var locationPhon    = this.dashboarduser.phoneNo;
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;
-            var gomiFlag        = this.dashboarduser.gomiFlag;
 
             if (this.dashboarduser.souziFlag == 0) {
                var souziFlag     = 1;
             } else {
                var souziFlag     = 0;
             }
+            var gomiFlag        = this.dashboarduser.gomiFlag;
             var seisouFlag      = this.dashboarduser.seisouFlag;
             var hinomotoFlag    = this.dashboarduser.hinomotoFlag;
             var serverFlag      = this.dashboarduser.serverFlag;
@@ -661,16 +661,15 @@
             var comentNum       = this.dashboarduser.comentNum;
             var comment         = this.dashboarduser.comment;
 
-
-            var gomiFlag       = this.dashboarduser.gomiFlag;
-            var souziFlag      = this.dashboarduser.souziFlag;
-            var seisouFlag     = this.dashboarduser.seisouFlag;
             if (this.dashboarduser.hinomotoFlag == 0) {
                var hinomotoFlag     = 1;
             } else {
                var hinomotoFlag     = 0;
             }
             var serverFlag     = this.dashboarduser.serverFlag;
+            var gomiFlag       = this.dashboarduser.gomiFlag;
+            var souziFlag      = this.dashboarduser.souziFlag;
+            var seisouFlag     = this.dashboarduser.seisouFlag;
 
             const userProfile = {
               id:id,
