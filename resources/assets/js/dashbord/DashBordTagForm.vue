@@ -9,6 +9,7 @@
           id="tagNo"
           label="Card ID"
           solo
+          style="visibility:hidden !important"
           v-model="message"
           @change="someHandler"
         ></v-text-field>
@@ -71,6 +72,13 @@
                   .then(res =>  this.flag = res.data)
                   .catch(error => console.log(error.res));
                   this.message = "";
+                if (this.flag == 0) {
+                  this.text = '君の名は？'
+                }
+                if (this.flag == 1) {
+                  this.text = 'さようなら'
+                }
+                this.snackbar = true;
                 }
             }
           },
