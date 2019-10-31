@@ -267,7 +267,7 @@
               axios.patch(`/api/dashboarduser/${userProfile.id}`, userProfile)
               .then(res =>  console.log(res.data))
               .catch(error => console.log(error.res))
-              this.getDashbordUser();
+              //this.getDashbordUser();
               this.showUpdateUserModal = false
           },
 
