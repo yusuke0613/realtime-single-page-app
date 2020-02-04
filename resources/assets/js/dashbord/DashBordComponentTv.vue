@@ -1,52 +1,51 @@
 <template>
   <div style="margin:auto; width:100vw;">
-    <v-container grid-list-md style="padding:0px;margin:auto;">
-        <v-layout row wrap>
-          <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" xl4 lg4 md6 xs12>
-            <v-card v-bind:class="{ 
-              'zaiseki-box-d' : dashboarduser.status === 0, 
-              'riseki-box-d'  : dashboarduser.status === 1, 
-              'taiseki-box-d' : dashboarduser.status === 4,
-              }"
-              @click="openSeatModal()"
-            >
-                <div style="display: flex; justify-content: space-between; padding:5px;font-size:32px; background-color:#fff;" >
-                  <div style="text-align:center;font-size:38px;font-weight: bold; ">{{dashboarduser.displayName}}
-                  <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge-t">ゴミ</span>
-                  <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge-t">掃除</span>
-                  <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge-t">棚拭き</span>
-                  <span v-if="dashboarduser.serverFlag==1"   class="renraku-badge-t">サーバ</span>
-                  <span v-if="dashboarduser.hinomotoFlag==1" class="taiseki-badge-t">火元</span>
+    <v-container grid-list-md style="padding:0px;margin:auto;" stagger="100">
+        
+        <v-layout row wrap stagger="70">
+          <pu-stagger stagger="100">
+          <transition-group stagger="100" appear class="grid-wrapper stagger" name="fade" xl4 lg4 md6 xs12>
+          <v-flex v-for="dashboarduser in dashboardusers" :key="dashboarduser.id" stagger="70">
+              
+              <v-card v-bind:class="{ 
+                'zaiseki-box-d' : dashboarduser.status === 0, 
+                'riseki-box-d'  : dashboarduser.status === 1, 
+                'taiseki-box-d' : dashboarduser.status === 4,
+                }"
+              >
+                  
+                  <div style="display: flex; justify-content: space-between; padding:5px;font-size:32px; background-color:#fff;">
+                    <div style="text-align:center;font-size:38px;font-weight: bold; ">{{dashboarduser.displayName}}
+                    <span v-if="dashboarduser.gomiFlag==1"     class="zaiseki-badge-t">ゴミ</span>
+                    <span v-if="dashboarduser.souziFlag==1"    class="riseki-badge-t">掃除</span>
+                    <span v-if="dashboarduser.seisouFlag==1"   class="torikomi-badge-t">棚拭き</span>
+                    <span v-if="dashboarduser.serverFlag==1"   class="renraku-badge-t">サーバ</span>
+                    <span v-if="dashboarduser.hinomotoFlag==1" class="taiseki-badge-t">火元</span>
+                    </div>
+                    <span v-if="dashboarduser.belongsId === 0" class="zero-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                    <span v-if="dashboarduser.belongsId === 1" class="first-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                    <span v-if="dashboarduser.belongsId === 2" class="second-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
+                    <span v-if="dashboarduser.belongsId === 3" class="third-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
                   </div>
-                  <span v-if="dashboarduser.belongsId === 0" class="zero-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
-                  <span v-if="dashboarduser.belongsId === 1" class="first-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
-                  <span v-if="dashboarduser.belongsId === 2" class="second-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
-                  <span v-if="dashboarduser.belongsId === 3" class="third-badge-t">{{dashboarduser.belongsName}}/{{dashboarduser.rankName}}/({{dashboarduser.phoneNo}})</span>
-                </div>
-             
-              <p style="font-size:24px !important; padding:1px; margin:0; color:#fff"> {{dashboarduser.location}}</p>
-              <v-divider color="white"></v-divider>
-              <p style="font-size:20px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:30px !important"> {{dashboarduser.comment}}</p>
-            </v-card>
+              
+                <p style="font-size:24px !important; padding:1px; margin:0; color:#fff"> {{dashboarduser.location}}</p>
+                <v-divider color="white"></v-divider>
+                <p style="font-size:20px !important; padding:1px; margin:0; color:#fff; text-overflow:  overflow: hidden; height:30px !important"> {{dashboarduser.comment}}</p>
+              </v-card>
+
+            
           </v-flex>
+          </transition-group>
+          </pu-stagger>
         </v-layout>
 
-         <v-dialog 
-          v-model="seatMoal" 
-          fullscreen
-         >
-            <v-img
-              src='/seat.png'
-              height=100vh
-              style ="background-color:rgba(255,255,255,0.9) !important"
-            ></v-img>
-  　　    </v-dialog>
     </v-container>
   </div>
 </template>
 
 <script>
     export default {
+       
         data() {
             return {
                 dashboardusers: {},
@@ -65,21 +64,16 @@
                 locations:[],
                 newComment:'', 
                 search:'',
-                headers: [
-                  { text: 'ID', value: 'locationId' },
-                  { text: 'LOCATION', value: 'locationName1' },
-                  { text: 'NAME', value: 'locationName2' },
-                  { text: 'PHONE', value: 'phoneNo' },
-                ],
+               
             }
         },
         mounted () {
           // releasedAtFromNowを1分ごとに更新する
-          
+          /*
           window.setInterval(() => {
             this.openSeatModal()
           }, 1000 * 10)
-          
+          */
         },
         created() {
           Echo.channel("dashBordChannel")
@@ -102,7 +96,32 @@
             .catch(error => console.log(error.res.data))
       
           },
-        } 
+          beforeEnter: function (el) {
+            el.style.opacity = 0
+            el.style.height = 0
+          },
+          enter: function (el, done) {
+            var delay = el.dataset.index * 150
+            setTimeout(function () {
+              Velocity(
+                el,
+                { opacity: 1, height: '1.6em' },
+                { complete: done }
+              )
+            }, delay)
+          },
+          leave: function (el, done) {
+            var delay = el.dataset.index * 150
+            setTimeout(function () {
+              Velocity(
+                el,
+                { opacity: 0, height: 0 },
+                { complete: done }
+              )
+            }, delay)
+          }
+        }
+        
     }
 </script>
 
@@ -244,30 +263,11 @@ opacity: 0.5 ;
 opacity: 0.5 ;
 }
 
-
-
-.v-enter {
-  transform: translate(-100px, 0);
-  opacity: 0;
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1px;
 }
-.v-enter-to {
-  opacity: 1;
-}
-.v-enter-active {
-  transition: all 1s 0s ease;
-}
-.v-leave {
-  transform: translate(0, 0);
-  opacity: 1;
-}
-.v-leave-to {
-  transform: translate(100px, 0);
-  opacity: 0;
-}
-.v-leave-active {
-  transition: all .5s 0s ease;
-}
-
 
 .zero-badge-t, .first-badge-t, .second-badge-t, .third-badge-t {
   /*
@@ -334,4 +334,15 @@ opacity: 0.5 ;
   cursor: pointer;
 }
 
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 1.5s ease;
+  transform-origin: center top 0px; 
+}
+.fade-enter, .fade-leave-to {
+    transform: matrix3d(1,0,0.00,0,0.00,0,1.00,0.008,0,-1,0,0,0,0,0,1);
+    opacity: 0;
+}
+
+ 
 </style>

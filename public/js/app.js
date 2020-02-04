@@ -86,6 +86,338 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@plutonium-js/vue-stagger/dist/bundle.esm.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@plutonium-js/vue-stagger/dist/bundle.esm.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var script = {
+	props: {
+		tag: String,
+		show: Boolean,
+		reverse: Boolean,
+		interval: {
+			type:[String, Number],
+			default:0
+		},
+		duration: {
+			type:[String, Number],
+			default:0
+		},
+		animateOnMount: {
+			type: Boolean,
+			default: true
+		},
+		easeType: {
+			type: String,
+			default: 'linear'
+		}
+	},
+	created() {
+		const lib = this.$PU.lib;
+		this.PUD = {
+			asyncRefs:new lib.asyncRefs()
+		};
+		this.addSlotKeys();
+	},
+	mounted() {
+		this.$slots.default.forEach(item => {
+			item.elm.classList.add("item", this.show?"item-to":"item-from");
+			item.elm.addEventListener("transitionend", this.handleAnimationEnd);
+		});
+	},
+	beforeDestroy() {
+		["animateDelay","updateAnimation"].forEach(item => {this.PUD.asyncRefs.cancel(item);});
+		this.$slots.default.forEach(item => {
+			item.elm.removeEventListener("transitionend", this.handleAnimationEnd);
+		});
+	},
+	beforeUpdate() {
+		this.addSlotKeys();
+	},
+	updated() {
+		if (this.PUD.curIndex===undefined) this.PUD.curIndex = this.show==this.reverse?this.$slots.default.length-1:0;
+		this.$el.classList.remove("to-ended", "from-ended");
+		this.$el.classList.add("active");
+		this.PUD.asyncRefs.add("updateAnimation", "requestAnimationFrame", requestAnimationFrame(() => {
+			//note: force reflow so that transitions apply
+			this.$el.offsetWidth;
+			this.animate();
+		}));
+	},
+	methods: {
+		//add unique keys to the slot children (vue requires a unique key when the slot is the descendant of a transition-group)
+		addSlotKeys() {
+			this.$slots.default.forEach((item, index) => {
+				item.key = item.key!=null?item.key:index;
+			});
+		},
+		//animate the slot children
+		animate() {
+			const _T = this;
+			const lib = this.$PU.lib;
+			const slots = [...this.$slots.default];
+			const slotLen = slots.length;
+			_animate(this.PUD.curIndex); function _animate(index) {
+				_T.PUD.curIndex = index;
+				const item = slots[index];
+				item.elm.classList.remove("item-"+(_T.show?'from':'to'));
+				item.elm.classList.add("item-"+(_T.show?'to':'from'));
+				const nextIndex = index+((_T.show?1:-1)*(_T.reverse?-1:1));
+				let interval = _T.duration?(parseFloat(_T.duration)*1000)/slots.length:parseFloat(_T.interval)*1000;
+				if (_T.easeType!='linear') {
+					const nextInRangeIndex = Math.min(Math.max(nextIndex, 0), slotLen-1);
+					const pos = lib.animate.tween(index, 0, 1, slotLen-1, _T.easeType);
+					const nextPos = lib.animate.tween(nextInRangeIndex, 0, 1, slotLen-1, _T.easeType);
+					interval = Math.abs(pos-nextPos)*(slotLen*interval);
+				}
+				if (nextIndex>=0 && nextIndex<slotLen) _T.PUD.asyncRefs.add("animateDelay", "setTimeout", setTimeout(() => {
+					_animate(nextIndex);
+				}, interval));
+			}
+		},
+		//handle animation end
+		handleAnimationEnd(e) {
+			const slots = this.$slots.default;
+			if ((this.PUD.curIndex===(this.show&&!this.reverse?slots.length-1:0)) && e.target===slots[this.show?slots.length-1:0].elm) {
+				this.$el.classList.remove((this.show?'from':'to')+"-ended");
+				this.$el.classList.add((this.show?'to':'from')+"-ended");
+				if (!this.show) this.$el.classList.remove('active');
+			}
+		}
+	}
+};
+
+function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
+/* server only */
+, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+  if (typeof shadowMode !== 'boolean') {
+    createInjectorSSR = createInjector;
+    createInjector = shadowMode;
+    shadowMode = false;
+  } // Vue.extend constructor export interop.
+
+
+  var options = typeof script === 'function' ? script.options : script; // render functions
+
+  if (template && template.render) {
+    options.render = template.render;
+    options.staticRenderFns = template.staticRenderFns;
+    options._compiled = true; // functional template
+
+    if (isFunctionalTemplate) {
+      options.functional = true;
+    }
+  } // scopedId
+
+
+  if (scopeId) {
+    options._scopeId = scopeId;
+  }
+
+  var hook;
+
+  if (moduleIdentifier) {
+    // server build
+    hook = function hook(context) {
+      // 2.3 injection
+      context = context || // cached call
+      this.$vnode && this.$vnode.ssrContext || // stateful
+      this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
+      // 2.2 with runInNewContext: true
+
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__;
+      } // inject component styles
+
+
+      if (style) {
+        style.call(this, createInjectorSSR(context));
+      } // register component module identifier for async chunk inference
+
+
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier);
+      }
+    }; // used by ssr in case component is cached and beforeCreate
+    // never gets called
+
+
+    options._ssrRegister = hook;
+  } else if (style) {
+    hook = shadowMode ? function () {
+      style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
+    } : function (context) {
+      style.call(this, createInjector(context));
+    };
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // register for functional component in vue file
+      var originalRender = options.render;
+
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context);
+        return originalRender(h, context);
+      };
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate;
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+    }
+  }
+
+  return script;
+}
+
+var normalizeComponent_1 = normalizeComponent;
+
+/* script */
+const __vue_script__ = script;
+
+/* template */
+var __vue_render__ = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(
+    "transition-group",
+    _vm._g({ attrs: { tag: _vm.tag || "div", css: false } }, _vm.$listeners),
+    [_vm._t("default")],
+    2
+  )
+};
+var __vue_staticRenderFns__ = [];
+__vue_render__._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__ = undefined;
+  /* scoped */
+  const __vue_scope_id__ = undefined;
+  /* module identifier */
+  const __vue_module_identifier__ = undefined;
+  /* functional template */
+  const __vue_is_functional_template__ = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+
+  
+  var stagger = normalizeComponent_1(
+    { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
+    __vue_inject_styles__,
+    __vue_script__,
+    __vue_scope_id__,
+    __vue_is_functional_template__,
+    __vue_module_identifier__,
+    undefined,
+    undefined
+  );
+
+const lib = new function() {
+	//animate methods
+	this.animate = new function(){
+		
+		//tween a value
+		this.tween = function(time, startVal, endVal, duration, easeType) {
+			let val = startVal;
+			if (duration && startVal!==endVal) {
+				let type = (easeType||'quadratic-inout').replace(/ease/i,"quadratic").replace(/in\-out/i,"inout").split('-');
+				const ease = (this.ease[type[1]||'inout']||(()=>{}))[type[0]]||this.ease.inout.quadratic;
+				val = ease(time, startVal, endVal-startVal, duration);
+			}
+			return val;
+		};
+		
+		//easing functions
+		this.ease = {
+			in:{
+				quadratic:(t,b,c,d) => c*(t/=d)*t+b,
+				cubic: (t,b,c,d) => c*(t/=d)*t*t+b,
+				quartic:(t,b,c,d) => c*(t/=d)*t*t*t+b,
+				quintic:(t,b,c,d) => c*(t/=d)*t*t*t*t+b,
+				sinusoidal:(t,b,c,d) => -c*Math.cos(t/d*(Math.PI/2))+c+b,
+				exponential:(t,b,c,d) => t==0 ? b : c*Math.pow(2,10*(t/d - 1))+b,
+				circular:(t,b,c,d) => -c*(Math.sqrt(1-(t/=d)*t)-1)+b
+			},
+			out:{
+				quadratic:(t,b,c,d) => -c*(t/=d)*(t-2)+b,
+				cubic:(t,b,c,d) => c*((t=t/d-1)*t*t+1)+b,
+				quartic:(t,b,c,d) => -c*((t=t/d-1)*t*t*t-1)+b,
+				quintic:(t,b,c,d) => c*((t=t/d-1)*t*t*t*t+1)+b,
+				sinusoidal:(t,b,c,d) => c*Math.sin(t/d*(Math.PI/2))+b,
+				exponential:(t,b,c,d) => t==d ? b+c : c*(-Math.pow(2,-10*t/d)+1)+b,
+				circular:(t,b,c,d) => c*Math.sqrt(1-(t=t/d-1)*t)+b
+			},
+			inout:{
+				linear:(t,b,c,d) => c*t/d+b,
+				quadratic:(t,b,c,d) => (t/=d/2)<1 ? c/2*t*t+b : -c/2*((--t)*(t-2)-1)+ b,
+				cubic:(t,b,c,d) => (t/=d/2)<1 ? c/2*t*t*t+b : c/2*((t-=2)*t*t+2)+b,
+				quartic:(t,b,c,d) => (t/=d/2)<1 ? c/2*t*t*t*t+b : -c/2*((t-=2)*t*t*t-2)+b,
+				quintic:(t,b,c,d) => (t/=d/2)<1 ? c/2*t*t*t*t*t+b : c/2*((t-=2)*t*t*t*t+2)+b,
+				sinusoidal:(t,b,c,d) => -c/2 * (Math.cos(Math.PI*t/d)-1)+b,
+				exponential:(t,b,c,d) => t==0 ? b : t==d ? b+c : (t/=d/2)<1 ? c/2*Math.pow(2,10*(t - 1))+b : c/2*(-Math.pow(2,-10*--t)+2)+b,
+				circular:(t,b,c,d) => (t/=d/2)<1 ? -c/2*(Math.sqrt(1-t*t)-1)+b : c/2*(Math.sqrt(1-(t-=2)*t)+1)+ b
+			}
+		};
+	};
+	
+	//asynchronous reference manager (setTimeout, requestAnimationFrame, and future functionality as needed)
+	this.asyncRefs = function() {
+		const _T = this;
+		const refs = {};
+		
+		//add a reference
+		this.add = function(id, type, obj) {
+			_T.cancel(id);
+			refs[id] = {
+				obj:obj,
+				type:type
+			};
+		};
+		
+		//cancel a reference
+		this.cancel = function(id) {
+			let ref = refs[id]; if (ref) {
+				if (ref.type==='setTimeout') clearTimeout(ref.obj);
+				else if (ref.type==='requestAnimationFrame') cancelAnimationFrame(ref.obj);
+				delete refs[id];
+			}
+		};
+	};
+};
+
+var index = {
+	install(Vue) {
+		Vue.component("pu-stagger", stagger);
+		//create the global plutonium library object and add library methods if not already present
+		const PU = Vue.prototype.$PU||(Vue.prototype.$PU = {lib:{}});		
+		for (var i in lib) { if (!PU.lib[i]) PU.lib[i] = lib[i]; }
+	}
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -3326,8 +3658,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -3350,33 +3680,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       widgets: false,
       showStatusModal: false,
       isModal: false
-    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", [{
-      text: 'ID',
-      value: 'locationId'
-    }, {
-      text: 'LOCATION',
-      value: 'locationName1'
-    }, {
-      text: 'NAME',
-      value: 'locationName2'
-    }, {
-      text: 'PHONE',
-      value: 'phoneNo'
-    }]), _ref;
+    }, _defineProperty(_ref, "showCommentModal", false), _defineProperty(_ref, "items", []), _defineProperty(_ref, "locations", []), _defineProperty(_ref, "newComment", ''), _defineProperty(_ref, "search", ''), _ref;
   },
-  mounted: function mounted() {
-    var _this = this;
+  mounted: function mounted() {// releasedAtFromNowを1分ごとに更新する
 
-    // releasedAtFromNowを1分ごとに更新する
-    window.setInterval(function () {
-      _this.openSeatModal();
-    }, 1000 * 10);
+    /*
+    window.setInterval(() => {
+      this.openSeatModal()
+    }, 1000 * 10)
+    */
   },
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
     Echo.channel("dashBordChannel").listen("DashBordEvent", function (e) {
-      _this2.getDashbordUser();
+      _this.getDashbordUser();
     });
     this.getDashbordUser();
   },
@@ -3389,13 +3707,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     getDashbordUser: function getDashbordUser() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get('/api/dashboarduser').then(function (res) {
-        return _this3.dashboardusers = res.data.data;
+        return _this2.dashboardusers = res.data.data;
       })["catch"](function (error) {
         return console.log(error.res.data);
       });
+    },
+    beforeEnter: function beforeEnter(el) {
+      el.style.opacity = 0;
+      el.style.height = 0;
+    },
+    enter: function enter(el, done) {
+      var delay = el.dataset.index * 150;
+      setTimeout(function () {
+        Velocity(el, {
+          opacity: 1,
+          height: '1.6em'
+        }, {
+          complete: done
+        });
+      }, delay);
+    },
+    leave: function leave(el, done) {
+      var delay = el.dataset.index * 150;
+      setTimeout(function () {
+        Velocity(el, {
+          opacity: 0,
+          height: 0
+        }, {
+          complete: done
+        });
+      }, delay);
     }
   }
 });
@@ -11160,7 +11504,11 @@ exports.push([module.i, "\n.zero-box {\n  font-size:16px  !important;\n  padding
 
 exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
+<<<<<<< HEAD
 exports.push([module.i, "\n.container {\n  padding: 0 !important;\n  padding-top: 15px !important;\n}\n.container fluid fill-height  {\n  margin:  0 !important;\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\n    padding: 1px !important;\n}\n.zaiseki-badge-tv, .riseki-badge-tv, .torikomi-badge-tv, .renraku-badge-tv, .taiseki-badge-tv {\n  padding: 3px 6px;\n  margin-right: 8px;\n  margin-left: 1px;\n  font-size: 12px !important;\n  color: white;\n  border-radius: 6px;\n  box-shadow: 0 0 3px #ddd;\n  white-space: nowrap;\n  font-weight: normal !important;\n}\n.zaiseki-badge-tv {\n  background-color: #4CAF50; \n  cursor: pointer;\n}\n.riseki-badge-tv {\n  background-color: #FF9800; \n  cursor: pointer;\n}\n.taiseki-badge-tv {\n  background-color: #E91E63; \n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\n  padding: 3px 6px;\n  margin-right: 8px;\n  margin-left: 1px;\n  font-size: 12px !important;\n  color: white;\n  border-radius: 6px;\n  box-shadow: 0 0 3px #ddd;\n  white-space: nowrap;\n  font-weight: normal !important;\n}\n.zero-badge {\n  background-color: #34495e !important;\n}\n.first-badge {\n  background-color: #c0392b !important;\n}\n.second-badge {\n  background-color: #3F51B5 !important;\n}\n.third-badge {\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\n  padding:3px;\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\n  padding:3Px;\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\n  padding:3px;\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\n  padding:3px;\n  font-size: 30px;\n  color: #fff;\n  text-align: center;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\n  padding:3px;\n  color: #fff;\n  font-size: 30px;\n  text-align: center;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\n  padding:3px;\n  font-size: 30px;\n  color: #fff;\n  text-align: center;\n  font-weight: bold; \n  cursor: pointer;\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\nopacity: 0.5 ;\n}\n.riseki-list:hover {\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\nopacity: 0.5 ;\n}\n.renraku-list:hover {\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\nopacity: 0.5 ;\n}\n.v-enter {\n  transform: translate(-100px, 0);\n  opacity: 0;\n}\n.v-enter-to {\n  opacity: 1;\n}\n.v-enter-active {\n  transition: all 1s 0s ease;\n}\n.v-leave {\n  transform: translate(0, 0);\n  opacity: 1;\n}\n.v-leave-to {\n  transform: translate(100px, 0);\n  opacity: 0;\n}\n.v-leave-active {\n  transition: all .5s 0s ease;\n}\n.zero-badge-t, .first-badge-t, .second-badge-t, .third-badge-t {\n  /*\n  padding: 3px 6px;\n  margin-right: 8px;\n  margin-left: 1px;\n  color: white;\n  border-radius: 6px;\n  box-shadow: 0 0 3px #ddd;\n  white-space: nowrap;\n  */\n  font-size: 16px !important;\n  font-weight: bold !important;\n}\n.zero-badge-t {\n  color: #34495e !important;\n}\n.first-badge-t {\n  color: #c0392b !important;\n}\n.second-badge-t {\n  color: #3F51B5 !important;\n}\n.third-badge-t {\n  color: #009688 !important;\n}\n.zaiseki-badge-t, .riseki-badge-t, .torikomi-badge-t, .renraku-badge-t, .taiseki-badge-t {\n  margin-right: 1px !important;\n  margin-left: 1px !important;\n  padding: 4px !important;\n  font-size: 18px !important;\n  color: white;\n  border-radius: 6px;\n  box-shadow: 0 0 6px #ddd;\n  white-space: nowrap;\n}\n.zaiseki-badge-t {\n  background-color: #4CAF50; \n  cursor: pointer;\n}\n.riseki-badge-t {\n  background-color: #FF9800; \n  cursor: pointer;\n}\n.torikomi-badge-t {\n  background-color: #2196F3; \n  cursor: pointer;\n}\n.renraku-badge-t {\n  background-color: #9C27B0; \n  cursor: pointer;\n}\n.taiseki-badge-t {\n  background-color: #E91E63; \n  cursor: pointer;\n}\n\n", ""]);
+=======
+exports.push([module.i, "\n.container {\r\n  padding: 0 !important;\r\n  padding-top: 15px !important;\n}\n.container fluid fill-height  {\r\n  margin:  0 !important;\r\n  padding: 0 !important;\n}\n.container.grid-list-md .layout .flex {\r\n    padding: 1px !important;\n}\n.zaiseki-badge-tv, .riseki-badge-tv, .torikomi-badge-tv, .renraku-badge-tv, .taiseki-badge-tv {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zaiseki-badge-tv {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge-tv {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.taiseki-badge-tv {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.zero-badge, .first-badge, .second-badge, .third-badge {\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  font-size: 12px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  font-weight: normal !important;\n}\n.zero-badge {\r\n  background-color: #34495e !important;\n}\n.first-badge {\r\n  background-color: #c0392b !important;\n}\n.second-badge {\r\n  background-color: #3F51B5 !important;\n}\n.third-badge {\r\n  background-color: #009688 !important;\n}\n.zaiseki-box-d {\r\n  padding:3px;\r\n  background-color:#4CAF50 !important;\n}\n.riseki-box-d {\r\n  padding:3Px;\r\n  background-color:#FF9800 !important;\n}\n.taiseki-box-d {\r\n  padding:3px;\r\n  background-color:#E91E63 !important;\n}\n.zaiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #4CAF50 !important;\n}\n.riseki-list {\r\n  padding:3px;\r\n  color: #fff;\r\n  font-size: 30px;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #FF9800 !important;\n}\n.taiseki-list {\r\n  padding:3px;\r\n  font-size: 30px;\r\n  color: #fff;\r\n  text-align: center;\r\n  font-weight: bold; \r\n  cursor: pointer;\r\n  background-color: #E91E63 !important;\n}\n.zaiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.riseki-list:hover {\r\nopacity: 0.5 ;\n}\n.torikomi-list:hover {\r\nopacity: 0.5 ;\n}\n.renraku-list:hover {\r\nopacity: 0.5 ;\n}\n.taiseki-list:hover {\r\nopacity: 0.5 ;\n}\n.grid-wrapper {\r\n  display: grid;\r\n  grid-template-columns: repeat(3, 1fr);\r\n  grid-gap: 1px;\n}\n.zero-badge-t, .first-badge-t, .second-badge-t, .third-badge-t {\r\n  /*\r\n  padding: 3px 6px;\r\n  margin-right: 8px;\r\n  margin-left: 1px;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 3px #ddd;\r\n  white-space: nowrap;\r\n  */\r\n  font-size: 16px !important;\r\n  font-weight: bold !important;\n}\n.zero-badge-t {\r\n  color: #34495e !important;\n}\n.first-badge-t {\r\n  color: #c0392b !important;\n}\n.second-badge-t {\r\n  color: #3F51B5 !important;\n}\n.third-badge-t {\r\n  color: #009688 !important;\n}\n.zaiseki-badge-t, .riseki-badge-t, .torikomi-badge-t, .renraku-badge-t, .taiseki-badge-t {\r\n  margin-right: 1px !important;\r\n  margin-left: 1px !important;\r\n  padding: 4px !important;\r\n  font-size: 18px !important;\r\n  color: white;\r\n  border-radius: 6px;\r\n  box-shadow: 0 0 6px #ddd;\r\n  white-space: nowrap;\n}\n.zaiseki-badge-t {\r\n  background-color: #4CAF50; \r\n  cursor: pointer;\n}\n.riseki-badge-t {\r\n  background-color: #FF9800; \r\n  cursor: pointer;\n}\n.torikomi-badge-t {\r\n  background-color: #2196F3; \r\n  cursor: pointer;\n}\n.renraku-badge-t {\r\n  background-color: #9C27B0; \r\n  cursor: pointer;\n}\n.taiseki-badge-t {\r\n  background-color: #E91E63; \r\n  cursor: pointer;\n}\n.fade-enter-active, .fade-leave-active {\r\n  transition: all 1.5s ease;\r\n  transform-origin: center top 0px;\n}\n.fade-enter, .fade-leave-to {\r\n    transform: matrix3d(1,0,0.00,0,0.00,0,1.00,0.008,0,-1,0,0,0,0,0,1);\r\n    opacity: 0;\n}\r\n\r\n \r\n", ""]);
+>>>>>>> origin/master
 
 
 /***/ }),
@@ -53196,215 +53544,225 @@ var render = function() {
         "v-container",
         {
           staticStyle: { padding: "0px", margin: "auto" },
-          attrs: { "grid-list-md": "" }
+          attrs: { "grid-list-md": "", stagger: "100" }
         },
         [
           _c(
             "v-layout",
-            { attrs: { row: "", wrap: "" } },
-            _vm._l(_vm.dashboardusers, function(dashboarduser) {
-              return _c(
-                "v-flex",
-                {
-                  key: dashboarduser.id,
-                  attrs: { xl4: "", lg4: "", md6: "", xs12: "" }
-                },
+            { attrs: { row: "", wrap: "", stagger: "70" } },
+            [
+              _c(
+                "pu-stagger",
+                { attrs: { stagger: "100" } },
                 [
                   _c(
-                    "v-card",
+                    "transition-group",
                     {
-                      class: {
-                        "zaiseki-box-d": dashboarduser.status === 0,
-                        "riseki-box-d": dashboarduser.status === 1,
-                        "taiseki-box-d": dashboarduser.status === 4
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.openSeatModal()
-                        }
+                      staticClass: "grid-wrapper stagger",
+                      attrs: {
+                        stagger: "100",
+                        appear: "",
+                        name: "fade",
+                        xl4: "",
+                        lg4: "",
+                        md6: "",
+                        xs12: ""
                       }
                     },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticStyle: {
-                            display: "flex",
-                            "justify-content": "space-between",
-                            padding: "5px",
-                            "font-size": "32px",
-                            "background-color": "#fff"
-                          }
-                        },
+                    _vm._l(_vm.dashboardusers, function(dashboarduser) {
+                      return _c(
+                        "v-flex",
+                        { key: dashboarduser.id, attrs: { stagger: "70" } },
                         [
                           _c(
-                            "div",
+                            "v-card",
                             {
-                              staticStyle: {
-                                "text-align": "center",
-                                "font-size": "38px",
-                                "font-weight": "bold"
+                              class: {
+                                "zaiseki-box-d": dashboarduser.status === 0,
+                                "riseki-box-d": dashboarduser.status === 1,
+                                "taiseki-box-d": dashboarduser.status === 4
                               }
                             },
                             [
-                              _vm._v(
-                                _vm._s(dashboarduser.displayName) +
-                                  "\n                "
+                              _c(
+                                "div",
+                                {
+                                  staticStyle: {
+                                    display: "flex",
+                                    "justify-content": "space-between",
+                                    padding: "5px",
+                                    "font-size": "32px",
+                                    "background-color": "#fff"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticStyle: {
+                                        "text-align": "center",
+                                        "font-size": "38px",
+                                        "font-weight": "bold"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(dashboarduser.displayName) +
+                                          "\n                  "
+                                      ),
+                                      dashboarduser.gomiFlag == 1
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "zaiseki-badge-t" },
+                                            [_vm._v("ゴミ")]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      dashboarduser.souziFlag == 1
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "riseki-badge-t" },
+                                            [_vm._v("掃除")]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      dashboarduser.seisouFlag == 1
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "torikomi-badge-t" },
+                                            [_vm._v("棚拭き")]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      dashboarduser.serverFlag == 1
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "renraku-badge-t" },
+                                            [_vm._v("サーバ")]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      dashboarduser.hinomotoFlag == 1
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "taiseki-badge-t" },
+                                            [_vm._v("火元")]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  dashboarduser.belongsId === 0
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "zero-badge-t" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(dashboarduser.belongsName) +
+                                              "/" +
+                                              _vm._s(dashboarduser.rankName) +
+                                              "/(" +
+                                              _vm._s(dashboarduser.phoneNo) +
+                                              ")"
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  dashboarduser.belongsId === 1
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "first-badge-t" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(dashboarduser.belongsName) +
+                                              "/" +
+                                              _vm._s(dashboarduser.rankName) +
+                                              "/(" +
+                                              _vm._s(dashboarduser.phoneNo) +
+                                              ")"
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  dashboarduser.belongsId === 2
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "second-badge-t" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(dashboarduser.belongsName) +
+                                              "/" +
+                                              _vm._s(dashboarduser.rankName) +
+                                              "/(" +
+                                              _vm._s(dashboarduser.phoneNo) +
+                                              ")"
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  dashboarduser.belongsId === 3
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "third-badge-t" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(dashboarduser.belongsName) +
+                                              "/" +
+                                              _vm._s(dashboarduser.rankName) +
+                                              "/(" +
+                                              _vm._s(dashboarduser.phoneNo) +
+                                              ")"
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
                               ),
-                              dashboarduser.gomiFlag == 1
-                                ? _c(
-                                    "span",
-                                    { staticClass: "zaiseki-badge-t" },
-                                    [_vm._v("ゴミ")]
-                                  )
-                                : _vm._e(),
                               _vm._v(" "),
-                              dashboarduser.souziFlag == 1
-                                ? _c(
-                                    "span",
-                                    { staticClass: "riseki-badge-t" },
-                                    [_vm._v("掃除")]
-                                  )
-                                : _vm._e(),
+                              _c(
+                                "p",
+                                {
+                                  staticStyle: {
+                                    "font-size": "24px !important",
+                                    padding: "1px",
+                                    margin: "0",
+                                    color: "#fff"
+                                  }
+                                },
+                                [_vm._v(" " + _vm._s(dashboarduser.location))]
+                              ),
                               _vm._v(" "),
-                              dashboarduser.seisouFlag == 1
-                                ? _c(
-                                    "span",
-                                    { staticClass: "torikomi-badge-t" },
-                                    [_vm._v("棚拭き")]
-                                  )
-                                : _vm._e(),
+                              _c("v-divider", { attrs: { color: "white" } }),
                               _vm._v(" "),
-                              dashboarduser.serverFlag == 1
-                                ? _c(
-                                    "span",
-                                    { staticClass: "renraku-badge-t" },
-                                    [_vm._v("サーバ")]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              dashboarduser.hinomotoFlag == 1
-                                ? _c(
-                                    "span",
-                                    { staticClass: "taiseki-badge-t" },
-                                    [_vm._v("火元")]
-                                  )
-                                : _vm._e()
-                            ]
-                          ),
-                          _vm._v(" "),
-                          dashboarduser.belongsId === 0
-                            ? _c("span", { staticClass: "zero-badge-t" }, [
-                                _vm._v(
-                                  _vm._s(dashboarduser.belongsName) +
-                                    "/" +
-                                    _vm._s(dashboarduser.rankName) +
-                                    "/(" +
-                                    _vm._s(dashboarduser.phoneNo) +
-                                    ")"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          dashboarduser.belongsId === 1
-                            ? _c("span", { staticClass: "first-badge-t" }, [
-                                _vm._v(
-                                  _vm._s(dashboarduser.belongsName) +
-                                    "/" +
-                                    _vm._s(dashboarduser.rankName) +
-                                    "/(" +
-                                    _vm._s(dashboarduser.phoneNo) +
-                                    ")"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          dashboarduser.belongsId === 2
-                            ? _c("span", { staticClass: "second-badge-t" }, [
-                                _vm._v(
-                                  _vm._s(dashboarduser.belongsName) +
-                                    "/" +
-                                    _vm._s(dashboarduser.rankName) +
-                                    "/(" +
-                                    _vm._s(dashboarduser.phoneNo) +
-                                    ")"
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          dashboarduser.belongsId === 3
-                            ? _c("span", { staticClass: "third-badge-t" }, [
-                                _vm._v(
-                                  _vm._s(dashboarduser.belongsName) +
-                                    "/" +
-                                    _vm._s(dashboarduser.rankName) +
-                                    "/(" +
-                                    _vm._s(dashboarduser.phoneNo) +
-                                    ")"
-                                )
-                              ])
-                            : _vm._e()
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        {
-                          staticStyle: {
-                            "font-size": "24px !important",
-                            padding: "1px",
-                            margin: "0",
-                            color: "#fff"
-                          }
-                        },
-                        [_vm._v(" " + _vm._s(dashboarduser.location))]
-                      ),
-                      _vm._v(" "),
-                      _c("v-divider", { attrs: { color: "white" } }),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        {
-                          staticStyle: {
-                            "font-size": "20px !important",
-                            padding: "1px",
-                            margin: "0",
-                            color: "#fff",
-                            "text-overflow": "overflow: hidden",
-                            height: "30px !important"
-                          }
-                        },
-                        [_vm._v(" " + _vm._s(dashboarduser.comment))]
+                              _c(
+                                "p",
+                                {
+                                  staticStyle: {
+                                    "font-size": "20px !important",
+                                    padding: "1px",
+                                    margin: "0",
+                                    color: "#fff",
+                                    "text-overflow": "overflow: hidden",
+                                    height: "30px !important"
+                                  }
+                                },
+                                [_vm._v(" " + _vm._s(dashboarduser.comment))]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
                       )
-                    ],
+                    }),
                     1
                   )
                 ],
                 1
               )
-            }),
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-dialog",
-            {
-              attrs: { fullscreen: "" },
-              model: {
-                value: _vm.seatMoal,
-                callback: function($$v) {
-                  _vm.seatMoal = $$v
-                },
-                expression: "seatMoal"
-              }
-            },
-            [
-              _c("v-img", {
-                staticStyle: {
-                  "background-color": "rgba(255,255,255,0.9) !important"
-                },
-                attrs: { src: "/seat.png", height: "100vh" }
-              })
             ],
             1
           )
@@ -96285,9 +96643,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
 /* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Router_router_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Router/router.js */ "./resources/assets/js/Router/router.js");
-/* harmony import */ var _node_modules_vuetify_dist_vuetify_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vuetify/dist/vuetify.css */ "./node_modules/vuetify/dist/vuetify.css");
-/* harmony import */ var _node_modules_vuetify_dist_vuetify_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_dist_vuetify_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Heplers_User_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Heplers/User.js */ "./resources/assets/js/Heplers/User.js");
+/* harmony import */ var _plutonium_js_vue_stagger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @plutonium-js/vue-stagger */ "./node_modules/@plutonium-js/vue-stagger/dist/bundle.esm.js");
+/* harmony import */ var _node_modules_vuetify_dist_vuetify_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/vuetify/dist/vuetify.css */ "./node_modules/vuetify/dist/vuetify.css");
+/* harmony import */ var _node_modules_vuetify_dist_vuetify_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_dist_vuetify_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Heplers_User_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Heplers/User.js */ "./resources/assets/js/Heplers/User.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -96299,10 +96658,13 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_plutonium_js_vue_stagger__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(window.puStagger);
 
 
-window.User = _Heplers_User_js__WEBPACK_IMPORTED_MODULE_4__["default"];
+window.User = _Heplers_User_js__WEBPACK_IMPORTED_MODULE_5__["default"];
 window.EventBus = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 /**
  * The following block of code may be used to automatically register your
@@ -96788,14 +97150,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************************!*\
   !*** ./resources/assets/js/dashbord/DashBordComponentTv.vue ***!
   \**************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DashBordComponentTv_vue_vue_type_template_id_e26414fc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashBordComponentTv.vue?vue&type=template&id=e26414fc& */ "./resources/assets/js/dashbord/DashBordComponentTv.vue?vue&type=template&id=e26414fc&");
 /* harmony import */ var _DashBordComponentTv_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DashBordComponentTv.vue?vue&type=script&lang=js& */ "./resources/assets/js/dashbord/DashBordComponentTv.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _DashBordComponentTv_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DashBordComponentTv.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/dashbord/DashBordComponentTv.vue?vue&type=style&index=0&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _DashBordComponentTv_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _DashBordComponentTv_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _DashBordComponentTv_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DashBordComponentTv.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/dashbord/DashBordComponentTv.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -96827,7 +97190,7 @@ component.options.__file = "resources/assets/js/dashbord/DashBordComponentTv.vue
 /*!***************************************************************************************!*\
   !*** ./resources/assets/js/dashbord/DashBordComponentTv.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97495,8 +97858,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! D:\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
 module.exports = __webpack_require__(/*! D:\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\yusuke\Desktop\realtimeApp\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+>>>>>>> origin/master
 
 
 /***/ })
