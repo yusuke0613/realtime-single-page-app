@@ -19,6 +19,8 @@ Route::apiResource('/location', 'LocationController');
 Route::apiResource('/comment', 'CommentController');
 Route::apiResource('/tantouUser', 'TantouUserController');
 Route::apiResource('/tantou', 'TantouController');
+// 写真投稿
+Route::post('/photos', 'PhotoController@create')->name('photo.create');
 
 Route::get('dashboarduser/tag/{comentNum}', 'DashBoardUserController@tag');
 Route::patch('/gomi'          , 'DashBoardUserController@gomi');

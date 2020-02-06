@@ -10,11 +10,9 @@ window.Vue = require('vue');
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import router from './Router/router.js'
-import stagger from '@plutonium-js/vue-stagger';
 
 
 Vue.use(Vuetify)
-Vue.use(stagger)
 Vue.use(window.puStagger)
 
 import '../../../node_modules/vuetify/dist/vuetify.css'

@@ -3,16 +3,15 @@ import VueRouter from 'vue-router'
 import Login from '../login/Login'
 import SignUp from '../login/signup'
 import Logout from '../login/Logout'
-import dashBordUser from '../dashbord/DashBordComponent'
-import DashBordUserControl from '../dashbord/DashBordUserControl'
-import DashBordComponent from '../dashbord/UserModal'
-import DashBordUserControl2 from '../dashbord/DashBordUserControl2'
 import DashBordComponentTv from  '../dashbord/DashBordComponentTv'
 import DashBordComponentIn from '../dashbord/DashBordComponentIn'
 import TantouUser from '../dashbord/TantouUser'
 import DashBordTagForm from '../dashbord/DashBordTagForm'
-
-
+import PhotoList from '../pages/PhotoList.vue'
+import PhotoDetail from '../pages/PhotoDetail.vue'
+import SystemError from '../pages/errors/System.vue'
+import NotFound from '../pages/errors/NotFound.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
