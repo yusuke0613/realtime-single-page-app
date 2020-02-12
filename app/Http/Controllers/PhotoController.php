@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePhoto;
 use App\Photo;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +15,36 @@ class PhotoController extends Controller
     public function __construct()
     {
         // 認証が必要
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
+
+
+     /**
+     * 写真一覧
+     */
+    public function index()
+    {
+        $photos = Photo::with(['owner'])
+            ->orderBy(Photo::CREATED_AT, 'desc')->paginate();
+
+        return $photos;
+    }
+
+    /**
+     * 写真詳細
+     * @param string $id
+     * @return Photo
+     */
+    
+    public function show(string $id)
+    {
+        $photo = Photo::where('id', $id)
+            ->with(['owner', 'comments.author'])->first();
+
+        return $photo ?? abort(404);
+    }
+
+
 
     /**
      * 写真投稿
@@ -42,13 +71,15 @@ class PhotoController extends Controller
         // トランザクションを利用する
         DB::beginTransaction();
 
+
         try {
-            Auth::user()->photos()->save($photo);
+            //Photo::save($photo);
+            $photo->save();
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             // DBとの不整合を避けるためアップロードしたファイルを削除
-            Storage::cloud()->delete($photo->filename);
+            Storage::disk('local')->delete($photo->filename);
             throw $exception;
         }
 

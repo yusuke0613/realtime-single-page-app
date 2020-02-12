@@ -19,14 +19,19 @@ Route::apiResource('/location', 'LocationController');
 Route::apiResource('/comment', 'CommentController');
 Route::apiResource('/tantouUser', 'TantouUserController');
 Route::apiResource('/tantou', 'TantouController');
+
 // 写真投稿
 Route::post('/photos', 'PhotoController@create')->name('photo.create');
+// 写真一覧
+Route::get('/photos', 'PhotoController@index')->name('photo.index');
+// 写真詳細
+Route::get('/photos/{id}', 'PhotoController@show')->name('photo.show');
 
 Route::get('dashboarduser/tag/{comentNum}', 'DashBoardUserController@tag');
 Route::patch('/gomi'          , 'DashBoardUserController@gomi');
 Route::patch('/souzi'         , 'DashBoardUserController@souzi');
 Route::patch('/seisou'        , 'DashBoardUserController@seisou');
-Route::patch('/hinomoto'       , 'DashBoardUserController@hinomoto');
+Route::patch('/hinomoto'      , 'DashBoardUserController@hinomoto');
 Route::patch('/server'        , 'DashBoardUserController@server');
 
 Route::patch('/zaiseki/{id}'  , 'DashBoardUserController@zaiseki');

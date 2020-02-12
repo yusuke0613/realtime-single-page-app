@@ -4,11 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class Photo extends Model
 {
     /** プライマリキーの型 */
     protected $keyType = 'string';
+
+    
+    /** JSONに含める属性 */
+    protected $visible = [
+        'id', 'owner', 'url', 'comments',
+    ];
+
+    /** JSONに含める属性 */
+    protected $appends = [
+        'url',
+    ];
 
     /** IDの桁数 */
     const ID_LENGTH = 12;
@@ -50,5 +62,32 @@ class Photo extends Model
         }
 
         return $id;
+    }
+
+    /**
+     * アクセサ - url
+     * @return string
+     */
+    public function getUrlAttribute()
+    {
+        return Storage::disk('local')->url($this->attributes['filename']);
+    }
+
+    /**
+     * リレーションシップ - usersテーブル
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id', 'users');
+    }
+
+    /**
+     * リレーションシップ - commentsテーブル
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment')->orderBy('id', 'desc');
     }
 }

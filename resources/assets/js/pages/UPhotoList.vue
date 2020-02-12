@@ -1,5 +1,5 @@
 <template>
-  <div v-show="value" class="photo-form">
+  <div  class="photo-form">
     <h2 class="title">Submit a photo</h2>
     <div v-show="loading" class="panel">
       <Loader>Sending your photo...</Loader>
@@ -23,18 +23,20 @@
 
 <script>
 import { CREATED, UNPROCESSABLE_ENTITY } from '../util'
-import Loader from '../component/Loader.vue'
+import Loader from '../components/Loader.vue'
 
 export default {
   components: {
     Loader
   },
+  /*
   props: {
     value: {
       type: Boolean,
       required: true
     }
   },
+  */
   data () {
     return {
       loading: false,
